@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<content>
+		<masterQuest>
+			<Resources>
+				<Videos src = "QuestMaster\Resources\Videos">
+				</Videos>
+				<Images src = "QuestMaster\Resources\Images">
+					<image src = "0_4c12e_b02ace3d_XXL.jpg">
+						<tags>
+							<tag age = "18"/>
+							<Quests>
+								<quest id = "1"/>
+								<quest id = "2"/>
+								<quest id = "3"/>
+							</Quests>
+						</tags>
+					</image>
+				</Images>
+				<Audios src = "QuestMaster\Resources\Audios">
+				</Audios>
+				<Text src = "QuestMaster\Resources\Text">
+				</Text>
+			</Resources>
+		</masterQuest>
+	</content>
