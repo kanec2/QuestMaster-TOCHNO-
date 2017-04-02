@@ -13,13 +13,21 @@ namespace QuestMaster
     public partial class LabeledTextBox : UserControl
     {
         public string LabelText {
-            get { return label1.Text; }
-            set { label1.Text = value; }
+            get { return metroLabel1.Text; }
+            set { metroLabel1.Text = value; }
         }
         public string TextBoxText
         {
-            get { return textBox1.Text; }
-            set { textBox1.Text = value; }
+            get { return metroTextBox1.Text; }
+            set { metroTextBox1.Text = value; }
+        }
+
+        public Size textBoxSize
+        {
+            get
+            {
+                return metroTextBox1.Size = tableLayoutPanel1.MaximumSize - metroLabel1.MaximumSize;
+            }
         }
         public LabeledTextBox()
         {
