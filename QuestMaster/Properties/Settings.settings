@@ -15,7 +15,7 @@
       <Value Profile="(Default)">Resources//Text</Value>
     </Setting>
     <Setting Name="QuestArchive" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Resource//QuestArchive</Value>
+      <Value Profile="(Default)">Resources//QuestArchive//</Value>
     </Setting>
   </Settings>
 </SettingsFile>

@@ -27,10 +27,11 @@ namespace QuestMaster
         {
             BDConnection connectionBD = new BDConnection("127.0.0.1", "root", "3306", "", "mydb");
             resource = new Resources();
-            //resource.save();
-            Quests que = new Quests("Quest1");
-            //que.Add("images", "1","images", new List<string>(){"6","7","8","9"},"2");
-            que.Add("text", "10", "text", null, "0");
+            Quests que = new Quests();
+            que.Load("1");
+            que.Insert("3","task","12");
+            que.Insert("3", "answers", "toogles");
+            que.Insert("3", "text");
             que.Save();
         }
 

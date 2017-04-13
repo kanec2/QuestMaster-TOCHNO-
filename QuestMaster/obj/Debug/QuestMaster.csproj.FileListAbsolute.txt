@@ -84,3 +84,4 @@ D:\QuestMaster\QuestMaster\obj\Debug\QuestMaster.csprojResolveAssemblyReference.
 E:\QuestMaster\QuestMaster\obj\Debug\QuestMaster.csprojResolveAssemblyReference.cache
 E:\QuestMaster\QuestMaster\obj\Debug\QuestMaster.ToolStripTager.resources
 F:\QuestMaster\QuestMaster\obj\Debug\QuestMaster.ToolStripTager.resources
+D:\QuestMaster\QuestMaster\obj\Debug\QuestMaster.ToolStripTager.resources

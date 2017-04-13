@@ -29,15 +29,15 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("Картинки");
-            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("Видео");
-            System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("Звук");
-            System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("Текст");
-            System.Windows.Forms.TreeNode treeNode13 = new System.Windows.Forms.TreeNode("Квест1");
-            System.Windows.Forms.TreeNode treeNode14 = new System.Windows.Forms.TreeNode("Квест2");
-            System.Windows.Forms.TreeNode treeNode15 = new System.Windows.Forms.TreeNode("Команды");
-            System.Windows.Forms.TreeNode treeNode16 = new System.Windows.Forms.TreeNode("Одиночночные игроки");
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Картинки");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Видео");
+            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Звук");
+            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Текст");
+            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Квест1");
+            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Квест2");
+            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("Команды");
+            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("Одиночночные игроки");
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -65,6 +65,7 @@
             this.toolStrip2 = new System.Windows.Forms.ToolStrip();
             this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
             this.квестToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripDropDownButton4 = new System.Windows.Forms.ToolStripDropDownButton();
             this.statusStrip2 = new System.Windows.Forms.StatusStrip();
             this.metroTabPage2 = new MetroFramework.Controls.MetroTabPage();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
@@ -80,7 +81,6 @@
             this.toolStrip3 = new System.Windows.Forms.ToolStrip();
             this.toolStripDropDownButton2 = new System.Windows.Forms.ToolStripDropDownButton();
             this.statusStrip3 = new System.Windows.Forms.StatusStrip();
-            this.toolStripDropDownButton4 = new System.Windows.Forms.ToolStripDropDownButton();
             this.panel2.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.metroTabControl1.SuspendLayout();
@@ -228,7 +228,7 @@
             this.metroTabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.metroTabControl1.Location = new System.Drawing.Point(20, 60);
             this.metroTabControl1.Name = "metroTabControl1";
-            this.metroTabControl1.SelectedIndex = 1;
+            this.metroTabControl1.SelectedIndex = 0;
             this.metroTabControl1.Size = new System.Drawing.Size(1219, 689);
             this.metroTabControl1.TabIndex = 12;
             // 
@@ -351,23 +351,23 @@
             this.treeView2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeView2.Location = new System.Drawing.Point(3, 3);
             this.treeView2.Name = "treeView2";
-            treeNode9.Name = "Images";
-            treeNode9.Tag = "Resources//Images";
-            treeNode9.Text = "Картинки";
-            treeNode10.Name = "Videos";
-            treeNode10.Tag = "Resources//Videos";
-            treeNode10.Text = "Видео";
-            treeNode11.Name = "Audios";
-            treeNode11.Tag = "Resources//Audios";
-            treeNode11.Text = "Звук";
-            treeNode12.Name = "Text";
-            treeNode12.Tag = "Resources//Text";
-            treeNode12.Text = "Текст";
+            treeNode1.Name = "Images";
+            treeNode1.Tag = "Resources//Images";
+            treeNode1.Text = "Картинки";
+            treeNode2.Name = "Videos";
+            treeNode2.Tag = "Resources//Videos";
+            treeNode2.Text = "Видео";
+            treeNode3.Name = "Audios";
+            treeNode3.Tag = "Resources//Audios";
+            treeNode3.Text = "Звук";
+            treeNode4.Name = "Text";
+            treeNode4.Tag = "Resources//Text";
+            treeNode4.Text = "Текст";
             this.treeView2.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode9,
-            treeNode10,
-            treeNode11,
-            treeNode12});
+            treeNode1,
+            treeNode2,
+            treeNode3,
+            treeNode4});
             this.treeView2.Size = new System.Drawing.Size(350, 619);
             this.treeView2.TabIndex = 1;
             this.treeView2.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeView2_NodeMouseClick);
@@ -398,6 +398,15 @@
             this.квестToolStripMenuItem.Name = "квестToolStripMenuItem";
             this.квестToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
             this.квестToolStripMenuItem.Text = "квест";
+            // 
+            // toolStripDropDownButton4
+            // 
+            this.toolStripDropDownButton4.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripDropDownButton4.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton4.Image")));
+            this.toolStripDropDownButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripDropDownButton4.Name = "toolStripDropDownButton4";
+            this.toolStripDropDownButton4.Size = new System.Drawing.Size(29, 22);
+            this.toolStripDropDownButton4.Text = "toolStripDropDownButton4";
             // 
             // statusStrip2
             // 
@@ -442,13 +451,13 @@
             this.treeView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeView1.Location = new System.Drawing.Point(3, 3);
             this.treeView1.Name = "treeView1";
-            treeNode13.Name = "Квест1";
-            treeNode13.Text = "Квест1";
-            treeNode14.Name = "Квест2";
-            treeNode14.Text = "Квест2";
+            treeNode5.Name = "Квест1";
+            treeNode5.Text = "Квест1";
+            treeNode6.Name = "Квест2";
+            treeNode6.Text = "Квест2";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode13,
-            treeNode14});
+            treeNode5,
+            treeNode6});
             this.treeView1.Size = new System.Drawing.Size(350, 619);
             this.treeView1.TabIndex = 0;
             // 
@@ -522,13 +531,13 @@
             this.treeView3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeView3.Location = new System.Drawing.Point(3, 3);
             this.treeView3.Name = "treeView3";
-            treeNode15.Name = "Teams";
-            treeNode15.Text = "Команды";
-            treeNode16.Name = "SinglePlayers";
-            treeNode16.Text = "Одиночночные игроки";
+            treeNode7.Name = "Teams";
+            treeNode7.Text = "Команды";
+            treeNode8.Name = "SinglePlayers";
+            treeNode8.Text = "Одиночночные игроки";
             this.treeView3.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode15,
-            treeNode16});
+            treeNode7,
+            treeNode8});
             this.treeView3.Size = new System.Drawing.Size(350, 619);
             this.treeView3.TabIndex = 0;
             // 
@@ -567,15 +576,6 @@
             this.statusStrip3.Size = new System.Drawing.Size(24, 650);
             this.statusStrip3.TabIndex = 2;
             this.statusStrip3.Text = "statusStrip3";
-            // 
-            // toolStripDropDownButton4
-            // 
-            this.toolStripDropDownButton4.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripDropDownButton4.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton4.Image")));
-            this.toolStripDropDownButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripDropDownButton4.Name = "toolStripDropDownButton4";
-            this.toolStripDropDownButton4.Size = new System.Drawing.Size(29, 22);
-            this.toolStripDropDownButton4.Text = "toolStripDropDownButton4";
             // 
             // Form1
             // 

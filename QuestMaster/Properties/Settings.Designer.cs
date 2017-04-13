@@ -61,7 +61,7 @@ namespace QuestMaster.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Resource//QuestArchive")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Resources//QuestArchive//")]
         public string QuestArchive {
             get {
                 return ((string)(this["QuestArchive"]));

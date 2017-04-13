@@ -92,7 +92,7 @@ namespace QuestMaster
         /// Удаляет элемент.
         /// </summary>
         /// <param name="id">ID Ресурса.</param>
-        public void delete(int id)
+        public void Delete(int id)
         {
             foreach (KeyValuePair<XName, List<ResourceElement>> resource in resources)
             {
@@ -115,7 +115,7 @@ namespace QuestMaster
         /// <param name="state">tags или quests.</param>
         /// <param name="key">Для Тега: имя тега. Для Квеста: старое значение тега.</param>
         /// <param name="value">Для Тега: новое значение тега. Для Квеста: новый Квест.</param>
-        public void insert(int id, string state, string key, string value)
+        public void Insert(int id, string state, string key, string value)
         {
             switch (state)
             {
@@ -150,9 +150,9 @@ namespace QuestMaster
         /// <summary>
         /// Добавление id квеста.
         /// </summary>
-        /// <param name="id">ID ресурса.</param>
+        /// <param name="id">ID Ресурса.</param>
         /// <param name="newId">ID Квеста.</param>
-        public void update(int id, string questId)
+        public void Update(int id, string questId)
         {
             this.resElem = this.resources.Select(resource => resource.Value.Where(res => res.id == id).First()).First();
             this.resElem.addQuest(questId);
@@ -164,23 +164,50 @@ namespace QuestMaster
         /// <param name="id">ID Ресурса.</param>
         /// <param name="tagName">Имя тега.</param>
         /// <param name="tagValue">Значение тега.</param>
-        public void update(int id, string tagName, string tagValue)
+        public void Update(int id, string tagName, string tagValue)
         {
             this.resElem = this.resources.Select(resource => resource.Value.Where(res => res.id == id).First()).First();
             this.resElem.addTags(tagName, tagValue);
         }
 
-        public void update(int id, string questId, string tagName, string tagValue)
+        /// <summary>
+        /// Добавление нового тега и квеста, с их значениями.
+        /// </summary>
+        /// <param name="id">ID Ресурса.</param>
+        /// <param name="questId">ID Квеста</param>
+        /// <param name="tagName">Имя тега.</param>
+        /// <param name="tagValue">Значение тега.</param>
+        public void Update(int id, string questId, string tagName, string tagValue)
         {
             this.resElem = this.resources.Select(resource => resource.Value.Where(res => res.id == id).First()).First();
             this.resElem.addQuest(questId);
             this.resElem.addTags(tagName, tagValue);
         }
         
-        public void save()
+        /// <summary>
+        /// Сохраняем файл с ресурсами.
+        /// </summary>
+        public void Save()
         {
             xWork.writeToXml(doc.Elements("QuestMaster").First(),id);
             doc.Save("Resources//XMLMap.xml");
+        }
+
+        /// <summary>
+        /// Производим переиндексацию ресурсов.
+        /// </summary>
+        public void ReIndex()
+        {
+            int id = 1;
+            foreach (KeyValuePair<XName,List<ResourceElement>> item in this.resources)
+            {
+                foreach (ResourceElement resElem in item.Value)
+                {
+                    resElem.id = id;
+                    id++;
+                }
+            }
+            this.id = id;
         }
     }
 }
