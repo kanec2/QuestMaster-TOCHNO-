@@ -27,12 +27,12 @@ namespace QuestMaster
         {
             BDConnection connectionBD = new BDConnection("127.0.0.1", "root", "3306", "", "mydb");
             resource = new Resources();
-            Quests que = new Quests();
-            que.Load("1");
-            que.Insert("3","task","12");
-            que.Insert("3", "answers", "toogles");
-            que.Insert("3", "text");
-            que.Save();
+            //Quests que = new Quests();
+            //que.Load("1");
+            //que.Insert("3","task","12");
+            //que.Insert("3", "answers", "toogles");
+            //que.Insert("3", "text");
+            //que.Save();
         }
 
         private void treeView2_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)

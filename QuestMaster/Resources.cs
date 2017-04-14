@@ -82,10 +82,25 @@ namespace QuestMaster
             this.id++;
         }
 
-        
+        /// <summary>
+        /// Получаем ресурс Элемент.
+        /// </summary>
+        /// <param name="name">Имя файла</param>
+        /// <returns></returns>
         internal ResourceElement checkElement(string name)
         {
-            return resources.Select(t => t.Value.Where(v => v.respath == name).First()).First();
+            ResourceElement elem = new ResourceElement();
+            foreach (KeyValuePair<XName, List<ResourceElement>> item in this.resources)
+            {
+                foreach (ResourceElement res in item.Value)
+                {
+                    if (res.respath == name)
+                    {
+                        elem = res;
+                    }
+                }
+            }
+            return (elem != null) ? elem : null;
         }
 
         /// <summary>
