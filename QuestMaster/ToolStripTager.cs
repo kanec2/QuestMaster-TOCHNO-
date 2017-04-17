@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MetroFramework.Controls;
 
 namespace QuestMaster
 {
@@ -14,8 +15,7 @@ namespace QuestMaster
 
     public partial class ToolStripTager : UserControl
     {
-        private List<Button> tags = new List<Button>();
-        public List<Button> ResTags { get { return tags; } set { tags = value; updateTags(); } }
+        public Button[] tags;
 
         public event ChangedEventHandler Changed;
 
@@ -27,7 +27,7 @@ namespace QuestMaster
 
         private void updateTags()
         {
-            tags.ForEach(t => {
+            tags.ToList().ForEach(t => {
                 flowLayoutPanel1.Controls.Add(t); t.Click += removeTag;
             });
             
@@ -37,40 +37,52 @@ namespace QuestMaster
             Button btn = sender as Button;
             btn.Click -= removeTag;
             flowLayoutPanel1.Controls.Remove(btn);
-            ResTags.Remove(btn);
+
+            tags = tags.Where(t => t != btn).ToArray();
             OnTagChanged(EventArgs.Empty);
+
         }
-        public void addTag(string tagName) {
-            if(ResTags.Count !=0) if (ResTags.Select(t => t.Text == tagName).Any(v=> v== true)) return;
+        public void addTag(string tagName)
+        {
+            if (tags.ToList().Where(t => t != null).Select(t => t.Text == tagName).Any(v => v == true)) return;
+
             Button btn = new Button()
             {
+                Location = new System.Drawing.Point(3, 3),
                 Name = tagName,
-                Size = new System.Drawing.Size(40, 23),
+                Size = new System.Drawing.Size(50, 23),
                 Text = tagName,
                 AutoSize = true
             };
+
             btn.Click += removeTag;
             flowLayoutPanel1.Controls.Add(btn);
-            ResTags.Add(btn);
+            var tmp = new List<Button>(tags);
+            tmp.Add(btn);
+            tags = tmp.ToArray();
             OnTagChanged(EventArgs.Empty);
+
         }
+
         public ToolStripTager()
         {
             InitializeComponent();
+
         }
 
         public void fillTags(List<string> tagList)
         {
+            tags = new Button[tagList.Count];
             comboBox1.Items.AddRange(tagList.ToArray());
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            ResTags.ForEach(t =>
+            tags.ToList().ForEach(t =>
             {
                 flowLayoutPanel1.Controls.Remove(t); t.Click -= removeTag;
             });
-            ResTags = new List<Button>();
+
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)

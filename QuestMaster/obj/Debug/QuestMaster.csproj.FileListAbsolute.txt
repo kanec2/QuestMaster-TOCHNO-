@@ -120,3 +120,4 @@ G:\UnityDevCorner\Source\Repos\QuestMaster-TOCHNO-\QuestMaster\obj\Debug\QuestMa
 G:\UnityDevCorner\Source\Repos\QuestMaster-TOCHNO-\QuestMaster\obj\Debug\QuestMaster.csproj.GenerateResource.Cache
 G:\UnityDevCorner\Source\Repos\QuestMaster-TOCHNO-\QuestMaster\obj\Debug\QuestMaster.exe
 G:\UnityDevCorner\Source\Repos\QuestMaster-TOCHNO-\QuestMaster\obj\Debug\QuestMaster.pdb
+G:\UnityDevCorner\Source\Repos\QuestMaster-TOCHNO-\QuestMaster\obj\Debug\QuestMaster.csprojResolveAssemblyReference.cache

@@ -27,8 +27,8 @@ namespace QuestMaster
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            ToolStripTager tager = new ToolStripTager();
-            metroTabControl1.TabPages[1].Controls.Add(tager);
+            //ToolStripTager tager = new ToolStripTager();
+            //metroTabControl1.TabPages[1].Controls.Add(tager);
             BDConnection connectionBD = new BDConnection("127.0.0.1", "root", "3306", "", "mydb");
             resource = new Resources();
             toolStripTager1.fillTags(resource.getAllTags());
@@ -37,9 +37,9 @@ namespace QuestMaster
 
         private void tagChanged(object sender, EventArgs e)
         {
-            List<string> tags = toolStripTager1.ResTags.Select(t => t.Text).ToList();
-            files.ForEach(t => t.filter(tags));
-            makeFiles();
+            //List<string> tags = toolStripTager1.ResTags.Select(t => t.Text).ToList();
+            //files.ForEach(t => t.filter(tags));
+            //makeFiles();
         }
 
         private void treeView2_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
@@ -48,7 +48,7 @@ namespace QuestMaster
             lastDir = new DirectoryInfo(newSelected.Tag + " ");
             files.Clear();
             lastDir.GetFiles().ToList().ForEach(t => files.Add(new CustomFile(t.Name,t.Extension, resource.checkElement(t.Name))));
-            List<string> tags = toolStripTager1.ResTags.Select(t => t.Text).ToList();
+            //List<string> tags = toolStripTager1.ResTags.Select(t => t.Text).ToList();
             files.ForEach(t => t.filter(null));
             makeFiles();
         }

@@ -32,14 +32,14 @@ namespace QuestMaster
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            System.Windows.Forms.TreeNode treeNode17 = new System.Windows.Forms.TreeNode("Картинки");
-            System.Windows.Forms.TreeNode treeNode18 = new System.Windows.Forms.TreeNode("Видео");
-            System.Windows.Forms.TreeNode treeNode19 = new System.Windows.Forms.TreeNode("Звук");
-            System.Windows.Forms.TreeNode treeNode20 = new System.Windows.Forms.TreeNode("Текст");
-            System.Windows.Forms.TreeNode treeNode21 = new System.Windows.Forms.TreeNode("Квест1");
-            System.Windows.Forms.TreeNode treeNode22 = new System.Windows.Forms.TreeNode("Квест2");
-            System.Windows.Forms.TreeNode treeNode23 = new System.Windows.Forms.TreeNode("Команды");
-            System.Windows.Forms.TreeNode treeNode24 = new System.Windows.Forms.TreeNode("Одиночночные игроки");
+            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("Картинки");
+            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("Видео");
+            System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("Звук");
+            System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("Текст");
+            System.Windows.Forms.TreeNode treeNode13 = new System.Windows.Forms.TreeNode("Квест1");
+            System.Windows.Forms.TreeNode treeNode14 = new System.Windows.Forms.TreeNode("Квест2");
+            System.Windows.Forms.TreeNode treeNode15 = new System.Windows.Forms.TreeNode("Команды");
+            System.Windows.Forms.TreeNode treeNode16 = new System.Windows.Forms.TreeNode("Одиночночные игроки");
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -60,7 +60,6 @@ namespace QuestMaster
             this.labeledTextBox4 = new QuestMaster.LabeledTextBox();
             this.labeledComboBox1 = new QuestMaster.LabeledComboBox();
             this.metroTabPage3 = new MetroFramework.Controls.MetroTabPage();
-            this.toolStripTager1 = new QuestMaster.ToolStripTager();
             this.toolStrip4 = new System.Windows.Forms.ToolStrip();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
@@ -88,7 +87,7 @@ namespace QuestMaster
             this.toolStrip3 = new System.Windows.Forms.ToolStrip();
             this.toolStripDropDownButton2 = new System.Windows.Forms.ToolStripDropDownButton();
             this.statusStrip3 = new System.Windows.Forms.StatusStrip();
-
+            this.toolStripTager1 = new QuestMaster.ToolStripTager();
             this.panel2.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.metroTabControl1.SuspendLayout();
@@ -319,15 +318,6 @@ namespace QuestMaster
             this.metroTabPage3.Text = "Архив материалов";
             this.metroTabPage3.VerticalScrollbarBarColor = true;
             // 
-            // toolStripTager1
-            // 
-            this.toolStripTager1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.toolStripTager1.Location = new System.Drawing.Point(50, 0);
-            this.toolStripTager1.Name = "toolStripTager1";
-            this.toolStripTager1.Size = new System.Drawing.Size(1113, 35);
-            this.toolStripTager1.TabIndex = 6;
-
-            // 
             // toolStrip4
             // 
             this.toolStrip4.Dock = System.Windows.Forms.DockStyle.Right;
@@ -420,23 +410,23 @@ namespace QuestMaster
             this.treeView2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeView2.Location = new System.Drawing.Point(3, 33);
             this.treeView2.Name = "treeView2";
-            treeNode17.Name = "Images";
-            treeNode17.Tag = "Resources//Images";
-            treeNode17.Text = "Картинки";
-            treeNode18.Name = "Videos";
-            treeNode18.Tag = "Resources//Videos";
-            treeNode18.Text = "Видео";
-            treeNode19.Name = "Audios";
-            treeNode19.Tag = "Resources//Audios";
-            treeNode19.Text = "Звук";
-            treeNode20.Name = "Text";
-            treeNode20.Tag = "Resources//Text";
-            treeNode20.Text = "Текст";
+            treeNode9.Name = "Images";
+            treeNode9.Tag = "Resources//Images";
+            treeNode9.Text = "Картинки";
+            treeNode10.Name = "Videos";
+            treeNode10.Tag = "Resources//Videos";
+            treeNode10.Text = "Видео";
+            treeNode11.Name = "Audios";
+            treeNode11.Tag = "Resources//Audios";
+            treeNode11.Text = "Звук";
+            treeNode12.Name = "Text";
+            treeNode12.Tag = "Resources//Text";
+            treeNode12.Text = "Текст";
             this.treeView2.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode17,
-            treeNode18,
-            treeNode19,
-            treeNode20});
+            treeNode9,
+            treeNode10,
+            treeNode11,
+            treeNode12});
             this.treeView2.Size = new System.Drawing.Size(342, 614);
             this.treeView2.TabIndex = 1;
             this.treeView2.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeView2_NodeMouseClick);
@@ -514,13 +504,13 @@ namespace QuestMaster
             this.treeView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeView1.Location = new System.Drawing.Point(3, 3);
             this.treeView1.Name = "treeView1";
-            treeNode21.Name = "Квест1";
-            treeNode21.Text = "Квест1";
-            treeNode22.Name = "Квест2";
-            treeNode22.Text = "Квест2";
+            treeNode13.Name = "Квест1";
+            treeNode13.Text = "Квест1";
+            treeNode14.Name = "Квест2";
+            treeNode14.Text = "Квест2";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode21,
-            treeNode22});
+            treeNode13,
+            treeNode14});
             this.treeView1.Size = new System.Drawing.Size(350, 619);
             this.treeView1.TabIndex = 0;
             // 
@@ -594,13 +584,13 @@ namespace QuestMaster
             this.treeView3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeView3.Location = new System.Drawing.Point(3, 3);
             this.treeView3.Name = "treeView3";
-            treeNode23.Name = "Teams";
-            treeNode23.Text = "Команды";
-            treeNode24.Name = "SinglePlayers";
-            treeNode24.Text = "Одиночночные игроки";
+            treeNode15.Name = "Teams";
+            treeNode15.Text = "Команды";
+            treeNode16.Name = "SinglePlayers";
+            treeNode16.Text = "Одиночночные игроки";
             this.treeView3.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode23,
-            treeNode24});
+            treeNode15,
+            treeNode16});
             this.treeView3.Size = new System.Drawing.Size(350, 619);
             this.treeView3.TabIndex = 0;
             // 
@@ -639,7 +629,14 @@ namespace QuestMaster
             this.statusStrip3.Size = new System.Drawing.Size(24, 650);
             this.statusStrip3.TabIndex = 2;
             this.statusStrip3.Text = "statusStrip3";
-          
+            // 
+            // toolStripTager1
+            // 
+            this.toolStripTager1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.toolStripTager1.Location = new System.Drawing.Point(50, 0);
+            this.toolStripTager1.Name = "toolStripTager1";
+            this.toolStripTager1.Size = new System.Drawing.Size(1113, 34);
+            this.toolStripTager1.TabIndex = 6;
             // 
             // Form1
             // 
@@ -732,7 +729,6 @@ namespace QuestMaster
         private System.Windows.Forms.ToolStripButton toolStripButton3;
         private System.Windows.Forms.ToolStripButton toolStripButton4;
         private ToolStripTager toolStripTager1;
-
     }
 }
 
