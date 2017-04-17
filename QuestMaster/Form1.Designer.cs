@@ -1,4 +1,6 @@
-﻿namespace QuestMaster
+﻿using System.Collections.Generic;
+
+namespace QuestMaster
 {
     partial class Form1
     {
@@ -29,15 +31,15 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.TreeNode treeNode25 = new System.Windows.Forms.TreeNode("Картинки");
-            System.Windows.Forms.TreeNode treeNode26 = new System.Windows.Forms.TreeNode("Видео");
-            System.Windows.Forms.TreeNode treeNode27 = new System.Windows.Forms.TreeNode("Звук");
-            System.Windows.Forms.TreeNode treeNode28 = new System.Windows.Forms.TreeNode("Текст");
-            System.Windows.Forms.TreeNode treeNode29 = new System.Windows.Forms.TreeNode("Квест1");
-            System.Windows.Forms.TreeNode treeNode30 = new System.Windows.Forms.TreeNode("Квест2");
-            System.Windows.Forms.TreeNode treeNode31 = new System.Windows.Forms.TreeNode("Команды");
-            System.Windows.Forms.TreeNode treeNode32 = new System.Windows.Forms.TreeNode("Одиночночные игроки");
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.Windows.Forms.TreeNode treeNode17 = new System.Windows.Forms.TreeNode("Картинки");
+            System.Windows.Forms.TreeNode treeNode18 = new System.Windows.Forms.TreeNode("Видео");
+            System.Windows.Forms.TreeNode treeNode19 = new System.Windows.Forms.TreeNode("Звук");
+            System.Windows.Forms.TreeNode treeNode20 = new System.Windows.Forms.TreeNode("Текст");
+            System.Windows.Forms.TreeNode treeNode21 = new System.Windows.Forms.TreeNode("Квест1");
+            System.Windows.Forms.TreeNode treeNode22 = new System.Windows.Forms.TreeNode("Квест2");
+            System.Windows.Forms.TreeNode treeNode23 = new System.Windows.Forms.TreeNode("Команды");
+            System.Windows.Forms.TreeNode treeNode24 = new System.Windows.Forms.TreeNode("Одиночночные игроки");
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -58,14 +60,16 @@
             this.labeledTextBox4 = new QuestMaster.LabeledTextBox();
             this.labeledComboBox1 = new QuestMaster.LabeledComboBox();
             this.metroTabPage3 = new MetroFramework.Controls.MetroTabPage();
+            this.toolStripTager1 = new QuestMaster.ToolStripTager();
+            this.toolStrip4 = new System.Windows.Forms.ToolStrip();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.listView2 = new System.Windows.Forms.ListView();
             this.imageListIconForMaterialsListView = new System.Windows.Forms.ImageList(this.components);
             this.treeView2 = new System.Windows.Forms.TreeView();
-            this.toolStrip2 = new System.Windows.Forms.ToolStrip();
-            this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
-            this.квестToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripDropDownButton4 = new System.Windows.Forms.ToolStripDropDownButton();
             this.statusStrip2 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripSplitButton1 = new System.Windows.Forms.ToolStripSplitButton();
@@ -84,19 +88,15 @@
             this.toolStrip3 = new System.Windows.Forms.ToolStrip();
             this.toolStripDropDownButton2 = new System.Windows.Forms.ToolStripDropDownButton();
             this.statusStrip3 = new System.Windows.Forms.StatusStrip();
-            this.toolStrip4 = new System.Windows.Forms.ToolStrip();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
+
             this.panel2.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.metroTabControl1.SuspendLayout();
             this.metroTabPage1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.metroTabPage3.SuspendLayout();
+            this.toolStrip4.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
-            this.toolStrip2.SuspendLayout();
             this.statusStrip2.SuspendLayout();
             this.metroTabPage2.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -104,7 +104,6 @@
             this.metroTabPage4.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
             this.toolStrip3.SuspendLayout();
-            this.toolStrip4.SuspendLayout();
             this.SuspendLayout();
             // 
             // comboBox1
@@ -308,9 +307,9 @@
             // 
             // metroTabPage3
             // 
+            this.metroTabPage3.Controls.Add(this.toolStripTager1);
             this.metroTabPage3.Controls.Add(this.toolStrip4);
             this.metroTabPage3.Controls.Add(this.tableLayoutPanel3);
-            this.metroTabPage3.Controls.Add(this.toolStrip2);
             this.metroTabPage3.Controls.Add(this.statusStrip2);
             this.metroTabPage3.HorizontalScrollbarBarColor = true;
             this.metroTabPage3.Location = new System.Drawing.Point(4, 35);
@@ -320,6 +319,61 @@
             this.metroTabPage3.Text = "Архив материалов";
             this.metroTabPage3.VerticalScrollbarBarColor = true;
             // 
+            // toolStripTager1
+            // 
+            this.toolStripTager1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.toolStripTager1.Location = new System.Drawing.Point(50, 0);
+            this.toolStripTager1.Name = "toolStripTager1";
+            this.toolStripTager1.Size = new System.Drawing.Size(1113, 35);
+            this.toolStripTager1.TabIndex = 6;
+
+            // 
+            // toolStrip4
+            // 
+            this.toolStrip4.Dock = System.Windows.Forms.DockStyle.Right;
+            this.toolStrip4.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripButton1,
+            this.toolStripButton2,
+            this.toolStripButton3,
+            this.toolStripButton4});
+            this.toolStrip4.Location = new System.Drawing.Point(1163, 0);
+            this.toolStrip4.Name = "toolStrip4";
+            this.toolStrip4.Size = new System.Drawing.Size(48, 650);
+            this.toolStrip4.TabIndex = 5;
+            this.toolStrip4.Text = "toolStrip4";
+            // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(45, 20);
+            this.toolStripButton1.Text = "А-Я";
+            // 
+            // toolStripButton2
+            // 
+            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
+            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton2.Name = "toolStripButton2";
+            this.toolStripButton2.Size = new System.Drawing.Size(45, 20);
+            this.toolStripButton2.Text = "Я-А";
+            // 
+            // toolStripButton3
+            // 
+            this.toolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton3.Image")));
+            this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton3.Name = "toolStripButton3";
+            this.toolStripButton3.Size = new System.Drawing.Size(45, 20);
+            this.toolStripButton3.Text = "G";
+            // 
+            // toolStripButton4
+            // 
+            this.toolStripButton4.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton4.Image")));
+            this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton4.Name = "toolStripButton4";
+            this.toolStripButton4.Size = new System.Drawing.Size(45, 20);
+            this.toolStripButton4.Text = "R";
+            // 
             // tableLayoutPanel3
             // 
             this.tableLayoutPanel3.ColumnCount = 2;
@@ -328,22 +382,23 @@
             this.tableLayoutPanel3.Controls.Add(this.listView2, 1, 0);
             this.tableLayoutPanel3.Controls.Add(this.treeView2, 0, 0);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(50, 25);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(50, 0);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+            this.tableLayoutPanel3.Padding = new System.Windows.Forms.Padding(0, 30, 0, 0);
             this.tableLayoutPanel3.RowCount = 1;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(1161, 625);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(1161, 650);
             this.tableLayoutPanel3.TabIndex = 4;
             // 
             // listView2
             // 
             this.listView2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listView2.LargeImageList = this.imageListIconForMaterialsListView;
-            this.listView2.Location = new System.Drawing.Point(351, 3);
+            this.listView2.Location = new System.Drawing.Point(351, 33);
             this.listView2.Margin = new System.Windows.Forms.Padding(3, 3, 50, 3);
             this.listView2.Name = "listView2";
             this.listView2.ShowItemToolTips = true;
-            this.listView2.Size = new System.Drawing.Size(760, 619);
+            this.listView2.Size = new System.Drawing.Size(760, 614);
             this.listView2.SmallImageList = this.imageListIconForMaterialsListView;
             this.listView2.TabIndex = 0;
             this.listView2.UseCompatibleStateImageBehavior = false;
@@ -363,64 +418,28 @@
             // treeView2
             // 
             this.treeView2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.treeView2.Location = new System.Drawing.Point(3, 3);
+            this.treeView2.Location = new System.Drawing.Point(3, 33);
             this.treeView2.Name = "treeView2";
-            treeNode25.Name = "Images";
-            treeNode25.Tag = "Resources//Images";
-            treeNode25.Text = "Картинки";
-            treeNode26.Name = "Videos";
-            treeNode26.Tag = "Resources//Videos";
-            treeNode26.Text = "Видео";
-            treeNode27.Name = "Audios";
-            treeNode27.Tag = "Resources//Audios";
-            treeNode27.Text = "Звук";
-            treeNode28.Name = "Text";
-            treeNode28.Tag = "Resources//Text";
-            treeNode28.Text = "Текст";
+            treeNode17.Name = "Images";
+            treeNode17.Tag = "Resources//Images";
+            treeNode17.Text = "Картинки";
+            treeNode18.Name = "Videos";
+            treeNode18.Tag = "Resources//Videos";
+            treeNode18.Text = "Видео";
+            treeNode19.Name = "Audios";
+            treeNode19.Tag = "Resources//Audios";
+            treeNode19.Text = "Звук";
+            treeNode20.Name = "Text";
+            treeNode20.Tag = "Resources//Text";
+            treeNode20.Text = "Текст";
             this.treeView2.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode25,
-            treeNode26,
-            treeNode27,
-            treeNode28});
-            this.treeView2.Size = new System.Drawing.Size(342, 619);
+            treeNode17,
+            treeNode18,
+            treeNode19,
+            treeNode20});
+            this.treeView2.Size = new System.Drawing.Size(342, 614);
             this.treeView2.TabIndex = 1;
             this.treeView2.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeView2_NodeMouseClick);
-            // 
-            // toolStrip2
-            // 
-            this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripDropDownButton1,
-            this.toolStripDropDownButton4});
-            this.toolStrip2.Location = new System.Drawing.Point(50, 0);
-            this.toolStrip2.Name = "toolStrip2";
-            this.toolStrip2.Size = new System.Drawing.Size(1161, 25);
-            this.toolStrip2.TabIndex = 3;
-            this.toolStrip2.Text = "toolStrip2";
-            // 
-            // toolStripDropDownButton1
-            // 
-            this.toolStripDropDownButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.квестToolStripMenuItem});
-            this.toolStripDropDownButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton1.Image")));
-            this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
-            this.toolStripDropDownButton1.Size = new System.Drawing.Size(77, 22);
-            this.toolStripDropDownButton1.Text = "Фильтр";
-            // 
-            // квестToolStripMenuItem
-            // 
-            this.квестToolStripMenuItem.Name = "квестToolStripMenuItem";
-            this.квестToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
-            this.квестToolStripMenuItem.Text = "квест";
-            // 
-            // toolStripDropDownButton4
-            // 
-            this.toolStripDropDownButton4.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripDropDownButton4.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton4.Image")));
-            this.toolStripDropDownButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripDropDownButton4.Name = "toolStripDropDownButton4";
-            this.toolStripDropDownButton4.Size = new System.Drawing.Size(29, 22);
-            this.toolStripDropDownButton4.Text = "toolStripDropDownButton4";
             // 
             // statusStrip2
             // 
@@ -495,13 +514,13 @@
             this.treeView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeView1.Location = new System.Drawing.Point(3, 3);
             this.treeView1.Name = "treeView1";
-            treeNode29.Name = "Квест1";
-            treeNode29.Text = "Квест1";
-            treeNode30.Name = "Квест2";
-            treeNode30.Text = "Квест2";
+            treeNode21.Name = "Квест1";
+            treeNode21.Text = "Квест1";
+            treeNode22.Name = "Квест2";
+            treeNode22.Text = "Квест2";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode29,
-            treeNode30});
+            treeNode21,
+            treeNode22});
             this.treeView1.Size = new System.Drawing.Size(350, 619);
             this.treeView1.TabIndex = 0;
             // 
@@ -575,13 +594,13 @@
             this.treeView3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeView3.Location = new System.Drawing.Point(3, 3);
             this.treeView3.Name = "treeView3";
-            treeNode31.Name = "Teams";
-            treeNode31.Text = "Команды";
-            treeNode32.Name = "SinglePlayers";
-            treeNode32.Text = "Одиночночные игроки";
+            treeNode23.Name = "Teams";
+            treeNode23.Text = "Команды";
+            treeNode24.Name = "SinglePlayers";
+            treeNode24.Text = "Одиночночные игроки";
             this.treeView3.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode31,
-            treeNode32});
+            treeNode23,
+            treeNode24});
             this.treeView3.Size = new System.Drawing.Size(350, 619);
             this.treeView3.TabIndex = 0;
             // 
@@ -620,52 +639,7 @@
             this.statusStrip3.Size = new System.Drawing.Size(24, 650);
             this.statusStrip3.TabIndex = 2;
             this.statusStrip3.Text = "statusStrip3";
-            // 
-            // toolStrip4
-            // 
-            this.toolStrip4.Dock = System.Windows.Forms.DockStyle.Right;
-            this.toolStrip4.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripButton1,
-            this.toolStripButton2,
-            this.toolStripButton3,
-            this.toolStripButton4});
-            this.toolStrip4.Location = new System.Drawing.Point(1163, 25);
-            this.toolStrip4.Name = "toolStrip4";
-            this.toolStrip4.Size = new System.Drawing.Size(48, 625);
-            this.toolStrip4.TabIndex = 5;
-            this.toolStrip4.Text = "toolStrip4";
-            // 
-            // toolStripButton1
-            // 
-            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(45, 20);
-            this.toolStripButton1.Text = "А-Я";
-            // 
-            // toolStripButton2
-            // 
-            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
-            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(45, 20);
-            this.toolStripButton2.Text = "Я-А";
-            // 
-            // toolStripButton3
-            // 
-            this.toolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton3.Image")));
-            this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton3.Name = "toolStripButton3";
-            this.toolStripButton3.Size = new System.Drawing.Size(45, 20);
-            this.toolStripButton3.Text = "G";
-            // 
-            // toolStripButton4
-            // 
-            this.toolStripButton4.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton4.Image")));
-            this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton4.Name = "toolStripButton4";
-            this.toolStripButton4.Size = new System.Drawing.Size(45, 20);
-            this.toolStripButton4.Text = "R";
+          
             // 
             // Form1
             // 
@@ -687,9 +661,9 @@
             this.groupBox1.ResumeLayout(false);
             this.metroTabPage3.ResumeLayout(false);
             this.metroTabPage3.PerformLayout();
+            this.toolStrip4.ResumeLayout(false);
+            this.toolStrip4.PerformLayout();
             this.tableLayoutPanel3.ResumeLayout(false);
-            this.toolStrip2.ResumeLayout(false);
-            this.toolStrip2.PerformLayout();
             this.statusStrip2.ResumeLayout(false);
             this.statusStrip2.PerformLayout();
             this.metroTabPage2.ResumeLayout(false);
@@ -702,8 +676,6 @@
             this.tableLayoutPanel4.ResumeLayout(false);
             this.toolStrip3.ResumeLayout(false);
             this.toolStrip3.PerformLayout();
-            this.toolStrip4.ResumeLayout(false);
-            this.toolStrip4.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -736,7 +708,6 @@
         private LabeledComboBox labeledComboBox3;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStrip toolStrip1;
-        private System.Windows.Forms.ToolStrip toolStrip2;
         private System.Windows.Forms.StatusStrip statusStrip2;
         private System.Windows.Forms.StatusStrip statusStrip3;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
@@ -746,15 +717,12 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.ListView listView2;
         private System.Windows.Forms.TreeView treeView2;
-        private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
         private System.Windows.Forms.TreeView treeView3;
         private System.Windows.Forms.ListView listView3;
         private System.Windows.Forms.ImageList imageListIconForMaterialsListView;
-        private System.Windows.Forms.ToolStripMenuItem квестToolStripMenuItem;
         private System.Windows.Forms.ToolStrip toolStrip3;
         private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton2;
-        private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton4;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.ToolStripSplitButton toolStripSplitButton1;
         private System.Windows.Forms.ToolStripSplitButton toolStripSplitButton2;
@@ -763,6 +731,8 @@
         private System.Windows.Forms.ToolStripButton toolStripButton2;
         private System.Windows.Forms.ToolStripButton toolStripButton3;
         private System.Windows.Forms.ToolStripButton toolStripButton4;
+        private ToolStripTager toolStripTager1;
+
     }
 }
 

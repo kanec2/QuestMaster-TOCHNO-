@@ -10,49 +10,33 @@ namespace QuestMaster
 {
     public struct ResourceTags
     {
-        public Dictionary<string, string> tags;
-        public List<string> quests;
+        public List<string> tags;
 
-        public ResourceTags(XElement tags, XElement quests) {
-            this.tags = new Dictionary<string, string>();
-            this.quests = new List<string>();
+        public ResourceTags(XElement tags) {
+            this.tags = new List<string>();
 
-            if (tags == null && quests == null) return;
+            if (tags == null) return;
 
             foreach (XElement tag in tags.Elements())
             {
-                this.tags.Add(tag.FirstAttribute.Name.ToString(), tag.FirstAttribute.Value);
-            }
-
-            foreach (XElement quest in quests.Elements())
-            {
-                this.quests.Add(quest.FirstAttribute.Value);
+                this.tags.Add(tag.Value);
             }
 
         }
 
         public XElement getTags() {
             XElement tags = new XElement("tags");
-            if (this.quests == null) return tags;
-            foreach (KeyValuePair<string, string> tag in this.tags)
+           
+            foreach (string tag in this.tags)
             {
-                tags.Add(new XElement("tag", new XAttribute(tag.Key, tag.Value)));
+                tags.Add(new XElement("tag", new XText(tag)));
             }
             return tags;
         }
-        public XElement getQuests()
-        {
-            XElement quests = new XElement("quests");
-            if (this.quests == null) return quests;
-            foreach (string quest in this.quests)
-            {
-                quests.Add(new XElement("quest", new XAttribute("id", quest)));
-            }
-            return quests;
-        }
+        
 
     }
-    class ResourceElement
+    public class ResourceElement
     {
         public string respath;
         public int id;
@@ -67,31 +51,27 @@ namespace QuestMaster
             respath = node.FirstAttribute.Value;
             id = int.Parse(node.LastAttribute.Value);
             XElement tags;
-            XElement quests;
+
             tags = node.Elements().First();
-            quests = node.Elements().Last();
-            resourceTags = new ResourceTags(tags, quests);
+ 
+            resourceTags = new ResourceTags(tags);
         }
         
         public XElement  getXml()
         {
             XElement res = new XElement("res", new XAttribute("src", respath), new XAttribute("id", id));
 
-            XElement quests = resourceTags.getQuests();
             XElement tags = resourceTags.getTags();
             
             res.Add(tags);
-            res.Add(quests);
+
             return res;
         }
 
-        public void addTags(string nameTag, string valueTag)
+        public void addTags(string nameTag)
         {
-            resourceTags.tags.Add(nameTag, valueTag);
+            resourceTags.tags.Add(nameTag);
         }
-        public void addQuest(string idQuest)
-        {
-            resourceTags.quests.Add(idQuest);
-        }
+
     }
 }

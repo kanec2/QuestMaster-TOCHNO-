@@ -112,7 +112,6 @@ G:\UnityDevCorner\Source\Repos\QuestMaster-TOCHNO-\QuestMaster\bin\Debug\MetroFr
 G:\UnityDevCorner\Source\Repos\QuestMaster-TOCHNO-\QuestMaster\bin\Debug\MySql.Data.dll
 G:\UnityDevCorner\Source\Repos\QuestMaster-TOCHNO-\QuestMaster\bin\Debug\Newtonsoft.Json.dll
 G:\UnityDevCorner\Source\Repos\QuestMaster-TOCHNO-\QuestMaster\bin\Debug\Newtonsoft.Json.xml
-G:\UnityDevCorner\Source\Repos\QuestMaster-TOCHNO-\QuestMaster\obj\Debug\QuestMaster.csprojResolveAssemblyReference.cache
 G:\UnityDevCorner\Source\Repos\QuestMaster-TOCHNO-\QuestMaster\obj\Debug\QuestMaster.Form1.resources
 G:\UnityDevCorner\Source\Repos\QuestMaster-TOCHNO-\QuestMaster\obj\Debug\QuestMaster.LabeledComboBox.resources
 G:\UnityDevCorner\Source\Repos\QuestMaster-TOCHNO-\QuestMaster\obj\Debug\QuestMaster.LabeledTextBox.resources

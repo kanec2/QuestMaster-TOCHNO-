@@ -18,6 +18,8 @@ namespace QuestMaster
     {
         Resources resource;
         public int id;
+        DirectoryInfo lastDir;
+        List<CustomFile> files = new List<CustomFile>();
         public Form1()
         {
             InitializeComponent();
@@ -25,65 +27,52 @@ namespace QuestMaster
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            ToolStripTager tager = new ToolStripTager();
+            metroTabControl1.TabPages[1].Controls.Add(tager);
             BDConnection connectionBD = new BDConnection("127.0.0.1", "root", "3306", "", "mydb");
             resource = new Resources();
-            //Quests que = new Quests();
-            //que.Load("1");
-            //que.Insert("3","task","12");
-            //que.Insert("3", "answers", "toogles");
-            //que.Insert("3", "text");
-            //que.Save();
+            toolStripTager1.fillTags(resource.getAllTags());
+            toolStripTager1.Changed += tagChanged;
+        }
+
+        private void tagChanged(object sender, EventArgs e)
+        {
+            List<string> tags = toolStripTager1.ResTags.Select(t => t.Text).ToList();
+            files.ForEach(t => t.filter(tags));
+            makeFiles();
         }
 
         private void treeView2_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {
             TreeNode newSelected = e.Node;
-            listView2.Items.Clear();
-            DirectoryInfo nodeDirInfo =  new DirectoryInfo(newSelected.Tag + " ");
-            ListViewItem.ListViewSubItem[] subItems;
-            ListViewItem item = null;
-            
-            foreach (DirectoryInfo dir in nodeDirInfo.GetDirectories())
-            {
-               
-                item = new ListViewItem(dir.Name, 0);
-                subItems = new ListViewItem.ListViewSubItem[]
-                    {new ListViewItem.ListViewSubItem(item, "Directory"),
-                     new ListViewItem.ListViewSubItem(item,
-                        dir.LastAccessTime.ToShortDateString())};
-                item.SubItems.AddRange(subItems);
-                listView2.Items.Add(item);
-                
-            }
-            //ResourceTags tags = resource.
-            foreach (FileInfo file in nodeDirInfo.GetFiles())
-            {
-                ResourceElement elem = resource.checkElement(file.Name);
-                int indImage = 0;
-                switch(e.Node.Name)
-                {
-                    case "Images": indImage = 1; break;
-                    case "Videos": indImage = 2; break;
-                    case "Audios": indImage = 3; break;
-                    case "Text": indImage = 4; break;
-                }
-                //resource[e.Node.Name].Select(elem => elem.);
-                item = new ListViewItem(file.Name, indImage);
-                item.BackColor = (elem != null) ? Color.LightGreen : Color.IndianRed;
-
-                subItems = new ListViewItem.ListViewSubItem[]
-                    { new ListViewItem.ListViewSubItem(item, "File"),
-                     new ListViewItem.ListViewSubItem(item,
-                        file.LastAccessTime.ToShortDateString()),
-                    };
-
-                item.SubItems.AddRange(subItems);
-                listView2.Items.Add(item);
-            }
-
-            listView2.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+            lastDir = new DirectoryInfo(newSelected.Tag + " ");
+            files.Clear();
+            lastDir.GetFiles().ToList().ForEach(t => files.Add(new CustomFile(t.Name,t.Extension, resource.checkElement(t.Name))));
+            List<string> tags = toolStripTager1.ResTags.Select(t => t.Text).ToList();
+            files.ForEach(t => t.filter(null));
+            makeFiles();
         }
 
+
+        public void makeFiles() {
+            listView2.Items.Clear();
+            ListViewItem.ListViewSubItem[] subItems;
+            ListViewItem item = null;
+
+            foreach (CustomFile file in files.Where(t=>t.visible == true))
+            {
+                item = new ListViewItem(file.fileName, file.indImage);
+
+                item.BackColor = file.fileColor;
+
+                subItems = new ListViewItem.ListViewSubItem[]
+                    { new ListViewItem.ListViewSubItem(item, "File")
+                    };
+
+                    item.SubItems.AddRange(subItems);
+                    listView2.Items.Add(item);
+            }
+        }
 
         private void listView2_MouseClick(object sender, MouseEventArgs e)
         {
@@ -92,8 +81,7 @@ namespace QuestMaster
             
             if (elem == null) return;
             
-            elem.resourceTags.tags.ToList().ForEach(t => statusStrip2.Items.Add(t.Key + ":"+t.Value));
-            elem.resourceTags.quests.ForEach(t => statusStrip2.Items.Add("quest :" + t));
+            elem.resourceTags.tags.ForEach(t => statusStrip2.Items.Add(t));
 
         }
         private void clearTags() {
