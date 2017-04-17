@@ -89,7 +89,7 @@ namespace QuestMaster
         /// <returns></returns>
         internal ResourceElement checkElement(string name)
         {
-            ResourceElement elem = new ResourceElement();
+            ResourceElement elem = null;
             foreach (KeyValuePair<XName, List<ResourceElement>> item in this.resources)
             {
                 foreach (ResourceElement res in item.Value)
@@ -100,7 +100,7 @@ namespace QuestMaster
                     }
                 }
             }
-            return (elem != null) ? elem : null;
+            return elem;
         }
 
         /// <summary>

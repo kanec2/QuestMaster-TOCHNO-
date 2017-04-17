@@ -59,7 +59,6 @@ namespace QuestMaster
             foreach (FileInfo file in nodeDirInfo.GetFiles())
             {
                 ResourceElement elem = resource.checkElement(file.Name);
-                
                 int indImage = 0;
                 switch(e.Node.Name)
                 {
@@ -70,16 +69,36 @@ namespace QuestMaster
                 }
                 //resource[e.Node.Name].Select(elem => elem.);
                 item = new ListViewItem(file.Name, indImage);
+                item.BackColor = (elem != null) ? Color.LightGreen : Color.IndianRed;
+
                 subItems = new ListViewItem.ListViewSubItem[]
                     { new ListViewItem.ListViewSubItem(item, "File"),
                      new ListViewItem.ListViewSubItem(item,
-                        file.LastAccessTime.ToShortDateString())};
+                        file.LastAccessTime.ToShortDateString()),
+                    };
 
                 item.SubItems.AddRange(subItems);
                 listView2.Items.Add(item);
             }
 
             listView2.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+        }
+
+
+        private void listView2_MouseClick(object sender, MouseEventArgs e)
+        {
+            clearTags();
+            ResourceElement elem = resource.checkElement(listView2.FocusedItem.Text);
+            
+            if (elem == null) return;
+            
+            elem.resourceTags.tags.ToList().ForEach(t => statusStrip2.Items.Add(t.Key + ":"+t.Value));
+            elem.resourceTags.quests.ForEach(t => statusStrip2.Items.Add("quest :" + t));
+
+        }
+        private void clearTags() {
+            statusStrip2.Items.Clear();
+            statusStrip2.Items.Add("Теги:");
         }
     }
 }
