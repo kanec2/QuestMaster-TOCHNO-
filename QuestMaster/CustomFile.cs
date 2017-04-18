@@ -45,6 +45,10 @@ namespace QuestMaster
                     visible = true;return;
                 }
             }
+            if (tags.Count == 0)
+            {
+                visible = true;
+            }
         }
     }
 }

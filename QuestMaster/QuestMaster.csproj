@@ -53,9 +53,8 @@
       <HintPath>..\packages\MySql.ConnectorNET.Data.6.8.3.2\lib\net45\MySql.Data.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -94,13 +93,13 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources.cs" />
-    <Compile Include="ToolStripTager.cs">
+    <Compile Include="Quests.cs" />
+    <Compile Include="Togger.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ToolStripTager.Designer.cs">
-      <DependentUpon>ToolStripTager.cs</DependentUpon>
+    <Compile Include="Togger.Designer.cs">
+      <DependentUpon>Togger.cs</DependentUpon>
     </Compile>
-    <Compile Include="Quests.cs" />
     <Compile Include="XmlWorker.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
@@ -121,8 +120,8 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="ToolStripTager.resx">
-      <DependentUpon>ToolStripTager.cs</DependentUpon>
+    <EmbeddedResource Include="Togger.resx">
+      <DependentUpon>Togger.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\Form1.datasource" />

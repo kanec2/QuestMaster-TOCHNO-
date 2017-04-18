@@ -20,6 +20,8 @@ namespace QuestMaster
         public int id;
         DirectoryInfo lastDir;
         List<CustomFile> files = new List<CustomFile>();
+        List<string> tags;
+
         public Form1()
         {
             InitializeComponent();
@@ -27,17 +29,17 @@ namespace QuestMaster
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            ToolStripTager tager = new ToolStripTager();
+            Togger tager = new Togger();
             metroTabControl1.TabPages[1].Controls.Add(tager);
             BDConnection connectionBD = new BDConnection("127.0.0.1", "root", "3306", "", "mydb");
             resource = new Resources();
-            toolStripTager1.fillTags(resource.getAllTags());
-            toolStripTager1.Changed += tagChanged;
+            togger1.fillTags(resource.getAllTags());
+            togger1.Changed += tagChanged;
         }
 
         private void tagChanged(object sender, EventArgs e)
         {
-            List<string> tags = toolStripTager1.ResTags.Select(t => t.Text).ToList();
+            this.tags = togger1.tags.Where(t => t!=null).Select(t => t.Text).ToList();
             files.ForEach(t => t.filter(tags));
             makeFiles();
         }
@@ -48,8 +50,7 @@ namespace QuestMaster
             lastDir = new DirectoryInfo(newSelected.Tag + " ");
             files.Clear();
             lastDir.GetFiles().ToList().ForEach(t => files.Add(new CustomFile(t.Name,t.Extension, resource.checkElement(t.Name))));
-            List<string> tags = toolStripTager1.ResTags.Select(t => t.Text).ToList();
-            files.ForEach(t => t.filter(null));
+            files.ForEach(t => t.filter(tags));
             makeFiles();
         }
 
@@ -82,7 +83,6 @@ namespace QuestMaster
             if (elem == null) return;
             
             elem.resourceTags.tags.ForEach(t => statusStrip2.Items.Add(t));
-
         }
         private void clearTags() {
             statusStrip2.Items.Clear();

@@ -32,14 +32,14 @@ namespace QuestMaster
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            System.Windows.Forms.TreeNode treeNode17 = new System.Windows.Forms.TreeNode("Картинки");
-            System.Windows.Forms.TreeNode treeNode18 = new System.Windows.Forms.TreeNode("Видео");
-            System.Windows.Forms.TreeNode treeNode19 = new System.Windows.Forms.TreeNode("Звук");
-            System.Windows.Forms.TreeNode treeNode20 = new System.Windows.Forms.TreeNode("Текст");
-            System.Windows.Forms.TreeNode treeNode21 = new System.Windows.Forms.TreeNode("Квест1");
-            System.Windows.Forms.TreeNode treeNode22 = new System.Windows.Forms.TreeNode("Квест2");
-            System.Windows.Forms.TreeNode treeNode23 = new System.Windows.Forms.TreeNode("Команды");
-            System.Windows.Forms.TreeNode treeNode24 = new System.Windows.Forms.TreeNode("Одиночночные игроки");
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Картинки");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Видео");
+            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Звук");
+            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Текст");
+            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Квест1");
+            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Квест2");
+            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("Команды");
+            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("Одиночночные игроки");
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -48,19 +48,13 @@ namespace QuestMaster
             this.metroButton3 = new MetroFramework.Controls.MetroButton();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.labeledComboBox3 = new QuestMaster.LabeledComboBox();
-            this.labeledComboBox2 = new QuestMaster.LabeledComboBox();
             this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
             this.metroButton2 = new MetroFramework.Controls.MetroButton();
             this.metroTabControl1 = new MetroFramework.Controls.MetroTabControl();
             this.metroTabPage1 = new MetroFramework.Controls.MetroTabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.metroButton1 = new MetroFramework.Controls.MetroButton();
-            this.labeledTextBox3 = new QuestMaster.LabeledTextBox();
-            this.labeledTextBox4 = new QuestMaster.LabeledTextBox();
-            this.labeledComboBox1 = new QuestMaster.LabeledComboBox();
             this.metroTabPage3 = new MetroFramework.Controls.MetroTabPage();
-            this.toolStripTager1 = new QuestMaster.ToolStripTager();
             this.toolStrip4 = new System.Windows.Forms.ToolStrip();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
@@ -72,8 +66,6 @@ namespace QuestMaster
             this.treeView2 = new System.Windows.Forms.TreeView();
             this.statusStrip2 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripSplitButton1 = new System.Windows.Forms.ToolStripSplitButton();
-            this.toolStripSplitButton2 = new System.Windows.Forms.ToolStripSplitButton();
             this.metroTabPage2 = new MetroFramework.Controls.MetroTabPage();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.treeView1 = new System.Windows.Forms.TreeView();
@@ -88,7 +80,12 @@ namespace QuestMaster
             this.toolStrip3 = new System.Windows.Forms.ToolStrip();
             this.toolStripDropDownButton2 = new System.Windows.Forms.ToolStripDropDownButton();
             this.statusStrip3 = new System.Windows.Forms.StatusStrip();
-
+            this.labeledComboBox3 = new QuestMaster.LabeledComboBox();
+            this.labeledComboBox2 = new QuestMaster.LabeledComboBox();
+            this.labeledTextBox3 = new QuestMaster.LabeledTextBox();
+            this.labeledTextBox4 = new QuestMaster.LabeledTextBox();
+            this.labeledComboBox1 = new QuestMaster.LabeledComboBox();
+            this.togger1 = new QuestMaster.Togger();
             this.panel2.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.metroTabControl1.SuspendLayout();
@@ -189,28 +186,6 @@ namespace QuestMaster
             this.groupBox2.TabIndex = 15;
             this.groupBox2.TabStop = false;
             // 
-            // labeledComboBox3
-            // 
-            this.labeledComboBox3.ComboBoxSize = new System.Drawing.Size(0, 0);
-            this.labeledComboBox3.ItemList = new string[0];
-            this.labeledComboBox3.LabelText = "Тип задания";
-            this.labeledComboBox3.Location = new System.Drawing.Point(19, 87);
-            this.labeledComboBox3.Margin = new System.Windows.Forms.Padding(3, 3, 8, 3);
-            this.labeledComboBox3.Name = "labeledComboBox3";
-            this.labeledComboBox3.Size = new System.Drawing.Size(300, 34);
-            this.labeledComboBox3.TabIndex = 3;
-            // 
-            // labeledComboBox2
-            // 
-            this.labeledComboBox2.ComboBoxSize = new System.Drawing.Size(0, 0);
-            this.labeledComboBox2.ItemList = new string[0];
-            this.labeledComboBox2.LabelText = "Страница    ";
-            this.labeledComboBox2.Location = new System.Drawing.Point(19, 47);
-            this.labeledComboBox2.Margin = new System.Windows.Forms.Padding(3, 3, 8, 3);
-            this.labeledComboBox2.Name = "labeledComboBox2";
-            this.labeledComboBox2.Size = new System.Drawing.Size(211, 34);
-            this.labeledComboBox2.TabIndex = 2;
-            // 
             // metroLabel1
             // 
             this.metroLabel1.AutoSize = true;
@@ -275,39 +250,9 @@ namespace QuestMaster
             this.metroButton1.TabIndex = 3;
             this.metroButton1.Text = "Создать";
             // 
-            // labeledTextBox3
-            // 
-            this.labeledTextBox3.LabelText = "Название ";
-            this.labeledTextBox3.Location = new System.Drawing.Point(6, 31);
-            this.labeledTextBox3.Name = "labeledTextBox3";
-            this.labeledTextBox3.Size = new System.Drawing.Size(307, 26);
-            this.labeledTextBox3.TabIndex = 0;
-            this.labeledTextBox3.TextBoxText = "";
-            // 
-            // labeledTextBox4
-            // 
-            this.labeledTextBox4.LabelText = "Описание";
-            this.labeledTextBox4.Location = new System.Drawing.Point(6, 63);
-            this.labeledTextBox4.Name = "labeledTextBox4";
-            this.labeledTextBox4.Size = new System.Drawing.Size(307, 26);
-            this.labeledTextBox4.TabIndex = 2;
-            this.labeledTextBox4.TextBoxText = "";
-            // 
-            // labeledComboBox1
-            // 
-            this.labeledComboBox1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.labeledComboBox1.ComboBoxSize = new System.Drawing.Size(0, 0);
-            this.labeledComboBox1.ItemList = new string[0];
-            this.labeledComboBox1.LabelText = "Вид          ";
-            this.labeledComboBox1.Location = new System.Drawing.Point(6, 95);
-            this.labeledComboBox1.Margin = new System.Windows.Forms.Padding(3, 3, 12, 3);
-            this.labeledComboBox1.Name = "labeledComboBox1";
-            this.labeledComboBox1.Size = new System.Drawing.Size(298, 33);
-            this.labeledComboBox1.TabIndex = 1;
-            // 
             // metroTabPage3
             // 
-            this.metroTabPage3.Controls.Add(this.toolStripTager1);
+            this.metroTabPage3.Controls.Add(this.togger1);
             this.metroTabPage3.Controls.Add(this.toolStrip4);
             this.metroTabPage3.Controls.Add(this.tableLayoutPanel3);
             this.metroTabPage3.Controls.Add(this.statusStrip2);
@@ -319,15 +264,6 @@ namespace QuestMaster
             this.metroTabPage3.Text = "Архив материалов";
             this.metroTabPage3.VerticalScrollbarBarColor = true;
             // 
-            // toolStripTager1
-            // 
-            this.toolStripTager1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.toolStripTager1.Location = new System.Drawing.Point(50, 0);
-            this.toolStripTager1.Name = "toolStripTager1";
-            this.toolStripTager1.Size = new System.Drawing.Size(1113, 35);
-            this.toolStripTager1.TabIndex = 6;
-
-            // 
             // toolStrip4
             // 
             this.toolStrip4.Dock = System.Windows.Forms.DockStyle.Right;
@@ -336,42 +272,38 @@ namespace QuestMaster
             this.toolStripButton2,
             this.toolStripButton3,
             this.toolStripButton4});
-            this.toolStrip4.Location = new System.Drawing.Point(1163, 0);
+            this.toolStrip4.Location = new System.Drawing.Point(1179, 0);
             this.toolStrip4.Name = "toolStrip4";
-            this.toolStrip4.Size = new System.Drawing.Size(48, 650);
+            this.toolStrip4.Size = new System.Drawing.Size(32, 650);
             this.toolStrip4.TabIndex = 5;
             this.toolStrip4.Text = "toolStrip4";
             // 
             // toolStripButton1
             // 
-            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
             this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(45, 20);
+            this.toolStripButton1.Size = new System.Drawing.Size(29, 19);
             this.toolStripButton1.Text = "А-Я";
             // 
             // toolStripButton2
             // 
-            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
             this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(45, 20);
+            this.toolStripButton2.Size = new System.Drawing.Size(29, 19);
             this.toolStripButton2.Text = "Я-А";
             // 
             // toolStripButton3
             // 
-            this.toolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton3.Image")));
             this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton3.Name = "toolStripButton3";
-            this.toolStripButton3.Size = new System.Drawing.Size(45, 20);
+            this.toolStripButton3.Size = new System.Drawing.Size(29, 19);
             this.toolStripButton3.Text = "G";
             // 
             // toolStripButton4
             // 
-            this.toolStripButton4.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton4.Image")));
             this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton4.Name = "toolStripButton4";
-            this.toolStripButton4.Size = new System.Drawing.Size(45, 20);
+            this.toolStripButton4.Size = new System.Drawing.Size(29, 19);
             this.toolStripButton4.Text = "R";
             // 
             // tableLayoutPanel3
@@ -384,7 +316,7 @@ namespace QuestMaster
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel3.Location = new System.Drawing.Point(50, 0);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
-            this.tableLayoutPanel3.Padding = new System.Windows.Forms.Padding(0, 30, 0, 0);
+            this.tableLayoutPanel3.Padding = new System.Windows.Forms.Padding(0, 40, 0, 0);
             this.tableLayoutPanel3.RowCount = 1;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel3.Size = new System.Drawing.Size(1161, 650);
@@ -394,11 +326,11 @@ namespace QuestMaster
             // 
             this.listView2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listView2.LargeImageList = this.imageListIconForMaterialsListView;
-            this.listView2.Location = new System.Drawing.Point(351, 33);
+            this.listView2.Location = new System.Drawing.Point(351, 43);
             this.listView2.Margin = new System.Windows.Forms.Padding(3, 3, 50, 3);
             this.listView2.Name = "listView2";
             this.listView2.ShowItemToolTips = true;
-            this.listView2.Size = new System.Drawing.Size(760, 614);
+            this.listView2.Size = new System.Drawing.Size(760, 604);
             this.listView2.SmallImageList = this.imageListIconForMaterialsListView;
             this.listView2.TabIndex = 0;
             this.listView2.UseCompatibleStateImageBehavior = false;
@@ -418,26 +350,26 @@ namespace QuestMaster
             // treeView2
             // 
             this.treeView2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.treeView2.Location = new System.Drawing.Point(3, 33);
+            this.treeView2.Location = new System.Drawing.Point(3, 43);
             this.treeView2.Name = "treeView2";
-            treeNode17.Name = "Images";
-            treeNode17.Tag = "Resources//Images";
-            treeNode17.Text = "Картинки";
-            treeNode18.Name = "Videos";
-            treeNode18.Tag = "Resources//Videos";
-            treeNode18.Text = "Видео";
-            treeNode19.Name = "Audios";
-            treeNode19.Tag = "Resources//Audios";
-            treeNode19.Text = "Звук";
-            treeNode20.Name = "Text";
-            treeNode20.Tag = "Resources//Text";
-            treeNode20.Text = "Текст";
+            treeNode1.Name = "Images";
+            treeNode1.Tag = "Resources//Images";
+            treeNode1.Text = "Картинки";
+            treeNode2.Name = "Videos";
+            treeNode2.Tag = "Resources//Videos";
+            treeNode2.Text = "Видео";
+            treeNode3.Name = "Audios";
+            treeNode3.Tag = "Resources//Audios";
+            treeNode3.Text = "Звук";
+            treeNode4.Name = "Text";
+            treeNode4.Tag = "Resources//Text";
+            treeNode4.Text = "Текст";
             this.treeView2.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode17,
-            treeNode18,
-            treeNode19,
-            treeNode20});
-            this.treeView2.Size = new System.Drawing.Size(342, 614);
+            treeNode1,
+            treeNode2,
+            treeNode3,
+            treeNode4});
+            this.treeView2.Size = new System.Drawing.Size(342, 604);
             this.treeView2.TabIndex = 1;
             this.treeView2.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeView2_NodeMouseClick);
             // 
@@ -446,9 +378,7 @@ namespace QuestMaster
             this.statusStrip2.Dock = System.Windows.Forms.DockStyle.Left;
             this.statusStrip2.Font = new System.Drawing.Font("Georgia", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.statusStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripStatusLabel1,
-            this.toolStripSplitButton1,
-            this.toolStripSplitButton2});
+            this.toolStripStatusLabel1});
             this.statusStrip2.Location = new System.Drawing.Point(0, 0);
             this.statusStrip2.MinimumSize = new System.Drawing.Size(50, 0);
             this.statusStrip2.Name = "statusStrip2";
@@ -461,24 +391,6 @@ namespace QuestMaster
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(48, 15);
             this.toolStripStatusLabel1.Text = "Теги:";
-            // 
-            // toolStripSplitButton1
-            // 
-            this.toolStripSplitButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripSplitButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripSplitButton1.Image")));
-            this.toolStripSplitButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripSplitButton1.Name = "toolStripSplitButton1";
-            this.toolStripSplitButton1.Size = new System.Drawing.Size(48, 20);
-            this.toolStripSplitButton1.Text = "toolStripSplitButton1";
-            // 
-            // toolStripSplitButton2
-            // 
-            this.toolStripSplitButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripSplitButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripSplitButton2.Image")));
-            this.toolStripSplitButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripSplitButton2.Name = "toolStripSplitButton2";
-            this.toolStripSplitButton2.Size = new System.Drawing.Size(48, 20);
-            this.toolStripSplitButton2.Text = "toolStripSplitButton2";
             // 
             // metroTabPage2
             // 
@@ -505,7 +417,7 @@ namespace QuestMaster
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 625F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(1187, 625);
             this.tableLayoutPanel2.TabIndex = 4;
             // 
@@ -514,13 +426,13 @@ namespace QuestMaster
             this.treeView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeView1.Location = new System.Drawing.Point(3, 3);
             this.treeView1.Name = "treeView1";
-            treeNode21.Name = "Квест1";
-            treeNode21.Text = "Квест1";
-            treeNode22.Name = "Квест2";
-            treeNode22.Text = "Квест2";
+            treeNode5.Name = "Квест1";
+            treeNode5.Text = "Квест1";
+            treeNode6.Name = "Квест2";
+            treeNode6.Text = "Квест2";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode21,
-            treeNode22});
+            treeNode5,
+            treeNode6});
             this.treeView1.Size = new System.Drawing.Size(350, 619);
             this.treeView1.TabIndex = 0;
             // 
@@ -585,7 +497,7 @@ namespace QuestMaster
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 1;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 625F));
             this.tableLayoutPanel4.Size = new System.Drawing.Size(1187, 625);
             this.tableLayoutPanel4.TabIndex = 4;
             // 
@@ -594,13 +506,13 @@ namespace QuestMaster
             this.treeView3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeView3.Location = new System.Drawing.Point(3, 3);
             this.treeView3.Name = "treeView3";
-            treeNode23.Name = "Teams";
-            treeNode23.Text = "Команды";
-            treeNode24.Name = "SinglePlayers";
-            treeNode24.Text = "Одиночночные игроки";
+            treeNode7.Name = "Teams";
+            treeNode7.Text = "Команды";
+            treeNode8.Name = "SinglePlayers";
+            treeNode8.Text = "Одиночночные игроки";
             this.treeView3.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode23,
-            treeNode24});
+            treeNode7,
+            treeNode8});
             this.treeView3.Size = new System.Drawing.Size(350, 619);
             this.treeView3.TabIndex = 0;
             // 
@@ -639,7 +551,66 @@ namespace QuestMaster
             this.statusStrip3.Size = new System.Drawing.Size(24, 650);
             this.statusStrip3.TabIndex = 2;
             this.statusStrip3.Text = "statusStrip3";
-          
+            // 
+            // labeledComboBox3
+            // 
+            this.labeledComboBox3.ComboBoxSize = new System.Drawing.Size(0, 0);
+            this.labeledComboBox3.ItemList = new string[0];
+            this.labeledComboBox3.LabelText = "Тип задания";
+            this.labeledComboBox3.Location = new System.Drawing.Point(19, 87);
+            this.labeledComboBox3.Margin = new System.Windows.Forms.Padding(3, 3, 8, 3);
+            this.labeledComboBox3.Name = "labeledComboBox3";
+            this.labeledComboBox3.Size = new System.Drawing.Size(300, 34);
+            this.labeledComboBox3.TabIndex = 3;
+            // 
+            // labeledComboBox2
+            // 
+            this.labeledComboBox2.ComboBoxSize = new System.Drawing.Size(0, 0);
+            this.labeledComboBox2.ItemList = new string[0];
+            this.labeledComboBox2.LabelText = "Страница    ";
+            this.labeledComboBox2.Location = new System.Drawing.Point(19, 47);
+            this.labeledComboBox2.Margin = new System.Windows.Forms.Padding(3, 3, 8, 3);
+            this.labeledComboBox2.Name = "labeledComboBox2";
+            this.labeledComboBox2.Size = new System.Drawing.Size(211, 34);
+            this.labeledComboBox2.TabIndex = 2;
+            // 
+            // labeledTextBox3
+            // 
+            this.labeledTextBox3.LabelText = "Название ";
+            this.labeledTextBox3.Location = new System.Drawing.Point(6, 31);
+            this.labeledTextBox3.Name = "labeledTextBox3";
+            this.labeledTextBox3.Size = new System.Drawing.Size(307, 26);
+            this.labeledTextBox3.TabIndex = 0;
+            this.labeledTextBox3.TextBoxText = "";
+            // 
+            // labeledTextBox4
+            // 
+            this.labeledTextBox4.LabelText = "Описание";
+            this.labeledTextBox4.Location = new System.Drawing.Point(6, 63);
+            this.labeledTextBox4.Name = "labeledTextBox4";
+            this.labeledTextBox4.Size = new System.Drawing.Size(307, 26);
+            this.labeledTextBox4.TabIndex = 2;
+            this.labeledTextBox4.TextBoxText = "";
+            // 
+            // labeledComboBox1
+            // 
+            this.labeledComboBox1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.labeledComboBox1.ComboBoxSize = new System.Drawing.Size(0, 0);
+            this.labeledComboBox1.ItemList = new string[0];
+            this.labeledComboBox1.LabelText = "Вид          ";
+            this.labeledComboBox1.Location = new System.Drawing.Point(6, 95);
+            this.labeledComboBox1.Margin = new System.Windows.Forms.Padding(3, 3, 12, 3);
+            this.labeledComboBox1.Name = "labeledComboBox1";
+            this.labeledComboBox1.Size = new System.Drawing.Size(298, 33);
+            this.labeledComboBox1.TabIndex = 1;
+            // 
+            // togger1
+            // 
+            this.togger1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.togger1.Location = new System.Drawing.Point(50, 0);
+            this.togger1.Name = "togger1";
+            this.togger1.Size = new System.Drawing.Size(1129, 40);
+            this.togger1.TabIndex = 6;
             // 
             // Form1
             // 
@@ -724,15 +695,12 @@ namespace QuestMaster
         private System.Windows.Forms.ToolStrip toolStrip3;
         private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton2;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
-        private System.Windows.Forms.ToolStripSplitButton toolStripSplitButton1;
-        private System.Windows.Forms.ToolStripSplitButton toolStripSplitButton2;
         private System.Windows.Forms.ToolStrip toolStrip4;
         private System.Windows.Forms.ToolStripButton toolStripButton1;
         private System.Windows.Forms.ToolStripButton toolStripButton2;
         private System.Windows.Forms.ToolStripButton toolStripButton3;
         private System.Windows.Forms.ToolStripButton toolStripButton4;
-        private ToolStripTager toolStripTager1;
-
+        private Togger togger1;
     }
 }
 

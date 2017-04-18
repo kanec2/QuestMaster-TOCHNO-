@@ -151,6 +151,9 @@ namespace QuestMaster
             }
             this.id = id;
         }
+        /// <summary>
+        /// Получить все теги.
+        /// </summary>
         public List<string> getAllTags() {
             List<string> allTags = new List<string>();
             foreach (KeyValuePair<XName,List<ResourceElement>> res in resources)
@@ -164,7 +167,18 @@ namespace QuestMaster
             return allTags;
         }
         public List<ResourceElement> findByTag(string tag) {
-            return null;
+            List<ResourceElement> tags = new List<ResourceElement>();
+            foreach(KeyValuePair<XName,List<ResourceElement>> res in this.resources)
+            {
+                foreach (ResourceElement resElem in res.Value)
+                {
+                    if (resElem.resourceTags.tags.Contains(tag))
+                    {
+                        tags.Add(resElem);
+                    }
+                }
+            }
+            return tags;
         }
     }
 }
