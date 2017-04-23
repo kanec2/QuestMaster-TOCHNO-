@@ -7,7 +7,7 @@ using MySql.Data.MySqlClient;
 
 namespace QuestMaster
 {
-    class BDConnection
+    class DBConnection
     {
         string serverUrl;//Хост
         string username;//Имя пользователя
@@ -15,7 +15,7 @@ namespace QuestMaster
         string password;//Пароль
         string DBName;//Имя Базы данных
 
-        public BDConnection(string url, string username, string port, string password, string DBName)
+        public DBConnection(string url, string username, string port, string password, string DBName)
         {
             this.serverUrl = url;
             this.username = username;

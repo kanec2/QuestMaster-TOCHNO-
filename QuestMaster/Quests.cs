@@ -30,7 +30,7 @@ namespace QuestMaster
             }
         }
         /// <summary>
-        /// Создание Нового файда."Quest"+id 
+        /// Создание Нового файла."Quest"+id 
         /// </summary>
         public void Create()
         {
@@ -237,6 +237,24 @@ namespace QuestMaster
                 idTaks++;
             }
             template.Element("quest").LastAttribute.Value = idTaks.ToString();
+        }
+
+        public List<string> GetAllFiles(string path)
+        {
+            XDocument template = XDocument.Load(path);
+            List<string> files = new List<string>();
+            foreach (XElement tasks in template.Elements("quest"))
+            {
+                foreach (XElement task in tasks.Elements())
+                {
+                    files.Add(task.FirstAttribute.Value);
+                    foreach (XElement answer in task.Elements("answers"))
+                    {
+                        files.Add(answer.FirstAttribute.Value);
+                    }
+                }
+            }
+            return files;
         }
     }
 }
