@@ -25,6 +25,8 @@ namespace QuestMaster
         public ModelExplorer(Explorer explore)
         {
             this.explore = explore;
+            this.files = new List<CustomFile>();
+            this.tags = new List<string>();
         }
         
         /// <summary>
@@ -168,7 +170,9 @@ namespace QuestMaster
             makeFiles();
         }
 
-        //Прорисовывает элементы на ListView
+        /// <summary>
+        /// Создание элементов в ListView
+        /// </summary>
         public void makeFiles()
         {
             this.explore.listView.Items.Clear();
@@ -190,26 +194,32 @@ namespace QuestMaster
             }
         }
 
+        /// <summary>
+        /// Построение TreeView.
+        /// </summary>
+        /// <param name="state">Что строим: resource, quest</param>
         public void makeTree(string state)
         {
             explore.treeView.Nodes.Clear();
             TreeNode tNode = new TreeNode();
 
-            if (state == "resource") {
-                this.explore.treeView.Nodes.Add("images", "Картинки");
-                this.explore.treeView.Nodes.Add("videos", "Видео");
-                this.explore.treeView.Nodes.Add("audios", "Аудио");
-                this.explore.treeView.Nodes.Add("text", "Текст");
-                //создание ресурсов. Сделать создание дерева квестов.
-            }
-
-            if (state == "quest")
+            switch(state)
             {
-                dir = new DirectoryInfo(set.QuestArchive);
-                foreach (FileInfo file in dir.GetFiles())
-                {
-                    this.explore.treeView.Nodes.Add(file.Name,"Квест "+file.Name.Remove(0,5));
-                }
+                case "resource":
+                    this.explore.treeView.Nodes.Add("images", "Картинки");
+                    this.explore.treeView.Nodes.Add("videos", "Видео");
+                    this.explore.treeView.Nodes.Add("audios", "Аудио");
+                    this.explore.treeView.Nodes.Add("text", "Текст");
+                    break;
+                case "quest":
+                    dir = new DirectoryInfo(set.QuestArchive);
+                    foreach (FileInfo file in dir.GetFiles())
+                    {
+                        this.explore.treeView.Nodes.Add(file.Name, "Квест " + file.Name.Remove(0, 5));
+                    }
+                    break;
+                case "player":
+                    break;
             }
         }
 
@@ -219,7 +229,10 @@ namespace QuestMaster
             this.explore.statusStrip.Items.Clear();
             this.explore.statusStrip.Items.Add("Теги:");
         }
-
+        /// <summary>
+        /// Добавляем Лист с изображением.
+        /// </summary>
+        /// <param name="il">Лист с изображениями</param>
         public void AddListImg(ImageList il)
         {
             this.explore.listView.SmallImageList = il;

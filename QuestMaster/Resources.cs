@@ -166,6 +166,11 @@ namespace QuestMaster
             }
             return allTags;
         }
+        /// <summary>
+        /// Возращает элемент по тегу.
+        /// </summary>
+        /// <param name="tag">Название тега.</param>
+        /// <returns>List ResourseElements.</returns>
         public List<ResourceElement> findByTag(string tag) {
             List<ResourceElement> tags = new List<ResourceElement>();
             foreach(KeyValuePair<XName,List<ResourceElement>> res in this.resources)
@@ -179,6 +184,32 @@ namespace QuestMaster
                 }
             }
             return tags;
+        }
+
+        public ResourceElement GetElementByID(string id)
+        {
+            ResourceElement rElem = new ResourceElement();
+            foreach (KeyValuePair<XName, List<ResourceElement>> res in this.resources)
+            {
+                foreach (ResourceElement resElem in res.Value)
+                {
+                    if (resElem.id.ToString() == id)
+                    {
+                        return resElem;
+                    }
+                }
+            }
+            return null;
+        }
+        public List<ResourceElement> GetElementByID(List<string> id)
+        {
+            List<ResourceElement> rElem = new List<ResourceElement>();
+            foreach (string lookId in id)
+            {
+                rElem.Add(GetElementByID(lookId));
+            }
+            rElem = rElem.Where(t => t != null).ToList();
+            return rElem;
         }
     }
 }

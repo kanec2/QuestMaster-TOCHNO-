@@ -32,7 +32,10 @@ namespace QuestMaster
                 case ".txt": indImage = 4; break;
             }
         }
-
+        /// <summary>
+        /// Фильтрует CustomFile по тегам.
+        /// </summary>
+        /// <param name="tags">Лист с тегами.</param>
         internal void filter(List<string> tags)
         {
             if (elem == null || tags == null) return;
@@ -40,9 +43,38 @@ namespace QuestMaster
             visible = false;
             foreach(string tag in tags)
             {
-                if (elem.resourceTags.tags.Contains(tag))
+                switch (tag)
                 {
-                    visible = true;return;
+                    case "Картинки":
+                        if (indImage == 1)
+                        {
+                            visible = true; return;
+                        }
+                        break;
+                    case "Видео":
+                        if (indImage == 2)
+                        {
+                            visible = true; return;
+                        }
+                        break;
+                    case "Аудио":
+                        if (indImage == 3)
+                        {
+                            visible = true; return;
+                        }
+                        break;
+                    case "Текст":
+                        if (indImage == 4)
+                        {
+                            visible = true; return;
+                        }
+                        break;
+                    default:
+                        if (elem.resourceTags.tags.Contains(tag))
+                        {
+                            visible = true; return;
+                        }
+                        break;
                 }
             }
             if (tags.Count == 0)

@@ -31,8 +31,6 @@ namespace QuestMaster
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Команды");
-            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Одиночночные игроки");
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -42,29 +40,23 @@ namespace QuestMaster
             this.metroButton3 = new MetroFramework.Controls.MetroButton();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.labeledComboBox3 = new QuestMaster.LabeledComboBox();
-            this.labeledComboBox2 = new QuestMaster.LabeledComboBox();
             this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
             this.metroButton2 = new MetroFramework.Controls.MetroButton();
             this.metroTabControl1 = new MetroFramework.Controls.MetroTabControl();
             this.metroTabPage1 = new MetroFramework.Controls.MetroTabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.metroButton1 = new MetroFramework.Controls.MetroButton();
+            this.metroTabPage2 = new MetroFramework.Controls.MetroTabPage();
+            this.metroTabPage3 = new MetroFramework.Controls.MetroTabPage();
+            this.metroTabPage4 = new MetroFramework.Controls.MetroTabPage();
+            this.imageListIconForMaterialsListView = new System.Windows.Forms.ImageList(this.components);
+            this.labeledComboBox3 = new QuestMaster.LabeledComboBox();
+            this.labeledComboBox2 = new QuestMaster.LabeledComboBox();
             this.labeledTextBox3 = new QuestMaster.LabeledTextBox();
             this.labeledTextBox4 = new QuestMaster.LabeledTextBox();
             this.labeledComboBox1 = new QuestMaster.LabeledComboBox();
-            this.metroTabPage2 = new MetroFramework.Controls.MetroTabPage();
-            this.explorer1 = new QuestMaster.Explorer();
-            this.metroTabPage3 = new MetroFramework.Controls.MetroTabPage();
             this.explorer2 = new QuestMaster.Explorer();
-            this.metroTabPage4 = new MetroFramework.Controls.MetroTabPage();
-            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
-            this.treeView3 = new System.Windows.Forms.TreeView();
-            this.listView3 = new System.Windows.Forms.ListView();
-            this.toolStrip3 = new System.Windows.Forms.ToolStrip();
-            this.toolStripDropDownButton2 = new System.Windows.Forms.ToolStripDropDownButton();
-            this.statusStrip3 = new System.Windows.Forms.StatusStrip();
-            this.imageListIconForMaterialsListView = new System.Windows.Forms.ImageList(this.components);
+            this.explorer1 = new QuestMaster.Explorer();
             this.panel2.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.metroTabControl1.SuspendLayout();
@@ -72,9 +64,6 @@ namespace QuestMaster
             this.groupBox1.SuspendLayout();
             this.metroTabPage2.SuspendLayout();
             this.metroTabPage3.SuspendLayout();
-            this.metroTabPage4.SuspendLayout();
-            this.tableLayoutPanel4.SuspendLayout();
-            this.toolStrip3.SuspendLayout();
             this.SuspendLayout();
             // 
             // comboBox1
@@ -160,32 +149,6 @@ namespace QuestMaster
             this.groupBox2.TabIndex = 15;
             this.groupBox2.TabStop = false;
             // 
-            // labeledComboBox3
-            // 
-            this.labeledComboBox3.ComboBoxSize = new System.Drawing.Size(0, 0);
-            this.labeledComboBox3.ItemList = new string[] {
-        "Варианты",
-        "Переключатели",
-        "Текст",
-        "Картинки"};
-            this.labeledComboBox3.LabelText = "Тип задания";
-            this.labeledComboBox3.Location = new System.Drawing.Point(19, 87);
-            this.labeledComboBox3.Margin = new System.Windows.Forms.Padding(3, 3, 8, 3);
-            this.labeledComboBox3.Name = "labeledComboBox3";
-            this.labeledComboBox3.Size = new System.Drawing.Size(300, 34);
-            this.labeledComboBox3.TabIndex = 3;
-            // 
-            // labeledComboBox2
-            // 
-            this.labeledComboBox2.ComboBoxSize = new System.Drawing.Size(0, 0);
-            this.labeledComboBox2.ItemList = new string[0];
-            this.labeledComboBox2.LabelText = "Страница    ";
-            this.labeledComboBox2.Location = new System.Drawing.Point(19, 47);
-            this.labeledComboBox2.Margin = new System.Windows.Forms.Padding(3, 3, 8, 3);
-            this.labeledComboBox2.Name = "labeledComboBox2";
-            this.labeledComboBox2.Size = new System.Drawing.Size(211, 34);
-            this.labeledComboBox2.TabIndex = 2;
-            // 
             // metroLabel1
             // 
             this.metroLabel1.AutoSize = true;
@@ -251,6 +214,74 @@ namespace QuestMaster
             this.metroButton1.TabIndex = 3;
             this.metroButton1.Text = "Создать";
             // 
+            // metroTabPage2
+            // 
+            this.metroTabPage2.Controls.Add(this.explorer1);
+            this.metroTabPage2.HorizontalScrollbarBarColor = true;
+            this.metroTabPage2.Location = new System.Drawing.Point(4, 35);
+            this.metroTabPage2.Name = "metroTabPage2";
+            this.metroTabPage2.Size = new System.Drawing.Size(1211, 650);
+            this.metroTabPage2.TabIndex = 1;
+            this.metroTabPage2.Text = "Архив квестов";
+            this.metroTabPage2.VerticalScrollbarBarColor = true;
+            // 
+            // metroTabPage3
+            // 
+            this.metroTabPage3.Controls.Add(this.explorer2);
+            this.metroTabPage3.HorizontalScrollbarBarColor = true;
+            this.metroTabPage3.Location = new System.Drawing.Point(4, 35);
+            this.metroTabPage3.Name = "metroTabPage3";
+            this.metroTabPage3.Size = new System.Drawing.Size(1211, 650);
+            this.metroTabPage3.TabIndex = 2;
+            this.metroTabPage3.Text = "Архив материалов";
+            this.metroTabPage3.VerticalScrollbarBarColor = true;
+            // 
+            // metroTabPage4
+            // 
+            this.metroTabPage4.HorizontalScrollbarBarColor = true;
+            this.metroTabPage4.Location = new System.Drawing.Point(4, 35);
+            this.metroTabPage4.Name = "metroTabPage4";
+            this.metroTabPage4.Size = new System.Drawing.Size(1211, 650);
+            this.metroTabPage4.TabIndex = 3;
+            this.metroTabPage4.Text = "Архив игроков";
+            this.metroTabPage4.VerticalScrollbarBarColor = true;
+            // 
+            // imageListIconForMaterialsListView
+            // 
+            this.imageListIconForMaterialsListView.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageListIconForMaterialsListView.ImageStream")));
+            this.imageListIconForMaterialsListView.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageListIconForMaterialsListView.Images.SetKeyName(0, "exclamation-sign.png");
+            this.imageListIconForMaterialsListView.Images.SetKeyName(1, "picture.png");
+            this.imageListIconForMaterialsListView.Images.SetKeyName(2, "video.png");
+            this.imageListIconForMaterialsListView.Images.SetKeyName(3, "volume-up.png");
+            this.imageListIconForMaterialsListView.Images.SetKeyName(4, "font.png");
+            // 
+            // labeledComboBox3
+            // 
+            this.labeledComboBox3.ComboBoxSize = new System.Drawing.Size(0, 0);
+            this.labeledComboBox3.ItemList = new string[] {
+        "Варианты",
+        "Переключатели",
+        "Текст",
+        "Картинки"};
+            this.labeledComboBox3.LabelText = "Тип задания";
+            this.labeledComboBox3.Location = new System.Drawing.Point(19, 87);
+            this.labeledComboBox3.Margin = new System.Windows.Forms.Padding(3, 3, 8, 3);
+            this.labeledComboBox3.Name = "labeledComboBox3";
+            this.labeledComboBox3.Size = new System.Drawing.Size(300, 34);
+            this.labeledComboBox3.TabIndex = 3;
+            // 
+            // labeledComboBox2
+            // 
+            this.labeledComboBox2.ComboBoxSize = new System.Drawing.Size(0, 0);
+            this.labeledComboBox2.ItemList = new string[0];
+            this.labeledComboBox2.LabelText = "Страница    ";
+            this.labeledComboBox2.Location = new System.Drawing.Point(19, 47);
+            this.labeledComboBox2.Margin = new System.Windows.Forms.Padding(3, 3, 8, 3);
+            this.labeledComboBox2.Name = "labeledComboBox2";
+            this.labeledComboBox2.Size = new System.Drawing.Size(211, 34);
+            this.labeledComboBox2.TabIndex = 2;
+            // 
             // labeledTextBox3
             // 
             this.labeledTextBox3.LabelText = "Название ";
@@ -281,36 +312,6 @@ namespace QuestMaster
             this.labeledComboBox1.Size = new System.Drawing.Size(298, 33);
             this.labeledComboBox1.TabIndex = 1;
             // 
-            // metroTabPage2
-            // 
-            this.metroTabPage2.Controls.Add(this.explorer1);
-            this.metroTabPage2.HorizontalScrollbarBarColor = true;
-            this.metroTabPage2.Location = new System.Drawing.Point(4, 35);
-            this.metroTabPage2.Name = "metroTabPage2";
-            this.metroTabPage2.Size = new System.Drawing.Size(1211, 650);
-            this.metroTabPage2.TabIndex = 1;
-            this.metroTabPage2.Text = "Архив квестов";
-            this.metroTabPage2.VerticalScrollbarBarColor = true;
-            // 
-            // explorer1
-            // 
-            this.explorer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.explorer1.Location = new System.Drawing.Point(0, 0);
-            this.explorer1.Name = "explorer1";
-            this.explorer1.Size = new System.Drawing.Size(1211, 650);
-            this.explorer1.TabIndex = 2;
-            // 
-            // metroTabPage3
-            // 
-            this.metroTabPage3.Controls.Add(this.explorer2);
-            this.metroTabPage3.HorizontalScrollbarBarColor = true;
-            this.metroTabPage3.Location = new System.Drawing.Point(4, 35);
-            this.metroTabPage3.Name = "metroTabPage3";
-            this.metroTabPage3.Size = new System.Drawing.Size(1211, 650);
-            this.metroTabPage3.TabIndex = 2;
-            this.metroTabPage3.Text = "Архив материалов";
-            this.metroTabPage3.VerticalScrollbarBarColor = true;
-            // 
             // explorer2
             // 
             this.explorer2.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -319,95 +320,13 @@ namespace QuestMaster
             this.explorer2.Size = new System.Drawing.Size(1211, 650);
             this.explorer2.TabIndex = 2;
             // 
-            // metroTabPage4
+            // explorer1
             // 
-            this.metroTabPage4.Controls.Add(this.tableLayoutPanel4);
-            this.metroTabPage4.Controls.Add(this.toolStrip3);
-            this.metroTabPage4.Controls.Add(this.statusStrip3);
-            this.metroTabPage4.HorizontalScrollbarBarColor = true;
-            this.metroTabPage4.Location = new System.Drawing.Point(4, 35);
-            this.metroTabPage4.Name = "metroTabPage4";
-            this.metroTabPage4.Size = new System.Drawing.Size(1211, 650);
-            this.metroTabPage4.TabIndex = 3;
-            this.metroTabPage4.Text = "Архив игроков";
-            this.metroTabPage4.VerticalScrollbarBarColor = true;
-            // 
-            // tableLayoutPanel4
-            // 
-            this.tableLayoutPanel4.ColumnCount = 2;
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70F));
-            this.tableLayoutPanel4.Controls.Add(this.treeView3, 0, 0);
-            this.tableLayoutPanel4.Controls.Add(this.listView3, 1, 0);
-            this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(24, 25);
-            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
-            this.tableLayoutPanel4.RowCount = 1;
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(1187, 625);
-            this.tableLayoutPanel4.TabIndex = 4;
-            // 
-            // treeView3
-            // 
-            this.treeView3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.treeView3.Location = new System.Drawing.Point(3, 3);
-            this.treeView3.Name = "treeView3";
-            treeNode3.Name = "Teams";
-            treeNode3.Text = "Команды";
-            treeNode4.Name = "SinglePlayers";
-            treeNode4.Text = "Одиночночные игроки";
-            this.treeView3.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode3,
-            treeNode4});
-            this.treeView3.Size = new System.Drawing.Size(350, 619);
-            this.treeView3.TabIndex = 0;
-            // 
-            // listView3
-            // 
-            this.listView3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listView3.Location = new System.Drawing.Point(359, 3);
-            this.listView3.Name = "listView3";
-            this.listView3.Size = new System.Drawing.Size(825, 619);
-            this.listView3.TabIndex = 1;
-            this.listView3.UseCompatibleStateImageBehavior = false;
-            // 
-            // toolStrip3
-            // 
-            this.toolStrip3.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripDropDownButton2});
-            this.toolStrip3.Location = new System.Drawing.Point(24, 0);
-            this.toolStrip3.Name = "toolStrip3";
-            this.toolStrip3.Size = new System.Drawing.Size(1187, 25);
-            this.toolStrip3.TabIndex = 3;
-            this.toolStrip3.Text = "toolStrip3";
-            // 
-            // toolStripDropDownButton2
-            // 
-            this.toolStripDropDownButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton2.Image")));
-            this.toolStripDropDownButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripDropDownButton2.Name = "toolStripDropDownButton2";
-            this.toolStripDropDownButton2.Size = new System.Drawing.Size(77, 22);
-            this.toolStripDropDownButton2.Text = "Фильтр";
-            // 
-            // statusStrip3
-            // 
-            this.statusStrip3.Dock = System.Windows.Forms.DockStyle.Left;
-            this.statusStrip3.Location = new System.Drawing.Point(0, 0);
-            this.statusStrip3.Name = "statusStrip3";
-            this.statusStrip3.Size = new System.Drawing.Size(24, 650);
-            this.statusStrip3.TabIndex = 2;
-            this.statusStrip3.Text = "statusStrip3";
-            // 
-            // imageListIconForMaterialsListView
-            // 
-            this.imageListIconForMaterialsListView.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageListIconForMaterialsListView.ImageStream")));
-            this.imageListIconForMaterialsListView.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageListIconForMaterialsListView.Images.SetKeyName(0, "exclamation-sign.png");
-            this.imageListIconForMaterialsListView.Images.SetKeyName(1, "picture.png");
-            this.imageListIconForMaterialsListView.Images.SetKeyName(2, "video.png");
-            this.imageListIconForMaterialsListView.Images.SetKeyName(3, "volume-up.png");
-            this.imageListIconForMaterialsListView.Images.SetKeyName(4, "font.png");
+            this.explorer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.explorer1.Location = new System.Drawing.Point(0, 0);
+            this.explorer1.Name = "explorer1";
+            this.explorer1.Size = new System.Drawing.Size(1211, 650);
+            this.explorer1.TabIndex = 2;
             // 
             // Form1
             // 
@@ -421,6 +340,7 @@ namespace QuestMaster
             this.Text = "Квест Мастер";
             this.Theme = MetroFramework.MetroThemeStyle.Light;
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseDown);
             this.panel2.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
@@ -429,11 +349,6 @@ namespace QuestMaster
             this.groupBox1.ResumeLayout(false);
             this.metroTabPage2.ResumeLayout(false);
             this.metroTabPage3.ResumeLayout(false);
-            this.metroTabPage4.ResumeLayout(false);
-            this.metroTabPage4.PerformLayout();
-            this.tableLayoutPanel4.ResumeLayout(false);
-            this.toolStrip3.ResumeLayout(false);
-            this.toolStrip3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -464,13 +379,7 @@ namespace QuestMaster
         private MetroFramework.Controls.MetroButton metroButton4;
         private MetroFramework.Controls.MetroButton metroButton3;
         private LabeledComboBox labeledComboBox3;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
-        private System.Windows.Forms.TreeView treeView3;
-        private System.Windows.Forms.ListView listView3;
         private System.Windows.Forms.ImageList imageListIconForMaterialsListView;
-        private System.Windows.Forms.ToolStrip toolStrip3;
-        private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton2;
-        private System.Windows.Forms.StatusStrip statusStrip3;
         private Explorer explorer1;
         private Explorer explorer2;
     }

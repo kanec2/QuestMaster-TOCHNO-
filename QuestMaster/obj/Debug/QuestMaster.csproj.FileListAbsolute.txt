@@ -172,7 +172,6 @@ F:\QuestMaster-TOCHNO-\QuestMaster\obj\Debug\QuestMaster.Togger.resources
 F:\QuestMaster-TOCHNO-\QuestMaster\obj\Debug\QuestMaster.csproj.GenerateResource.Cache
 F:\QuestMaster-TOCHNO-\QuestMaster\obj\Debug\QuestMaster.exe
 F:\QuestMaster-TOCHNO-\QuestMaster\obj\Debug\QuestMaster.pdb
-E:\QuestMaster-TOCHNO-\QuestMaster\obj\Debug\QuestMaster.Explore.resources
 E:\QuestMaster-TOCHNO-\QuestMaster\obj\Debug\QuestMaster.Explorer.resources
 F:\QuestMaster-TOCHNO-\QuestMaster\obj\Debug\QuestMaster.Explorer.resources
 F:\QuestMaster-TOCHNO-\QuestMaster\obj\Debug\QuestMaster.csprojResolveAssemblyReference.cache

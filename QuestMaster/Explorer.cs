@@ -14,15 +14,20 @@ namespace QuestMaster
     public partial class Explorer : MetroUserControl
     {
         //Получаем элементы интерфейса, что бы их можно было изменять
-        public ListView listView { get { return listView1; } set { listView = listView1; } }
-        public TreeView treeView { get { return treeView1; } set { treeView = treeView1; } }
-        public Togger togger { get { return togger1; } set { togger = togger1; } }
-        public ToolStrip toolStrip { get { return toolStrip1; } set { toolStrip = toolStrip1; } }
-        public StatusStrip statusStrip { get { return statusStrip1; } set { statusStrip = statusStrip1; } }
+        public ListView listView { get { return listView1; }  }
+        public TreeView treeView { get { return treeView1; }  }
+        public Togger togger { get { return togger1; }  }
+        public ToolStrip toolStrip { get { return toolStrip1; }  }
+        public StatusStrip statusStrip { get { return statusStrip1; }  }
 
         public Explorer()
         {
             InitializeComponent();
+        }
+
+        private void Explorer_MouseDown(object sender, MouseEventArgs e)
+        {
+            MessageBox.Show(this.GetChildAtPoint(e.Location).Name);
         }
     }
 }

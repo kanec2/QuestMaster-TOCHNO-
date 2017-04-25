@@ -20,7 +20,6 @@ namespace QuestMaster
         Resources resource;
         public int id;
         List<CustomFile> files = new List<CustomFile>();
-        List<string> tags;
         ModelExplorer exp1;
         ModelExplorer exp2;
         ModelExplorer exp3;
@@ -35,33 +34,37 @@ namespace QuestMaster
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            Togger tager = new Togger();
-            metroTabControl1.TabPages[1].Controls.Add(tager);
+
+
             DBConnection connectionBD = new DBConnection("127.0.0.1", "root", "3306", "", "mydb");
             resource = new Resources();
             exp1 = new ModelExplorer(explorer1);
             explorer1.treeView.NodeMouseClick += mouseClickNode;
             exp2 = new ModelExplorer(explorer2, files, resource.getAllTags());
             explorer2.treeView.NodeMouseClick += mouseClickNode;
-            exp2.AddListImg(imageListIconForMaterialsListView);
-            //ToolStripItem tsi = ToolStripItem
-            //exp2.AddStripElements();
+            
         }
 
         private void mouseClickNode(object sender, TreeNodeMouseClickEventArgs e)
         {
             TreeNode newSelected = e.Node;
             string path = " ";
-            switch(sender.ToString().Remove(0, 67))//"Квест1" или "Картинки"
+            switch(metroTabControl1.SelectedIndex)//"Квест1" или "Картинки"
             {
-                case "Квест 1":
+                case 1:
                     direct = new DirectoryInfo(set.QuestArchive);
-                    string texr = newSelected.Name.Remove(0, 5);
-                    List<string> allFiles = quests.GetAllFiles(direct.GetFiles().Where(f => f.Name == newSelected.Name).Single().FullName);
-                    //Получили файлы. теперь из них осталось построить сам listView
-                    
+                    List<string> allFilesQuest = quests.GetAllFiles(direct.GetFiles().Where(f => f.Name == newSelected.Name).Single().FullName);
+                    List<ResourceElement> questElems = resource.GetElementByID(allFilesQuest);
+                    exp1.files.Clear();
+                    exp1.AddListImg(imageListIconForMaterialsListView);
+                    foreach (ResourceElement questElem in questElems)
+                    {
+                        exp1.files.Add(new CustomFile(questElem.respath, questElem.respath.Split('.')[1], questElem));
+                    }
+                    exp1.files.ForEach(t => t.filter(this.exp1.tags));
+                    exp1.makeFiles();
                     break;
-                case "Картинки":
+                case 2:
                     switch (newSelected.Name)
                     {
                         case "images": path = set.Images; break;
@@ -73,9 +76,10 @@ namespace QuestMaster
                     exp2.files.Clear();
                     direct.GetFiles().ToList().ForEach(t => exp2.files.Add(new CustomFile(t.Name, t.Extension, resource.checkElement(t.Name))));
                     exp2.files.ForEach(t => t.filter(this.exp2.tags));
+                    exp2.AddListImg(imageListIconForMaterialsListView);
                     exp2.makeFiles();
-                    //Починить фильтр
-                    //************************************
+                    break;
+                case 3:
                     break;
             }
         }
@@ -86,42 +90,13 @@ namespace QuestMaster
             {
                 case 1: exp1.makeTree("quest"); break;
                 case 2: exp2.makeTree("resource"); break;
-              //case 3: exp.makeTree("player"); break;
+                case 3: exp3.makeTree("player"); break;
             }
         }
 
-
-        //public void makeFiles() {
-        //    listView2.Items.Clear();
-        //    ListViewItem.ListViewSubItem[] subItems;
-        //    ListViewItem item = null;
-
-        //    foreach (CustomFile file in files.Where(t=>t.visible == true))
-        //    {
-        //        item = new ListViewItem(file.fileName, file.indImage);
-
-        //        item.BackColor = file.fileColor;
-
-        //        subItems = new ListViewItem.ListViewSubItem[]
-        //            { new ListViewItem.ListViewSubItem(item, "File") };
-
-        //            item.SubItems.AddRange(subItems);
-        //            listView2.Items.Add(item);
-        //    }
-        //}
-
-        //private void listView2_MouseClick(object sender, MouseEventArgs e)
-        //{
-        //    clearTags();
-        //    ResourceElement elem = resource.checkElement(listView2.FocusedItem.Text);
-
-        //    if (elem == null) return;
-
-        //    elem.resourceTags.tags.ForEach(t => statusStrip2.Items.Add(t));
-        //}
-        //private void clearTags() {
-        //    statusStrip2.Items.Clear();
-        //    statusStrip2.Items.Add("Теги:");
-        //}
+        private void Form1_MouseDown(object sender, MouseEventArgs e)
+        {
+            MessageBox.Show(e.Location.ToString());
+        }
     }
 }

@@ -239,18 +239,26 @@ namespace QuestMaster
             template.Element("quest").LastAttribute.Value = idTaks.ToString();
         }
 
+        /// <summary>
+        /// Получаем все файлы используемые в квесте.
+        /// </summary>
+        /// <param name="path">Путь до файла.</param>
+        /// <returns>List с файлами</returns>
         public List<string> GetAllFiles(string path)
         {
             XDocument template = XDocument.Load(path);
             List<string> files = new List<string>();
             foreach (XElement tasks in template.Elements("quest"))
             {
-                foreach (XElement task in tasks.Elements())
+                foreach (XElement task in tasks.Elements("tasks").Elements())
                 {
-                    files.Add(task.FirstAttribute.Value);
-                    foreach (XElement answer in task.Elements("answers"))
+                    if (task.Name == "task") { files.Add(task.FirstAttribute.Value); }
+                    if (task.Name == "answers")
                     {
-                        files.Add(answer.FirstAttribute.Value);
+                        foreach (XElement answer in task.Elements())
+                        {
+                            files.Add(answer.FirstAttribute.Value);
+                        }
                     }
                 }
             }
