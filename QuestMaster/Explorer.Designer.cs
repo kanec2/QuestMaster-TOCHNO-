@@ -28,13 +28,26 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.togger1 = new QuestMaster.Togger();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.listView1 = new System.Windows.Forms.ListView();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.AddFile = new System.Windows.Forms.ToolStripMenuItem();
+            this.SortFile = new System.Windows.Forms.ToolStripMenuItem();
+            this.SortAscend = new System.Windows.Forms.ToolStripMenuItem();
+            this.SortDescend = new System.Windows.Forms.ToolStripMenuItem();
+            this.NoSort = new System.Windows.Forms.ToolStripMenuItem();
+            this.ViewFile = new System.Windows.Forms.ToolStripMenuItem();
+            this.LargeIconFile = new System.Windows.Forms.ToolStripMenuItem();
+            this.SmallIconFile = new System.Windows.Forms.ToolStripMenuItem();
+            this.ListFile = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.tableLayoutPanel1.SuspendLayout();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolStrip1
@@ -66,7 +79,7 @@
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 486F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(819, 486);
             this.tableLayoutPanel1.TabIndex = 3;
             // 
@@ -86,7 +99,85 @@
             this.listView1.Size = new System.Drawing.Size(568, 480);
             this.listView1.TabIndex = 1;
             this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.SmallIcon;
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.AddFile,
+            this.SortFile,
+            this.ViewFile});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(198, 70);
+            // 
+            // AddFile
+            // 
+            this.AddFile.Name = "AddFile";
+            this.AddFile.Size = new System.Drawing.Size(197, 22);
+            this.AddFile.Text = "Добавить новый файл";
+            this.AddFile.Click += new System.EventHandler(this.AddFile_Click);
+            // 
+            // SortFile
+            // 
+            this.SortFile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.SortAscend,
+            this.SortDescend,
+            this.NoSort});
+            this.SortFile.Name = "SortFile";
+            this.SortFile.Size = new System.Drawing.Size(197, 22);
+            this.SortFile.Text = "Сортировка";
+            // 
+            // SortAscend
+            // 
+            this.SortAscend.Name = "SortAscend";
+            this.SortAscend.Size = new System.Drawing.Size(160, 22);
+            this.SortAscend.Text = "А-Я";
+            // 
+            // SortDescend
+            // 
+            this.SortDescend.Name = "SortDescend";
+            this.SortDescend.Size = new System.Drawing.Size(160, 22);
+            this.SortDescend.Text = "Я-А";
+            // 
+            // NoSort
+            // 
+            this.NoSort.Checked = true;
+            this.NoSort.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.NoSort.Name = "NoSort";
+            this.NoSort.Size = new System.Drawing.Size(160, 22);
+            this.NoSort.Text = "Без сортировки";
+            // 
+            // ViewFile
+            // 
+            this.ViewFile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.LargeIconFile,
+            this.SmallIconFile,
+            this.ListFile});
+            this.ViewFile.Name = "ViewFile";
+            this.ViewFile.Size = new System.Drawing.Size(197, 22);
+            this.ViewFile.Text = "Вид";
+            // 
+            // LargeIconFile
+            // 
+            this.LargeIconFile.Checked = true;
+            this.LargeIconFile.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.LargeIconFile.Name = "LargeIconFile";
+            this.LargeIconFile.Size = new System.Drawing.Size(179, 22);
+            this.LargeIconFile.Text = "Большие иконки";
+            this.LargeIconFile.Click += new System.EventHandler(this.AddFile_Click);
+            // 
+            // SmallIconFile
+            // 
+            this.SmallIconFile.Name = "SmallIconFile";
+            this.SmallIconFile.Size = new System.Drawing.Size(179, 22);
+            this.SmallIconFile.Text = "Маленькие иконки";
+            this.SmallIconFile.Click += new System.EventHandler(this.AddFile_Click);
+            // 
+            // ListFile
+            // 
+            this.ListFile.Name = "ListFile";
+            this.ListFile.Size = new System.Drawing.Size(179, 22);
+            this.ListFile.Text = "Список";
+            this.ListFile.Click += new System.EventHandler(this.AddFile_Click);
             // 
             // statusStrip1
             // 
@@ -98,6 +189,11 @@
             this.statusStrip1.Size = new System.Drawing.Size(15, 521);
             this.statusStrip1.TabIndex = 0;
             this.statusStrip1.Text = "statusStrip1";
+            this.statusStrip1.TextDirection = System.Windows.Forms.ToolStripTextDirection.Vertical90;
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
             // 
             // Explorer
             // 
@@ -109,8 +205,8 @@
             this.Controls.Add(this.statusStrip1);
             this.Name = "Explorer";
             this.Size = new System.Drawing.Size(860, 521);
-            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Explorer_MouseDown);
             this.tableLayoutPanel1.ResumeLayout(false);
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -123,5 +219,16 @@
         private System.Windows.Forms.TreeView treeView1;
         private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem AddFile;
+        private System.Windows.Forms.ToolStripMenuItem SortFile;
+        private System.Windows.Forms.ToolStripMenuItem SortAscend;
+        private System.Windows.Forms.ToolStripMenuItem SortDescend;
+        private System.Windows.Forms.ToolStripMenuItem NoSort;
+        private System.Windows.Forms.ToolStripMenuItem ViewFile;
+        private System.Windows.Forms.ToolStripMenuItem LargeIconFile;
+        private System.Windows.Forms.ToolStripMenuItem SmallIconFile;
+        private System.Windows.Forms.ToolStripMenuItem ListFile;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }

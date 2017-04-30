@@ -26,7 +26,7 @@ namespace QuestMaster
             indImage = 0;
             switch (extension)
             {
-                case ".jpg": case ".png": indImage = 1; break;
+                case ".jpg": case ".png": case ".jpeg": indImage = 1; break;
                 case ".mp4": indImage = 2; break;
                 case ".mp3": indImage = 3; break;
                 case ".txt": indImage = 4; break;

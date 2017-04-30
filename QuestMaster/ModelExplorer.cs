@@ -206,10 +206,10 @@ namespace QuestMaster
             switch(state)
             {
                 case "resource":
-                    this.explore.treeView.Nodes.Add("images", "Картинки");
-                    this.explore.treeView.Nodes.Add("videos", "Видео");
-                    this.explore.treeView.Nodes.Add("audios", "Аудио");
-                    this.explore.treeView.Nodes.Add("text", "Текст");
+                    this.explore.treeView.Nodes.Add("Images", "Картинки");
+                    this.explore.treeView.Nodes.Add("Videos", "Видео");
+                    this.explore.treeView.Nodes.Add("Audios", "Аудио");
+                    this.explore.treeView.Nodes.Add("Text", "Текст");
                     break;
                 case "quest":
                     dir = new DirectoryInfo(set.QuestArchive);
@@ -219,6 +219,8 @@ namespace QuestMaster
                     }
                     break;
                 case "player":
+                    this.explore.treeView.Nodes.Add("teams","Команды");
+                    this.explore.treeView.Nodes.Add("SinglePlayer", "Одиночные игроки");
                     break;
             }
         }
@@ -238,6 +240,22 @@ namespace QuestMaster
             this.explore.listView.SmallImageList = il;
             this.explore.listView.LargeImageList = il;
 
+        }
+
+        
+        public void menu(int tabPagesIDX)
+        {
+            switch(tabPagesIDX)
+            {
+                case 1:
+                    this.explore.contextMenuStrip.Items[0].Visible = false;
+                    break;
+                case 2:
+                    break;
+                case 3:
+                    this.explore.contextMenuStrip.Items[0].Visible = false;
+                    break;
+            }
         }
     }
 }

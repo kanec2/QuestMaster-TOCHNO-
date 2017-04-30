@@ -154,7 +154,6 @@ E:\QuestMaster-TOCHNO-\QuestMaster\obj\Debug\QuestMaster.LabeledTextBox.resource
 E:\QuestMaster-TOCHNO-\QuestMaster\obj\Debug\QuestMaster.Properties.Resources.resources
 E:\QuestMaster-TOCHNO-\QuestMaster\obj\Debug\QuestMaster.Togger.resources
 E:\QuestMaster-TOCHNO-\QuestMaster\obj\Debug\QuestMaster.csproj.GenerateResource.Cache
-E:\QuestMaster-TOCHNO-\QuestMaster\obj\Debug\QuestMaster.csprojResolveAssemblyReference.cache
 F:\QuestMaster-TOCHNO-\QuestMaster\bin\Debug\QuestMaster.exe.config
 F:\QuestMaster-TOCHNO-\QuestMaster\bin\Debug\QuestMaster.exe
 F:\QuestMaster-TOCHNO-\QuestMaster\bin\Debug\QuestMaster.pdb
@@ -186,7 +185,6 @@ D:\QuestMaster-TOCHNO-\QuestMaster\bin\Debug\MetroFramework.Fonts.dll
 D:\QuestMaster-TOCHNO-\QuestMaster\bin\Debug\MySql.Data.dll
 D:\QuestMaster-TOCHNO-\QuestMaster\bin\Debug\Newtonsoft.Json.dll
 D:\QuestMaster-TOCHNO-\QuestMaster\bin\Debug\Newtonsoft.Json.xml
-D:\QuestMaster-TOCHNO-\QuestMaster\obj\Debug\QuestMaster.csprojResolveAssemblyReference.cache
 D:\QuestMaster-TOCHNO-\QuestMaster\obj\Debug\QuestMaster.Explorer.resources
 D:\QuestMaster-TOCHNO-\QuestMaster\obj\Debug\QuestMaster.Form1.resources
 D:\QuestMaster-TOCHNO-\QuestMaster\obj\Debug\QuestMaster.LabeledComboBox.resources
@@ -194,3 +192,4 @@ D:\QuestMaster-TOCHNO-\QuestMaster\obj\Debug\QuestMaster.LabeledTextBox.resource
 D:\QuestMaster-TOCHNO-\QuestMaster\obj\Debug\QuestMaster.Properties.Resources.resources
 D:\QuestMaster-TOCHNO-\QuestMaster\obj\Debug\QuestMaster.Togger.resources
 D:\QuestMaster-TOCHNO-\QuestMaster\obj\Debug\QuestMaster.csproj.GenerateResource.Cache
+D:\QuestMaster-TOCHNO-\QuestMaster\obj\Debug\QuestMaster.csprojResolveAssemblyReference.cache

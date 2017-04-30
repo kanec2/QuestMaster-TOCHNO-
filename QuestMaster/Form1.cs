@@ -16,7 +16,6 @@ namespace QuestMaster
 {
     public partial class Form1 : MetroForm
     {
-        //формирование списка для listview. в квестах. который берётся в зависимости от explorer (explorer1, explorer2 etc) 
         Resources resource;
         public int id;
         List<CustomFile> files = new List<CustomFile>();
@@ -34,24 +33,25 @@ namespace QuestMaster
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
-
             DBConnection connectionBD = new DBConnection("127.0.0.1", "root", "3306", "", "mydb");
             resource = new Resources();
             exp1 = new ModelExplorer(explorer1);
             explorer1.treeView.NodeMouseClick += mouseClickNode;
             exp2 = new ModelExplorer(explorer2, files, resource.getAllTags());
             explorer2.treeView.NodeMouseClick += mouseClickNode;
+            exp3 = new ModelExplorer(explorer3);
             
         }
 
         private void mouseClickNode(object sender, TreeNodeMouseClickEventArgs e)
         {
+
             TreeNode newSelected = e.Node;
             string path = " ";
-            switch(metroTabControl1.SelectedIndex)//"Квест1" или "Картинки"
+            switch(metroTabControl1.SelectedIndex)
             {
                 case 1:
+                    explorer1.listView.ContextMenuStrip = explorer1.contextMenuStrip;
                     direct = new DirectoryInfo(set.QuestArchive);
                     List<string> allFilesQuest = quests.GetAllFiles(direct.GetFiles().Where(f => f.Name == newSelected.Name).Single().FullName);
                     List<ResourceElement> questElems = resource.GetElementByID(allFilesQuest);
@@ -67,12 +67,13 @@ namespace QuestMaster
                 case 2:
                     switch (newSelected.Name)
                     {
-                        case "images": path = set.Images; break;
-                        case "videos": path = set.Videos; break;
-                        case "audios": path = set.Audios; break;
-                        case "text": path = set.Text; break;
+                        case "Images": path = set.Images; break;
+                        case "Videos": path = set.Videos; break;
+                        case "Audios": path = set.Audios; break;
+                        case "Text": path = set.Text; break;
                     }
                     direct = new DirectoryInfo(path);
+                    explorer2.listView.ContextMenuStrip = explorer1.contextMenuStrip;
                     exp2.files.Clear();
                     direct.GetFiles().ToList().ForEach(t => exp2.files.Add(new CustomFile(t.Name, t.Extension, resource.checkElement(t.Name))));
                     exp2.files.ForEach(t => t.filter(this.exp2.tags));
@@ -80,6 +81,7 @@ namespace QuestMaster
                     exp2.makeFiles();
                     break;
                 case 3:
+                    explorer3.listView.ContextMenuStrip = explorer1.contextMenuStrip;
                     break;
             }
         }
@@ -88,15 +90,12 @@ namespace QuestMaster
         {
             switch (e.TabPageIndex)
             {
-                case 1: exp1.makeTree("quest"); break;
-                case 2: exp2.makeTree("resource"); break;
-                case 3: exp3.makeTree("player"); break;
+                case 1: exp1.makeTree("quest"); exp1.menu(e.TabPageIndex); break;
+                case 2: exp2.makeTree("resource"); exp2.menu(e.TabPageIndex); break;
+                case 3: exp3.makeTree("player"); exp3.menu(e.TabPageIndex); break;
             }
         }
+        
 
-        private void Form1_MouseDown(object sender, MouseEventArgs e)
-        {
-            MessageBox.Show(e.Location.ToString());
-        }
     }
 }

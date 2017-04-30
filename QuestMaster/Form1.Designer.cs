@@ -55,8 +55,9 @@ namespace QuestMaster
             this.labeledTextBox3 = new QuestMaster.LabeledTextBox();
             this.labeledTextBox4 = new QuestMaster.LabeledTextBox();
             this.labeledComboBox1 = new QuestMaster.LabeledComboBox();
-            this.explorer2 = new QuestMaster.Explorer();
             this.explorer1 = new QuestMaster.Explorer();
+            this.explorer2 = new QuestMaster.Explorer();
+            this.explorer3 = new QuestMaster.Explorer();
             this.panel2.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.metroTabControl1.SuspendLayout();
@@ -64,6 +65,7 @@ namespace QuestMaster
             this.groupBox1.SuspendLayout();
             this.metroTabPage2.SuspendLayout();
             this.metroTabPage3.SuspendLayout();
+            this.metroTabPage4.SuspendLayout();
             this.SuspendLayout();
             // 
             // comboBox1
@@ -238,6 +240,7 @@ namespace QuestMaster
             // 
             // metroTabPage4
             // 
+            this.metroTabPage4.Controls.Add(this.explorer3);
             this.metroTabPage4.HorizontalScrollbarBarColor = true;
             this.metroTabPage4.Location = new System.Drawing.Point(4, 35);
             this.metroTabPage4.Name = "metroTabPage4";
@@ -312,6 +315,14 @@ namespace QuestMaster
             this.labeledComboBox1.Size = new System.Drawing.Size(298, 33);
             this.labeledComboBox1.TabIndex = 1;
             // 
+            // explorer1
+            // 
+            this.explorer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.explorer1.Location = new System.Drawing.Point(0, 0);
+            this.explorer1.Name = "explorer1";
+            this.explorer1.Size = new System.Drawing.Size(1211, 650);
+            this.explorer1.TabIndex = 2;
+            // 
             // explorer2
             // 
             this.explorer2.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -320,13 +331,13 @@ namespace QuestMaster
             this.explorer2.Size = new System.Drawing.Size(1211, 650);
             this.explorer2.TabIndex = 2;
             // 
-            // explorer1
+            // explorer3
             // 
-            this.explorer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.explorer1.Location = new System.Drawing.Point(0, 0);
-            this.explorer1.Name = "explorer1";
-            this.explorer1.Size = new System.Drawing.Size(1211, 650);
-            this.explorer1.TabIndex = 2;
+            this.explorer3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.explorer3.Location = new System.Drawing.Point(0, 0);
+            this.explorer3.Name = "explorer3";
+            this.explorer3.Size = new System.Drawing.Size(1211, 650);
+            this.explorer3.TabIndex = 2;
             // 
             // Form1
             // 
@@ -340,7 +351,6 @@ namespace QuestMaster
             this.Text = "Квест Мастер";
             this.Theme = MetroFramework.MetroThemeStyle.Light;
             this.Load += new System.EventHandler(this.Form1_Load);
-            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseDown);
             this.panel2.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
@@ -349,6 +359,7 @@ namespace QuestMaster
             this.groupBox1.ResumeLayout(false);
             this.metroTabPage2.ResumeLayout(false);
             this.metroTabPage3.ResumeLayout(false);
+            this.metroTabPage4.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -382,6 +393,7 @@ namespace QuestMaster
         private System.Windows.Forms.ImageList imageListIconForMaterialsListView;
         private Explorer explorer1;
         private Explorer explorer2;
+        private Explorer explorer3;
     }
 }
 
