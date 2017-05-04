@@ -73,7 +73,7 @@ namespace QuestMaster
                         case "Text": path = set.Text; break;
                     }
                     direct = new DirectoryInfo(path);
-                    explorer2.listView.ContextMenuStrip = explorer1.contextMenuStrip;
+                    explorer2.listView.ContextMenuStrip = explorer2.contextMenuStrip;
                     exp2.files.Clear();
                     direct.GetFiles().ToList().ForEach(t => exp2.files.Add(new CustomFile(t.Name, t.Extension, resource.checkElement(t.Name))));
                     exp2.files.ForEach(t => t.filter(this.exp2.tags));
