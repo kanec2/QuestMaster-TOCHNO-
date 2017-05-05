@@ -193,3 +193,4 @@ D:\QuestMaster-TOCHNO-\QuestMaster\obj\Debug\QuestMaster.Properties.Resources.re
 D:\QuestMaster-TOCHNO-\QuestMaster\obj\Debug\QuestMaster.Togger.resources
 D:\QuestMaster-TOCHNO-\QuestMaster\obj\Debug\QuestMaster.csproj.GenerateResource.Cache
 D:\QuestMaster-TOCHNO-\QuestMaster\obj\Debug\QuestMaster.csprojResolveAssemblyReference.cache
+E:\QuestMaster-TOCHNO-\QuestMaster\obj\Debug\QuestMaster.csprojResolveAssemblyReference.cache

@@ -12,7 +12,6 @@ using System.IO;
 
 namespace QuestMaster
 {
-    public delegate void ChandedSort(object sender, EventArgs e);
     public partial class Explorer : MetroUserControl
     {
         //Получаем элементы интерфейса, что бы их можно было изменять
@@ -23,38 +22,38 @@ namespace QuestMaster
         public StatusStrip statusStrip { get { return statusStrip1; }  }
         public ContextMenuStrip contextMenuStrip { get { return contextMenuStrip1;  } }
         DirectoryInfo direct;
-        public event ChandedSort chanded;
         Properties.Settings set = new Properties.Settings();
         Dictionary<string, View> views = new Dictionary<string, View>() { { "LargeIconFile", View.LargeIcon }, { "SmallIconFile", View.SmallIcon }, { "ListFile", View.List } };
-        TreeNode selectedNode;
+        ToolStripMenuItem[] sort;
+        ToolStripMenuItem[] file;
         Dictionary<string, string> tree;
         Dictionary<string, List<string>> checkFile;
-        ToolStripMenuItem[] file;
-        ToolStripMenuItem[] sort;
+        Dictionary<string, SortOrder> sorts;
+
         public Explorer()
         {
             InitializeComponent();
-            tree = new Dictionary<string, string>() { { "Images", set.Images }, { "Videos", set.Videos }, { "Audios", set.Audios }, { "Text", set.Text } };
-            checkFile = new Dictionary<string, List<string>>() { { "Images", new List<string>() { ".jpg", ".png", ".jpeg" } }, { "Videos", new List<string>() { ".mp4" } }, { "Audios", new List<string>() { ".mp3" } }, { "Text", new List<string>() { ".txt" } } };
             file = new ToolStripMenuItem[] { this.LargeIconFile, this.SmallIconFile, this.ListFile };
             sort = new ToolStripMenuItem[] { this.SortAscend, this.SortDescend, this.NoSort };
+            sorts = new Dictionary<string, SortOrder>() { { "SortAscend", SortOrder.Ascending}, { "SortDescend", SortOrder.Descending}, { "NoSort", SortOrder.None} };
+            tree = new Dictionary<string, string>() { { "Images", set.Images }, { "Videos", set.Videos }, { "Audios", set.Audios }, { "Text", set.Text } };
+            checkFile = new Dictionary<string, List<string>>() { { "Images", new List<string>() { ".jpg", ".png", ".jpeg" } }, { "Videos", new List<string>() { ".mp4" } }, { "Audios", new List<string>() { ".mp3" } }, { "Text", new List<string>() { ".txt" } } };
         }
 
         private void AddFile_Click(object sender, EventArgs e)
         {
-
             ToolStripMenuItem clickedItem = sender as ToolStripMenuItem;
-            switch(clickedItem.Name)
+            switch (clickedItem.Name)
             {
                 case "AddFile":
-                    direct = new DirectoryInfo(tree[selectedNode.Name]);
-                    if (openFileDialog1.ShowDialog() != DialogResult.OK) return;
+                    direct = new DirectoryInfo(tree[this.treeView1.SelectedNode.Name]);
+                    if (!(this.openFileDialog1.ShowDialog() == DialogResult.OK)) return;
                     if (direct.GetFiles().Select(t => t.Name == openFileDialog1.SafeFileName).First())
                     {
                         MessageBox.Show("Данный файл уже добавлен"); return;
                     }
-                    MessageBox.Show(openFileDialog1.SafeFileName.Split('.')[1].ToString());
-                    if (!checkFile[selectedNode.Name].Contains(openFileDialog1.SafeFileName.Split('.')[1]))
+                    MessageBox.Show(this.openFileDialog1.SafeFileName.Split('.')[1].ToString());
+                    if (!checkFile[this.treeView1.SelectedNode.Name].Contains(this.openFileDialog1.SafeFileName.Split('.')[1]))
                     {
                         MessageBox.Show("Вы не можите добавить файл. Не соответствие формата файлов. Или неправильное имя.");
                         return;
@@ -62,13 +61,16 @@ namespace QuestMaster
                     File.Copy(openFileDialog1.FileName, direct.FullName + "//" + openFileDialog1.SafeFileName);
                     break;
                 case "SortAscend":
-                   // chanded(this.SortAscend, e);
-                    break;
                 case "SortDescend":
-                   // chanded(this.SortDescend, e);
-                    break;
                 case "NoSort":
-                  //  chanded(this.NoSort, e);
+                    foreach (ToolStripMenuItem item in sort)
+                    {
+                        item.Checked = false;
+                        item.CheckState = CheckState.Unchecked;
+                    }
+
+                    clickedItem.CheckState = CheckState.Checked;
+                    listView1.Sorting = sorts[clickedItem.Name];
                     break;
                 case "LargeIconFile":
                 case "SmallIconFile":
@@ -83,18 +85,6 @@ namespace QuestMaster
                     listView1.View =  views[clickedItem.Name];
                     break;
             }
-        }
-
-        private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
-        {
-            MessageBox.Show("AZAZA" + e.Node.Name);
-            //selectedNode = e.Node;
-        }
-
-        private void treeView1_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
-        {
-            MessageBox.Show("AZAZ3123A" + e.Node.Name);
-            selectedNode = e.Node;
         }
     }
 }
