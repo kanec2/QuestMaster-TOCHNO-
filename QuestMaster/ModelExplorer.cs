@@ -42,7 +42,7 @@ namespace QuestMaster
             this.tags = tags;
             this.explore.togger.fillTags(tags);
             this.explore.togger.Changed += tagChanged;
-            this.explore.listView.MouseDown += ListViewMouseClick;
+            this.explore.listView.ItemActivate += activeItem;
         }
 
         /// <summary>
@@ -150,28 +150,20 @@ namespace QuestMaster
             this.explore.togger.addTag(tags);
         }
 
-
-        // Событие при клике по элементу в ViewList
-        private void ListViewMouseClick(object sender, MouseEventArgs e)
+        //Событие происходит при выборе элемента.
+        private void activeItem(object sender, EventArgs e)
         {
             clearTags();
-            ResourceElement elem = files[this.explore.listView.FocusedItem.Index].elem;
+            ResourceElement elem = files.Where(f => f.fileName == this.explore.listView.FocusedItem.Text).Single().elem;
 
             if (elem == null) return;
 
             elem.resourceTags.tags.ForEach(t => explore.statusStrip.Items.Add(t));
 
-            MessageBox.Show(this.explore.listView.SelectedItems.Count.ToString());
-            //if ()
-            //{
-            //    this.explore.contextMenuStrip.Items[3].Visible = true;
-            //}
-            //else
-            //{
-            //    this.explore.contextMenuStrip.Items[3].Visible = false;
-            //}
+            this.explore.contextMenuStrip.Items[3].Visible = true;
+            this.explore.contextMenuStrip.Items[4].Visible = true;
         }
-        
+
         // Событие для работы с тэгами в Togger
         private void tagChanged(object sender, EventArgs e)
         {
@@ -263,13 +255,16 @@ namespace QuestMaster
                 case 1:
                     this.explore.contextMenuStrip.Items[0].Visible = false;
                     this.explore.contextMenuStrip.Items[3].Visible = false;
+                    this.explore.contextMenuStrip.Items[4].Visible = false;
                     break;
                 case 2:
                     this.explore.contextMenuStrip.Items[3].Visible = false;
+                    this.explore.contextMenuStrip.Items[4].Visible = false;
                     break;
                 case 3:
                     this.explore.contextMenuStrip.Items[3].Visible = false;
                     this.explore.contextMenuStrip.Items[0].Visible = false;
+                    this.explore.contextMenuStrip.Items[4].Visible = false;
                     break;
             }
         }

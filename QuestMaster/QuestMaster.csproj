@@ -95,6 +95,12 @@
     <Compile Include="LabeledTextBox.Designer.cs">
       <DependentUpon>LabeledTextBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="RenameDialogBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RenameDialogBox.Designer.cs">
+      <DependentUpon>RenameDialogBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="ResourceElement.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -130,6 +136,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="RenameDialogBox.resx">
+      <DependentUpon>RenameDialogBox.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Togger.resx">
       <DependentUpon>Togger.cs</DependentUpon>
     </EmbeddedResource>

@@ -29,6 +29,7 @@ namespace QuestMaster
         Dictionary<string, string> tree;
         Dictionary<string, List<string>> checkFile;
         Dictionary<string, SortOrder> sorts;
+        RenameDialogBox dialog;
 
         public Explorer()
         {
@@ -43,16 +44,15 @@ namespace QuestMaster
         private void AddFile_Click(object sender, EventArgs e)
         {
             ToolStripMenuItem clickedItem = sender as ToolStripMenuItem;
+            direct = new DirectoryInfo(tree[this.treeView1.SelectedNode.Name]);
             switch (clickedItem.Name)
             {
                 case "AddFile":
-                    direct = new DirectoryInfo(tree[this.treeView1.SelectedNode.Name]);
                     if (!(this.openFileDialog1.ShowDialog() == DialogResult.OK)) return;
                     if (direct.GetFiles().Select(t => t.Name == openFileDialog1.SafeFileName).First())
                     {
                         MessageBox.Show("Данный файл уже добавлен"); return;
                     }
-                    MessageBox.Show(this.openFileDialog1.SafeFileName.Split('.')[1].ToString());
                     if (!checkFile[this.treeView1.SelectedNode.Name].Contains(this.openFileDialog1.SafeFileName.Split('.')[1]))
                     {
                         MessageBox.Show("Вы не можите добавить файл. Не соответствие формата файлов. Или неправильное имя.");
@@ -83,6 +83,25 @@ namespace QuestMaster
                    
                     clickedItem.CheckState = CheckState.Checked;
                     listView1.View =  views[clickedItem.Name];
+                    break;
+                case "DeleteFile":
+                    if (listView1.SelectedItems.Count == 0) return;
+                    foreach (ListViewItem item in this.listView1.SelectedItems)
+                    {
+                        File.Delete(direct.FullName + "//" + item.Text);
+                        listView1.Items.Remove(item);
+                    }
+                    break;
+                case "RenameFile":
+                    dialog = new RenameDialogBox();
+                    if (listView1.SelectedItems.Count == 0) return;
+                    dialog.ShowDialog();
+                    if(dialog.resultText == " ") return;
+                    foreach (ListViewItem item in this.listView1.SelectedItems)
+                    {
+                        direct.GetFiles().Where(fi => fi.Name == item.Text).Single().MoveTo(direct.FullName + "//" + dialog.resultText + item.Text.Split('.')[1]);
+                        item.Text = dialog.resultText;
+                    }
                     break;
             }
         }
