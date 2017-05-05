@@ -26,30 +26,35 @@ namespace QuestMaster
         public event ChandedSort chanded;
         Properties.Settings set = new Properties.Settings();
         Dictionary<string, View> views = new Dictionary<string, View>() { { "LargeIconFile", View.LargeIcon }, { "SmallIconFile", View.SmallIcon }, { "ListFile", View.List } };
-
+        TreeNode selectedNode;
+        Dictionary<string, string> tree;
+        Dictionary<string, List<string>> checkFile;
+        ToolStripMenuItem[] file;
+        ToolStripMenuItem[] sort;
         public Explorer()
         {
             InitializeComponent();
+            tree = new Dictionary<string, string>() { { "Images", set.Images }, { "Videos", set.Videos }, { "Audios", set.Audios }, { "Text", set.Text } };
+            checkFile = new Dictionary<string, List<string>>() { { "Images", new List<string>() { ".jpg", ".png", ".jpeg" } }, { "Videos", new List<string>() { ".mp4" } }, { "Audios", new List<string>() { ".mp3" } }, { "Text", new List<string>() { ".txt" } } };
+            file = new ToolStripMenuItem[] { this.LargeIconFile, this.SmallIconFile, this.ListFile };
+            sort = new ToolStripMenuItem[] { this.SortAscend, this.SortDescend, this.NoSort };
         }
 
         private void AddFile_Click(object sender, EventArgs e)
         {
-            ToolStripMenuItem[] file = new ToolStripMenuItem[] { this.LargeIconFile, this.SmallIconFile, this.ListFile };
-            ToolStripMenuItem[] sort = new ToolStripMenuItem[] { this.SortAscend, this.SortDescend, this.NoSort };
+
             ToolStripMenuItem clickedItem = sender as ToolStripMenuItem;
-            Dictionary<string, string> tree = new Dictionary<string, string>() { { "Images", set.Images }, { "Videos", set.Videos }, { "Audios", set.Audios }, { "Text", set.Text } };
-            Dictionary<string, List<string>> checkFile = new Dictionary<string, List<string>>() { { "Images", new List<string>() { ".jpg", ".png", ".jpeg" } }, { "Videos", new List<string>() { ".mp4" } }, { "Audios", new List<string>() { ".mp3"} }, { "Text", new List<string>() { ".txt"} }};
             switch(clickedItem.Name)
             {
                 case "AddFile":
-                    direct = new DirectoryInfo(tree[treeView1.SelectedNode.Name]);
-                    openFileDialog1.ShowDialog();
+                    direct = new DirectoryInfo(tree[selectedNode.Name]);
+                    if (openFileDialog1.ShowDialog() != DialogResult.OK) return;
                     if (direct.GetFiles().Select(t => t.Name == openFileDialog1.SafeFileName).First())
                     {
                         MessageBox.Show("Данный файл уже добавлен"); return;
                     }
                     MessageBox.Show(openFileDialog1.SafeFileName.Split('.')[1].ToString());
-                    if (!checkFile[treeView1.SelectedNode.Name].Contains(openFileDialog1.SafeFileName.Split('.')[1]))
+                    if (!checkFile[selectedNode.Name].Contains(openFileDialog1.SafeFileName.Split('.')[1]))
                     {
                         MessageBox.Show("Вы не можите добавить файл. Не соответствие формата файлов. Или неправильное имя.");
                         return;
@@ -78,6 +83,18 @@ namespace QuestMaster
                     listView1.View =  views[clickedItem.Name];
                     break;
             }
+        }
+
+        private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+            MessageBox.Show("AZAZA" + e.Node.Name);
+            //selectedNode = e.Node;
+        }
+
+        private void treeView1_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
+        {
+            MessageBox.Show("AZAZ3123A" + e.Node.Name);
+            selectedNode = e.Node;
         }
     }
 }
