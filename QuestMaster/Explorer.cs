@@ -14,22 +14,6 @@ namespace QuestMaster
 {
     public partial class Explorer : MetroUserControl
     {
-        //Получаем элементы интерфейса, что бы их можно было изменять
-        public ListView listView { get { return listView1; }  }
-        public TreeView treeView { get { return treeView1; }  }
-        public Togger togger { get { return togger1; }  }
-        public ToolStrip toolStrip { get { return toolStrip1; }  }
-        public StatusStrip statusStrip { get { return statusStrip1; }  }
-        public ContextMenuStrip contextMenuStrip { get { return contextMenuStrip1;  } }
-        DirectoryInfo direct;
-        Properties.Settings set = new Properties.Settings();
-        Dictionary<string, View> views = new Dictionary<string, View>() { { "LargeIconFile", View.LargeIcon }, { "SmallIconFile", View.SmallIcon }, { "ListFile", View.List } };
-        ToolStripMenuItem[] sort;
-        ToolStripMenuItem[] file;
-        Dictionary<string, string> tree;
-        Dictionary<string, List<string>> checkFile;
-        Dictionary<string, SortOrder> sorts;
-        RenameDialogBox dialog;
 
         public Explorer()
         {
@@ -63,25 +47,13 @@ namespace QuestMaster
                 case "SortAscend":
                 case "SortDescend":
                 case "NoSort":
-                    foreach (ToolStripMenuItem item in sort)
-                    {
-                        item.Checked = false;
-                        item.CheckState = CheckState.Unchecked;
-                    }
-
-                    clickedItem.CheckState = CheckState.Checked;
+                    checkClicked(clickedItem);
                     listView1.Sorting = sorts[clickedItem.Name];
                     break;
                 case "LargeIconFile":
                 case "SmallIconFile":
                 case "ListFile":
-                    foreach (ToolStripMenuItem item in file)
-                    {
-                        item.Checked = false;
-                        item.CheckState = CheckState.Unchecked;
-                    }
-                   
-                    clickedItem.CheckState = CheckState.Checked;
+                    checkClicked(clickedItem);
                     listView1.View =  views[clickedItem.Name];
                     break;
                 case "DeleteFile":
@@ -104,6 +76,17 @@ namespace QuestMaster
                     }
                     break;
             }
+        }
+
+        private void checkClicked(ToolStripMenuItem clickedItem)
+        {
+            foreach (ToolStripMenuItem item in sort)
+            {
+                item.Checked = false;
+                item.CheckState = CheckState.Unchecked;
+            }
+
+            clickedItem.CheckState = CheckState.Checked;
         }
     }
 }

@@ -1,4 +1,8 @@
-﻿namespace QuestMaster
+﻿using System.Collections.Generic;
+using System.IO;
+using System.Windows.Forms;
+
+namespace QuestMaster
 {
     partial class Explorer
     {
@@ -252,7 +256,25 @@
         private System.Windows.Forms.ToolStripMenuItem SmallIconFile;
         private System.Windows.Forms.ToolStripMenuItem ListFile;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
-        private System.Windows.Forms.ToolStripMenuItem DeleteFile;
+        public System.Windows.Forms.ToolStripMenuItem DeleteFile;
         private System.Windows.Forms.ToolStripMenuItem RenameFile;
+
+
+        public ListView listView { get { return listView1; } }
+        public TreeView treeView { get { return treeView1; } }
+        public Togger togger { get { return togger1; } }
+        public ToolStrip toolStrip { get { return toolStrip1; } }
+        public StatusStrip statusStrip { get { return statusStrip1; } }
+        public ContextMenuStrip contextMenuStrip { get { return contextMenuStrip1; } }
+
+        DirectoryInfo direct;
+        Properties.Settings set = new Properties.Settings();
+        Dictionary<string, View> views = new Dictionary<string, View>() { { "LargeIconFile", View.LargeIcon }, { "SmallIconFile", View.SmallIcon }, { "ListFile", View.List } };
+        ToolStripMenuItem[] sort;
+        ToolStripMenuItem[] file;
+        Dictionary<string, string> tree;
+        Dictionary<string, List<string>> checkFile;
+        Dictionary<string, SortOrder> sorts;
+        RenameDialogBox dialog;
     }
 }

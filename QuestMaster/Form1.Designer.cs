@@ -40,24 +40,24 @@ namespace QuestMaster
             this.metroButton3 = new MetroFramework.Controls.MetroButton();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.labeledComboBox3 = new QuestMaster.LabeledComboBox();
+            this.labeledComboBox2 = new QuestMaster.LabeledComboBox();
             this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
             this.metroButton2 = new MetroFramework.Controls.MetroButton();
             this.metroTabControl1 = new MetroFramework.Controls.MetroTabControl();
             this.metroTabPage1 = new MetroFramework.Controls.MetroTabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.metroButton1 = new MetroFramework.Controls.MetroButton();
-            this.metroTabPage2 = new MetroFramework.Controls.MetroTabPage();
-            this.metroTabPage3 = new MetroFramework.Controls.MetroTabPage();
-            this.metroTabPage4 = new MetroFramework.Controls.MetroTabPage();
-            this.imageListIconForMaterialsListView = new System.Windows.Forms.ImageList(this.components);
-            this.labeledComboBox3 = new QuestMaster.LabeledComboBox();
-            this.labeledComboBox2 = new QuestMaster.LabeledComboBox();
             this.labeledTextBox3 = new QuestMaster.LabeledTextBox();
             this.labeledTextBox4 = new QuestMaster.LabeledTextBox();
             this.labeledComboBox1 = new QuestMaster.LabeledComboBox();
-            this.explorer1 = new QuestMaster.Explorer();
-            this.explorer2 = new QuestMaster.Explorer();
+            this.metroTabPage2 = new MetroFramework.Controls.MetroTabPage();
+            this.questExplorer = new QuestMaster.Explorer();
+            this.metroTabPage3 = new MetroFramework.Controls.MetroTabPage();
+            this.elementExplorer = new QuestMaster.Explorer();
+            this.metroTabPage4 = new MetroFramework.Controls.MetroTabPage();
             this.explorer3 = new QuestMaster.Explorer();
+            this.imageListIconForMaterialsListView = new System.Windows.Forms.ImageList(this.components);
             this.panel2.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.metroTabControl1.SuspendLayout();
@@ -151,6 +151,32 @@ namespace QuestMaster
             this.groupBox2.TabIndex = 15;
             this.groupBox2.TabStop = false;
             // 
+            // labeledComboBox3
+            // 
+            this.labeledComboBox3.ComboBoxSize = new System.Drawing.Size(0, 0);
+            this.labeledComboBox3.ItemList = new string[] {
+        "Варианты",
+        "Переключатели",
+        "Текст",
+        "Картинки"};
+            this.labeledComboBox3.LabelText = "Тип задания";
+            this.labeledComboBox3.Location = new System.Drawing.Point(19, 87);
+            this.labeledComboBox3.Margin = new System.Windows.Forms.Padding(3, 3, 8, 3);
+            this.labeledComboBox3.Name = "labeledComboBox3";
+            this.labeledComboBox3.Size = new System.Drawing.Size(300, 34);
+            this.labeledComboBox3.TabIndex = 3;
+            // 
+            // labeledComboBox2
+            // 
+            this.labeledComboBox2.ComboBoxSize = new System.Drawing.Size(0, 0);
+            this.labeledComboBox2.ItemList = new string[0];
+            this.labeledComboBox2.LabelText = "Страница    ";
+            this.labeledComboBox2.Location = new System.Drawing.Point(19, 47);
+            this.labeledComboBox2.Margin = new System.Windows.Forms.Padding(3, 3, 8, 3);
+            this.labeledComboBox2.Name = "labeledComboBox2";
+            this.labeledComboBox2.Size = new System.Drawing.Size(211, 34);
+            this.labeledComboBox2.TabIndex = 2;
+            // 
             // metroLabel1
             // 
             this.metroLabel1.AutoSize = true;
@@ -177,8 +203,8 @@ namespace QuestMaster
             this.metroTabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.metroTabControl1.Location = new System.Drawing.Point(20, 60);
             this.metroTabControl1.Name = "metroTabControl1";
-            this.metroTabControl1.SelectedIndex = 0;
-            this.metroTabControl1.Size = new System.Drawing.Size(1219, 689);
+            this.metroTabControl1.SelectedIndex = 1;
+            this.metroTabControl1.Size = new System.Drawing.Size(1219, 652);
             this.metroTabControl1.TabIndex = 12;
             this.metroTabControl1.Selecting += new System.Windows.Forms.TabControlCancelEventHandler(this.metroTabControl1_Selecting);
             // 
@@ -189,7 +215,7 @@ namespace QuestMaster
             this.metroTabPage1.HorizontalScrollbarBarColor = true;
             this.metroTabPage1.Location = new System.Drawing.Point(4, 35);
             this.metroTabPage1.Name = "metroTabPage1";
-            this.metroTabPage1.Size = new System.Drawing.Size(1211, 650);
+            this.metroTabPage1.Size = new System.Drawing.Size(1211, 613);
             this.metroTabPage1.TabIndex = 0;
             this.metroTabPage1.Text = "Создать квест";
             this.metroTabPage1.VerticalScrollbarBarColor = true;
@@ -215,75 +241,6 @@ namespace QuestMaster
             this.metroButton1.Size = new System.Drawing.Size(75, 23);
             this.metroButton1.TabIndex = 3;
             this.metroButton1.Text = "Создать";
-            // 
-            // metroTabPage2
-            // 
-            this.metroTabPage2.Controls.Add(this.explorer1);
-            this.metroTabPage2.HorizontalScrollbarBarColor = true;
-            this.metroTabPage2.Location = new System.Drawing.Point(4, 35);
-            this.metroTabPage2.Name = "metroTabPage2";
-            this.metroTabPage2.Size = new System.Drawing.Size(1211, 650);
-            this.metroTabPage2.TabIndex = 1;
-            this.metroTabPage2.Text = "Архив квестов";
-            this.metroTabPage2.VerticalScrollbarBarColor = true;
-            // 
-            // metroTabPage3
-            // 
-            this.metroTabPage3.Controls.Add(this.explorer2);
-            this.metroTabPage3.HorizontalScrollbarBarColor = true;
-            this.metroTabPage3.Location = new System.Drawing.Point(4, 35);
-            this.metroTabPage3.Name = "metroTabPage3";
-            this.metroTabPage3.Size = new System.Drawing.Size(1211, 650);
-            this.metroTabPage3.TabIndex = 2;
-            this.metroTabPage3.Text = "Архив материалов";
-            this.metroTabPage3.VerticalScrollbarBarColor = true;
-            // 
-            // metroTabPage4
-            // 
-            this.metroTabPage4.Controls.Add(this.explorer3);
-            this.metroTabPage4.HorizontalScrollbarBarColor = true;
-            this.metroTabPage4.Location = new System.Drawing.Point(4, 35);
-            this.metroTabPage4.Name = "metroTabPage4";
-            this.metroTabPage4.Size = new System.Drawing.Size(1211, 650);
-            this.metroTabPage4.TabIndex = 3;
-            this.metroTabPage4.Text = "Архив игроков";
-            this.metroTabPage4.VerticalScrollbarBarColor = true;
-            // 
-            // imageListIconForMaterialsListView
-            // 
-            this.imageListIconForMaterialsListView.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageListIconForMaterialsListView.ImageStream")));
-            this.imageListIconForMaterialsListView.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageListIconForMaterialsListView.Images.SetKeyName(0, "exclamation-sign.png");
-            this.imageListIconForMaterialsListView.Images.SetKeyName(1, "picture.png");
-            this.imageListIconForMaterialsListView.Images.SetKeyName(2, "video.png");
-            this.imageListIconForMaterialsListView.Images.SetKeyName(3, "volume-up.png");
-            this.imageListIconForMaterialsListView.Images.SetKeyName(4, "font.png");
-            // 
-            // labeledComboBox3
-            // 
-            this.labeledComboBox3.ComboBoxSize = new System.Drawing.Size(0, 0);
-            this.labeledComboBox3.ItemList = new string[] {
-        "Варианты",
-        "Переключатели",
-        "Текст",
-        "Картинки"};
-            this.labeledComboBox3.LabelText = "Тип задания";
-            this.labeledComboBox3.Location = new System.Drawing.Point(19, 87);
-            this.labeledComboBox3.Margin = new System.Windows.Forms.Padding(3, 3, 8, 3);
-            this.labeledComboBox3.Name = "labeledComboBox3";
-            this.labeledComboBox3.Size = new System.Drawing.Size(300, 34);
-            this.labeledComboBox3.TabIndex = 3;
-            // 
-            // labeledComboBox2
-            // 
-            this.labeledComboBox2.ComboBoxSize = new System.Drawing.Size(0, 0);
-            this.labeledComboBox2.ItemList = new string[0];
-            this.labeledComboBox2.LabelText = "Страница    ";
-            this.labeledComboBox2.Location = new System.Drawing.Point(19, 47);
-            this.labeledComboBox2.Margin = new System.Windows.Forms.Padding(3, 3, 8, 3);
-            this.labeledComboBox2.Name = "labeledComboBox2";
-            this.labeledComboBox2.Size = new System.Drawing.Size(211, 34);
-            this.labeledComboBox2.TabIndex = 2;
             // 
             // labeledTextBox3
             // 
@@ -315,21 +272,54 @@ namespace QuestMaster
             this.labeledComboBox1.Size = new System.Drawing.Size(298, 33);
             this.labeledComboBox1.TabIndex = 1;
             // 
-            // explorer1
+            // metroTabPage2
             // 
-            this.explorer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.explorer1.Location = new System.Drawing.Point(0, 0);
-            this.explorer1.Name = "explorer1";
-            this.explorer1.Size = new System.Drawing.Size(1211, 650);
-            this.explorer1.TabIndex = 2;
+            this.metroTabPage2.Controls.Add(this.questExplorer);
+            this.metroTabPage2.HorizontalScrollbarBarColor = true;
+            this.metroTabPage2.Location = new System.Drawing.Point(4, 35);
+            this.metroTabPage2.Name = "metroTabPage2";
+            this.metroTabPage2.Size = new System.Drawing.Size(1211, 613);
+            this.metroTabPage2.TabIndex = 1;
+            this.metroTabPage2.Text = "Архив квестов";
+            this.metroTabPage2.VerticalScrollbarBarColor = true;
             // 
-            // explorer2
+            // questExplorer
             // 
-            this.explorer2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.explorer2.Location = new System.Drawing.Point(0, 0);
-            this.explorer2.Name = "explorer2";
-            this.explorer2.Size = new System.Drawing.Size(1211, 650);
-            this.explorer2.TabIndex = 2;
+            this.questExplorer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.questExplorer.Location = new System.Drawing.Point(0, 0);
+            this.questExplorer.Name = "questExplorer";
+            this.questExplorer.Size = new System.Drawing.Size(1211, 613);
+            this.questExplorer.TabIndex = 2;
+            // 
+            // metroTabPage3
+            // 
+            this.metroTabPage3.Controls.Add(this.elementExplorer);
+            this.metroTabPage3.HorizontalScrollbarBarColor = true;
+            this.metroTabPage3.Location = new System.Drawing.Point(4, 35);
+            this.metroTabPage3.Name = "metroTabPage3";
+            this.metroTabPage3.Size = new System.Drawing.Size(1211, 650);
+            this.metroTabPage3.TabIndex = 2;
+            this.metroTabPage3.Text = "Архив материалов";
+            this.metroTabPage3.VerticalScrollbarBarColor = true;
+            // 
+            // elementExplorer
+            // 
+            this.elementExplorer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.elementExplorer.Location = new System.Drawing.Point(0, 0);
+            this.elementExplorer.Name = "elementExplorer";
+            this.elementExplorer.Size = new System.Drawing.Size(1211, 650);
+            this.elementExplorer.TabIndex = 2;
+            // 
+            // metroTabPage4
+            // 
+            this.metroTabPage4.Controls.Add(this.explorer3);
+            this.metroTabPage4.HorizontalScrollbarBarColor = true;
+            this.metroTabPage4.Location = new System.Drawing.Point(4, 35);
+            this.metroTabPage4.Name = "metroTabPage4";
+            this.metroTabPage4.Size = new System.Drawing.Size(1211, 650);
+            this.metroTabPage4.TabIndex = 3;
+            this.metroTabPage4.Text = "Архив игроков";
+            this.metroTabPage4.VerticalScrollbarBarColor = true;
             // 
             // explorer3
             // 
@@ -339,11 +329,21 @@ namespace QuestMaster
             this.explorer3.Size = new System.Drawing.Size(1211, 650);
             this.explorer3.TabIndex = 2;
             // 
+            // imageListIconForMaterialsListView
+            // 
+            this.imageListIconForMaterialsListView.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageListIconForMaterialsListView.ImageStream")));
+            this.imageListIconForMaterialsListView.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageListIconForMaterialsListView.Images.SetKeyName(0, "exclamation-sign.png");
+            this.imageListIconForMaterialsListView.Images.SetKeyName(1, "picture.png");
+            this.imageListIconForMaterialsListView.Images.SetKeyName(2, "video.png");
+            this.imageListIconForMaterialsListView.Images.SetKeyName(3, "volume-up.png");
+            this.imageListIconForMaterialsListView.Images.SetKeyName(4, "font.png");
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1259, 769);
+            this.ClientSize = new System.Drawing.Size(1259, 732);
             this.Controls.Add(this.metroTabControl1);
             this.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "Form1";
@@ -391,8 +391,8 @@ namespace QuestMaster
         private MetroFramework.Controls.MetroButton metroButton3;
         private LabeledComboBox labeledComboBox3;
         private System.Windows.Forms.ImageList imageListIconForMaterialsListView;
-        private Explorer explorer1;
-        private Explorer explorer2;
+        private Explorer questExplorer;
+        private Explorer elementExplorer;
         private Explorer explorer3;
     }
 }

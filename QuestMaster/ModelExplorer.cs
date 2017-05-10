@@ -8,6 +8,34 @@ using System.Windows.Forms;
 
 namespace QuestMaster
 {
+    public delegate void FileDeleteHandler(object sender, DeleteEventArgs e);
+
+    public class DeleteEventArgs : EventArgs
+    {
+        private string fileName;
+        private string name;
+        private int id;
+
+        public string FileName { get => fileName; }
+        public string DirName { get => name; set => name = value; }
+        public int Id { get => id; set => id = value; }
+
+        public DeleteEventArgs(string FileName)
+        {
+            this.fileName = FileName;
+        }
+
+        public DeleteEventArgs(string FileName, string name) : this(FileName)
+        {
+            this.name = name;
+        }
+
+        public DeleteEventArgs(string FileName, string name, int id) : this(FileName, name)
+        {
+            this.id = id;
+        }
+    }
+
     class ModelExplorer
     {
         public List<CustomFile> files;
@@ -16,8 +44,10 @@ namespace QuestMaster
         DBConnection dbConnect;
         Properties.Settings set = new Properties.Settings();
         DirectoryInfo dir;
+        ListViewItem clickedItem;
+        public event FileDeleteHandler OnFileDelete;
 
-#region Блок конструкторов класса
+        #region Блок конструкторов класса
         /// <summary>
         /// Создание модели для Exlporer.
         /// </summary>
@@ -42,7 +72,8 @@ namespace QuestMaster
             this.tags = tags;
             this.explore.togger.fillTags(tags);
             this.explore.togger.Changed += tagChanged;
-            this.explore.listView.ItemActivate += activeItem;
+            this.explore.listView.MouseDown += ListViewMouseClick;
+            this.explore.DeleteFile.MouseDown += DeleteFileMouseDown;
         }
 
         /// <summary>
@@ -150,18 +181,29 @@ namespace QuestMaster
             this.explore.togger.addTag(tags);
         }
 
-        //Событие происходит при выборе элемента.
-        private void activeItem(object sender, EventArgs e)
+        //Событие удаления элемента.
+        private void DeleteFileMouseDown(object sender, MouseEventArgs e)
         {
+            ListViewItem item = explore.listView.SelectedItems[0];
+            CustomFile file = files.Where(t => t.fileName == item.Text).Single();
+            if (file.elem != null)
+                OnFileDelete(this, new DeleteEventArgs(item.Text, explore.treeView.SelectedNode.Name, file.elem.id));
+            File.Delete("|DataDirectory|\\Resources\\" + explore.treeView.SelectedNode.Name + "\\" + file.fileName);
+        }
+
+        //Событие происходит при выборе элемента.
+        private void ListViewMouseClick(object sender, MouseEventArgs e)
+        {
+            clickedItem = explore.listView.GetItemAt(e.Location.X, e.Location.Y);
+            switchContext(true);
+            if (clickedItem == null) return;
             clearTags();
-            ResourceElement elem = files.Where(f => f.fileName == this.explore.listView.FocusedItem.Text).Single().elem;
+            ResourceElement elem = files.Find(f => f.fileName == clickedItem.Text).elem;
 
-            if (elem == null) return;
+            if (elem != null) elem.resourceTags.tags.ForEach(t => explore.statusStrip.Items.Add(t));
 
-            elem.resourceTags.tags.ForEach(t => explore.statusStrip.Items.Add(t));
+            switchContext(false);
 
-            this.explore.contextMenuStrip.Items[3].Visible = true;
-            this.explore.contextMenuStrip.Items[4].Visible = true;
         }
 
         // Событие для работы с тэгами в Togger
@@ -233,6 +275,21 @@ namespace QuestMaster
             this.explore.statusStrip.Items.Clear();
             this.explore.statusStrip.Items.Add("Теги:");
         }
+
+        /// <summary>
+        /// Переключение контекстного меню
+        /// </summary>
+        /// <param name="light">Включить или выключить.</param>
+        private void switchContext(bool light)
+        {
+            foreach (ToolStripItem item in this.explore.contextMenuStrip.Items)
+            {
+                item.Visible = light;
+            }
+            this.explore.contextMenuStrip.Items[3].Visible = !light;
+
+        }   
+
         /// <summary>
         /// Добавляем Лист с изображением.
         /// </summary>
@@ -250,23 +307,18 @@ namespace QuestMaster
         /// <param name="tabPagesIDX">Индекс страниц.</param>
         public void menu(int tabPagesIDX)
         {
-            switch(tabPagesIDX)
+            switch (tabPagesIDX)
             {
                 case 1:
+                case 3:
                     this.explore.contextMenuStrip.Items[0].Visible = false;
                     this.explore.contextMenuStrip.Items[3].Visible = false;
-                    this.explore.contextMenuStrip.Items[4].Visible = false;
                     break;
                 case 2:
                     this.explore.contextMenuStrip.Items[3].Visible = false;
-                    this.explore.contextMenuStrip.Items[4].Visible = false;
                     break;
-                case 3:
-                    this.explore.contextMenuStrip.Items[3].Visible = false;
-                    this.explore.contextMenuStrip.Items[0].Visible = false;
-                    this.explore.contextMenuStrip.Items[4].Visible = false;
-                    break;
+
+
             }
         }
-    }
 }
