@@ -47,12 +47,6 @@ namespace QuestMaster
                     }
                     File.Copy(openFileDialog1.FileName, direct.FullName + "//" + openFileDialog1.SafeFileName);
                     break;
-                case "DeleteFile":
-                    ListViewItem item = listView.SelectedItems[0];
-                    
-                    
-                    
-                    break;
                 case "SortAscend":
                 case "SortDescend":
                 case "NoSort":

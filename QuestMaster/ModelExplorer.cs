@@ -10,6 +10,7 @@ using System.Windows.Forms;
 namespace QuestMaster
 {
     public delegate void FileDeleteHandler(object sender, DeleteEventArgs e);
+
     public class DeleteEventArgs : EventArgs
     {
         private string fileName;
@@ -35,6 +36,7 @@ namespace QuestMaster
             this.id = id;
         }
     }
+
     class ModelExplorer
     {
         public List<CustomFile> files;
@@ -209,7 +211,7 @@ namespace QuestMaster
         /// <summary>
         /// Переключение контекстного меню
         /// </summary>
-        /// <param name="light"></param>
+        /// <param name="light">Включить или выключить.</param>
         private void switchContext(bool light)
         {
             foreach(ToolStripItem item in this.explore.contextMenuStrip.Items)
