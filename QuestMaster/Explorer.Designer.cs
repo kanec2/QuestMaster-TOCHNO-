@@ -1,4 +1,8 @@
-﻿namespace QuestMaster
+﻿using System.Collections.Generic;
+using System.IO;
+using System.Windows.Forms;
+
+namespace QuestMaster
 {
     partial class Explorer
     {
@@ -44,9 +48,9 @@
             this.LargeIconFile = new System.Windows.Forms.ToolStripMenuItem();
             this.SmallIconFile = new System.Windows.Forms.ToolStripMenuItem();
             this.ListFile = new System.Windows.Forms.ToolStripMenuItem();
+            this.DeleteFile = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.удалитьЭлементToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -63,9 +67,9 @@
             // togger1
             // 
             this.togger1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.togger1.Location = new System.Drawing.Point(46, 0);
+            this.togger1.Location = new System.Drawing.Point(50, 0);
             this.togger1.Name = "togger1";
-            this.togger1.Size = new System.Drawing.Size(788, 35);
+            this.togger1.Size = new System.Drawing.Size(784, 35);
             this.togger1.TabIndex = 2;
             // 
             // tableLayoutPanel1
@@ -76,12 +80,12 @@
             this.tableLayoutPanel1.Controls.Add(this.treeView1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.listView1, 1, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(46, 35);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(50, 35);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 486F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(788, 486);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(784, 486);
             this.tableLayoutPanel1.TabIndex = 3;
             // 
             // treeView1
@@ -89,17 +93,15 @@
             this.treeView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeView1.Location = new System.Drawing.Point(3, 3);
             this.treeView1.Name = "treeView1";
-            this.treeView1.Size = new System.Drawing.Size(230, 480);
+            this.treeView1.Size = new System.Drawing.Size(229, 480);
             this.treeView1.TabIndex = 0;
-            this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
-            this.treeView1.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeView1_NodeMouseClick);
             // 
             // listView1
             // 
             this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listView1.Location = new System.Drawing.Point(239, 3);
+            this.listView1.Location = new System.Drawing.Point(238, 3);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(546, 480);
+            this.listView1.Size = new System.Drawing.Size(543, 480);
             this.listView1.TabIndex = 1;
             this.listView1.UseCompatibleStateImageBehavior = false;
             // 
@@ -109,9 +111,9 @@
             this.AddFile,
             this.SortFile,
             this.ViewFile,
-            this.удалитьЭлементToolStripMenuItem});
+            this.DeleteFile});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(198, 92);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(198, 114);
             // 
             // AddFile
             // 
@@ -186,27 +188,29 @@
             this.ListFile.Text = "Список";
             this.ListFile.Click += new System.EventHandler(this.AddFile_Click);
             // 
+            // DeleteFile
+            // 
+            this.DeleteFile.Name = "DeleteFile";
+            this.DeleteFile.Size = new System.Drawing.Size(197, 22);
+            this.DeleteFile.Text = "Удалить элемент";
+            this.DeleteFile.Click += new System.EventHandler(this.AddFile_Click);
+            // 
             // statusStrip1
             // 
             this.statusStrip1.Dock = System.Windows.Forms.DockStyle.Left;
             this.statusStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Flow;
             this.statusStrip1.Location = new System.Drawing.Point(0, 0);
             this.statusStrip1.MaximumSize = new System.Drawing.Size(50, 0);
+            this.statusStrip1.MinimumSize = new System.Drawing.Size(50, 0);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.statusStrip1.Size = new System.Drawing.Size(46, 521);
+            this.statusStrip1.Size = new System.Drawing.Size(50, 521);
             this.statusStrip1.TabIndex = 0;
             this.statusStrip1.Text = "statusStrip1";
             // 
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
-            // 
-            // удалитьЭлементToolStripMenuItem
-            // 
-            this.удалитьЭлементToolStripMenuItem.Name = "удалитьЭлементToolStripMenuItem";
-            this.удалитьЭлементToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
-            this.удалитьЭлементToolStripMenuItem.Text = "Удалить элемент";
             // 
             // Explorer
             // 
@@ -243,6 +247,22 @@
         private System.Windows.Forms.ToolStripMenuItem SmallIconFile;
         private System.Windows.Forms.ToolStripMenuItem ListFile;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
-        private System.Windows.Forms.ToolStripMenuItem удалитьЭлементToolStripMenuItem;
+        //Получаем элементы интерфейса, что бы их можно было изменять
+        public ListView listView { get { return listView1; } }
+        public TreeView treeView { get { return treeView1; } }
+        public Togger togger { get { return togger1; } }
+        public ToolStrip toolStrip { get { return toolStrip1; } }
+        public StatusStrip statusStrip { get { return statusStrip1; } }
+        public ContextMenuStrip contextMenuStrip { get { return contextMenuStrip1; } }
+
+        DirectoryInfo direct;
+        Properties.Settings set = new Properties.Settings();
+        Dictionary<string, View> views = new Dictionary<string, View>() { { "LargeIconFile", View.LargeIcon }, { "SmallIconFile", View.SmallIcon }, { "ListFile", View.List } };
+        ToolStripMenuItem[] sort;
+        ToolStripMenuItem[] file;
+        Dictionary<string, string> tree;
+        Dictionary<string, List<string>> checkFile;
+        Dictionary<string, SortOrder> sorts;
+        public ToolStripMenuItem DeleteFile;
     }
 }

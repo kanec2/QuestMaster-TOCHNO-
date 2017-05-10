@@ -86,6 +86,7 @@ namespace QuestMaster
                     if (resElem.id == id)
                     {
                         resource.Value.Remove(resElem);
+                        
                         return;
                     }
                 }

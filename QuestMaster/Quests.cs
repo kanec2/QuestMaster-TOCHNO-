@@ -211,7 +211,7 @@ namespace QuestMaster
         }
         
         /// <summary>
-        /// Загругрузка Квеста.
+        /// Загрузка Квеста.
         /// </summary>
         /// <param name="id">ID Квеста.</param>
         public void Load(string id)
@@ -221,7 +221,17 @@ namespace QuestMaster
             this.doc = XDocument.Load(fileName);
             idTask = int.Parse(this.doc.Element("quest").LastAttribute.Value);
         }
-
+        public void DeleteElement(string id)
+        {
+            foreach (XElement tasks in doc.Elements("quest"))
+            {
+                foreach (XElement task in tasks.Elements("tasks").Elements())
+                {
+                    if (task.LastAttribute.Value == id) tasks.Element(task.Name).Remove();
+                    task.Elements("answers").Where(f => f.FirstAttribute.Value == id).Single().Remove();
+                }
+            }
+        }
         /// <summary>
         /// Производим переиндексацию в xml документе.
         /// </summary>

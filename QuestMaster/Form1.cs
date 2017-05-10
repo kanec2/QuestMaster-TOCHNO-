@@ -19,8 +19,8 @@ namespace QuestMaster
         Resources resource;
         public int id;
         List<CustomFile> files = new List<CustomFile>();
-        ModelExplorer exp1;
-        ModelExplorer exp2;
+        ModelExplorer questModelExplorer;
+        ModelExplorer elementModelExplorer;
         ModelExplorer exp3;
         Properties.Settings set = new Properties.Settings();
         DirectoryInfo direct;
@@ -35,12 +35,27 @@ namespace QuestMaster
         {
             DBConnection connectionBD = new DBConnection("127.0.0.1", "root", "3306", "", "mydb");
             resource = new Resources();
-            exp1 = new ModelExplorer(explorer1);
-            explorer1.treeView.NodeMouseClick += mouseClickNode;
-            exp2 = new ModelExplorer(explorer2, files, resource.getAllTags());
-            explorer2.treeView.NodeMouseClick += mouseClickNode;
+            questModelExplorer = new ModelExplorer(questExplorer);
+            questExplorer.treeView.NodeMouseClick += mouseClickNode;
+            elementModelExplorer = new ModelExplorer(elementExplorer, files, resource.getAllTags());
+            elementExplorer.treeView.NodeMouseClick += mouseClickNode;
+            elementModelExplorer.OnFileDelete += updateElements;
             exp3 = new ModelExplorer(explorer3);
             
+        }
+
+        private void updateElements(object sender, DeleteEventArgs e)
+        {
+            ResourceElement elem = resource.checkElement(e.FileName);
+            List<string> buf = elem.resourceTags.tags.Where(t => t.Contains("quest")).ToList();
+            string id;
+            foreach (string item in buf)
+            {
+                id = item.Split(':')[1];
+                quests.Load(id);
+                quests.DeleteElement(e.Id.ToString());
+                quests.Save();
+            }
         }
 
         private void mouseClickNode(object sender, TreeNodeMouseClickEventArgs e)
@@ -51,18 +66,18 @@ namespace QuestMaster
             switch(metroTabControl1.SelectedIndex)
             {
                 case 1:
-                    explorer1.listView.ContextMenuStrip = explorer1.contextMenuStrip;
+                    questExplorer.listView.ContextMenuStrip = questExplorer.contextMenuStrip;
                     direct = new DirectoryInfo(set.QuestArchive);
                     List<string> allFilesQuest = quests.GetAllFiles(direct.GetFiles().Where(f => f.Name == newSelected.Name).Single().FullName);
                     List<ResourceElement> questElems = resource.GetElementByID(allFilesQuest);
-                    exp1.files.Clear();
-                    exp1.AddListImg(imageListIconForMaterialsListView);
+                    questModelExplorer.files.Clear();
+                    questModelExplorer.AddListImg(imageListIconForMaterialsListView);
                     foreach (ResourceElement questElem in questElems)
                     {
-                        exp1.files.Add(new CustomFile(questElem.respath, questElem.respath.Split('.')[1], questElem));
+                        questModelExplorer.files.Add(new CustomFile(questElem.respath, questElem.respath.Split('.')[1], questElem));
                     }
-                    exp1.files.ForEach(t => t.filter(this.exp1.tags));
-                    exp1.makeFiles();
+                    questModelExplorer.files.ForEach(t => t.filter(this.questModelExplorer.tags));
+                    questModelExplorer.makeFiles();
                     break;
                 case 2:
                     switch (newSelected.Name)
@@ -73,15 +88,15 @@ namespace QuestMaster
                         case "Text": path = set.Text; break;
                     }
                     direct = new DirectoryInfo(path);
-                    explorer2.listView.ContextMenuStrip = explorer2.contextMenuStrip;
-                    exp2.files.Clear();
-                    direct.GetFiles().ToList().ForEach(t => exp2.files.Add(new CustomFile(t.Name, t.Extension, resource.checkElement(t.Name))));
-                    exp2.files.ForEach(t => t.filter(this.exp2.tags));
-                    exp2.AddListImg(imageListIconForMaterialsListView);
-                    exp2.makeFiles();
+                    elementExplorer.listView.ContextMenuStrip = elementExplorer.contextMenuStrip;
+                    elementModelExplorer.files.Clear();
+                    direct.GetFiles().ToList().ForEach(t => elementModelExplorer.files.Add(new CustomFile(t.Name, t.Extension, resource.checkElement(t.Name))));
+                    elementModelExplorer.files.ForEach(t => t.filter(this.elementModelExplorer.tags));
+                    elementModelExplorer.AddListImg(imageListIconForMaterialsListView);
+                    elementModelExplorer.makeFiles();
                     break;
                 case 3:
-                    explorer3.listView.ContextMenuStrip = explorer1.contextMenuStrip;
+                    explorer3.listView.ContextMenuStrip = questExplorer.contextMenuStrip;
                     break;
             }
         }
@@ -90,8 +105,8 @@ namespace QuestMaster
         {
             switch (e.TabPageIndex)
             {
-                case 1: exp1.makeTree("quest"); exp1.menu(e.TabPageIndex); break;
-                case 2: exp2.makeTree("resource"); exp2.menu(e.TabPageIndex); break;
+                case 1: questModelExplorer.makeTree("quest"); questModelExplorer.menu(e.TabPageIndex); break;
+                case 2: elementModelExplorer.makeTree("resource"); elementModelExplorer.menu(e.TabPageIndex); break;
                 case 3: exp3.makeTree("player"); exp3.menu(e.TabPageIndex); break;
             }
         }
