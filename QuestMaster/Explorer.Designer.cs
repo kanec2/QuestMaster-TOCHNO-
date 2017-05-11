@@ -49,6 +49,7 @@ namespace QuestMaster
             this.SmallIconFile = new System.Windows.Forms.ToolStripMenuItem();
             this.ListFile = new System.Windows.Forms.ToolStripMenuItem();
             this.DeleteFile = new System.Windows.Forms.ToolStripMenuItem();
+            this.RenameFile = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.tableLayoutPanel1.SuspendLayout();
@@ -67,9 +68,9 @@ namespace QuestMaster
             // togger1
             // 
             this.togger1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.togger1.Location = new System.Drawing.Point(50, 0);
+            this.togger1.Location = new System.Drawing.Point(15, 0);
             this.togger1.Name = "togger1";
-            this.togger1.Size = new System.Drawing.Size(784, 35);
+            this.togger1.Size = new System.Drawing.Size(819, 35);
             this.togger1.TabIndex = 2;
             // 
             // tableLayoutPanel1
@@ -80,12 +81,12 @@ namespace QuestMaster
             this.tableLayoutPanel1.Controls.Add(this.treeView1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.listView1, 1, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(50, 35);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(15, 35);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 486F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(784, 486);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(819, 486);
             this.tableLayoutPanel1.TabIndex = 3;
             // 
             // treeView1
@@ -93,15 +94,16 @@ namespace QuestMaster
             this.treeView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeView1.Location = new System.Drawing.Point(3, 3);
             this.treeView1.Name = "treeView1";
-            this.treeView1.Size = new System.Drawing.Size(229, 480);
+            this.treeView1.Size = new System.Drawing.Size(239, 480);
             this.treeView1.TabIndex = 0;
             // 
             // listView1
             // 
+            this.listView1.Activation = System.Windows.Forms.ItemActivation.OneClick;
             this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listView1.Location = new System.Drawing.Point(238, 3);
+            this.listView1.Location = new System.Drawing.Point(248, 3);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(543, 480);
+            this.listView1.Size = new System.Drawing.Size(568, 480);
             this.listView1.TabIndex = 1;
             this.listView1.UseCompatibleStateImageBehavior = false;
             // 
@@ -111,7 +113,8 @@ namespace QuestMaster
             this.AddFile,
             this.SortFile,
             this.ViewFile,
-            this.DeleteFile});
+            this.DeleteFile,
+            this.RenameFile});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(198, 114);
             // 
@@ -192,8 +195,15 @@ namespace QuestMaster
             // 
             this.DeleteFile.Name = "DeleteFile";
             this.DeleteFile.Size = new System.Drawing.Size(197, 22);
-            this.DeleteFile.Text = "Удалить элемент";
+            this.DeleteFile.Text = "Удалить файл";
             this.DeleteFile.Click += new System.EventHandler(this.AddFile_Click);
+            // 
+            // RenameFile
+            // 
+            this.RenameFile.Name = "RenameFile";
+            this.RenameFile.Size = new System.Drawing.Size(197, 22);
+            this.RenameFile.Text = "Переименовать файл";
+            this.RenameFile.Click += new System.EventHandler(this.AddFile_Click);
             // 
             // statusStrip1
             // 
@@ -201,10 +211,9 @@ namespace QuestMaster
             this.statusStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Flow;
             this.statusStrip1.Location = new System.Drawing.Point(0, 0);
             this.statusStrip1.MaximumSize = new System.Drawing.Size(50, 0);
-            this.statusStrip1.MinimumSize = new System.Drawing.Size(50, 0);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.statusStrip1.Size = new System.Drawing.Size(50, 521);
+            this.statusStrip1.Size = new System.Drawing.Size(15, 521);
             this.statusStrip1.TabIndex = 0;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -247,7 +256,10 @@ namespace QuestMaster
         private System.Windows.Forms.ToolStripMenuItem SmallIconFile;
         private System.Windows.Forms.ToolStripMenuItem ListFile;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
-        //Получаем элементы интерфейса, что бы их можно было изменять
+        public System.Windows.Forms.ToolStripMenuItem DeleteFile;
+        private System.Windows.Forms.ToolStripMenuItem RenameFile;
+
+
         public ListView listView { get { return listView1; } }
         public TreeView treeView { get { return treeView1; } }
         public Togger togger { get { return togger1; } }
@@ -263,6 +275,6 @@ namespace QuestMaster
         Dictionary<string, string> tree;
         Dictionary<string, List<string>> checkFile;
         Dictionary<string, SortOrder> sorts;
-        public ToolStripMenuItem DeleteFile;
+        RenameDialogBox dialog;
     }
 }

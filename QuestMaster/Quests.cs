@@ -233,6 +233,22 @@ namespace QuestMaster
             }
         }
         /// <summary>
+        /// Удаление элемента в квесте.
+        /// </summary>
+        /// <param name="id">ID удаляемого элемента.</param>
+        public void DeleteElement(string id)
+        {
+            foreach (XElement tasks in doc.Elements("quest"))
+            {
+                foreach (XElement task in tasks.Elements("tasks").Elements())
+                {
+                    if (task.LastAttribute.Value == id) tasks.Element(task.Name).Remove();
+                    task.Elements("answers").Where(f => f.FirstAttribute.Value == id).Single().Remove();
+                }
+            }
+        }
+
+        /// <summary>
         /// Производим переиндексацию в xml документе.
         /// </summary>
         /// <param name="id">ID документа который требуется проиндексировать.</param>

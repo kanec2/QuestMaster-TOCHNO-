@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -48,7 +47,6 @@ namespace QuestMaster
         ListViewItem clickedItem;
         public event FileDeleteHandler OnFileDelete;
 
-
         #region Блок конструкторов класса
         /// <summary>
         /// Создание модели для Exlporer.
@@ -76,15 +74,6 @@ namespace QuestMaster
             this.explore.togger.Changed += tagChanged;
             this.explore.listView.MouseDown += ListViewMouseClick;
             this.explore.DeleteFile.MouseDown += DeleteFileMouseDown;
-        }
-
-        private void DeleteFileMouseDown(object sender, MouseEventArgs e)
-        {
-            ListViewItem item = explore.listView.SelectedItems[0];
-            CustomFile file = files.Where(t => t.fileName == item.Text).Single();
-            if(file.elem != null)
-            OnFileDelete(this, new DeleteEventArgs(item.Text, explore.treeView.SelectedNode.Name, file.elem.id));
-            File.Delete("|DataDirectory|\\Resources\\" + explore.treeView.SelectedNode.Name + "\\" + file.fileName);
         }
 
         /// <summary>
@@ -191,9 +180,18 @@ namespace QuestMaster
         {
             this.explore.togger.addTag(tags);
         }
-        
 
-        // Событие при клике по элементу в ViewList
+        //Событие удаления элемента.
+        private void DeleteFileMouseDown(object sender, MouseEventArgs e)
+        {
+            ListViewItem item = explore.listView.SelectedItems[0];
+            CustomFile file = files.Where(t => t.fileName == item.Text).Single();
+            if (file.elem != null)
+                OnFileDelete(this, new DeleteEventArgs(item.Text, explore.treeView.SelectedNode.Name, file.elem.id));
+            File.Delete("|DataDirectory|\\Resources\\" + explore.treeView.SelectedNode.Name + "\\" + file.fileName);
+        }
+
+        //Событие происходит при выборе элемента.
         private void ListViewMouseClick(object sender, MouseEventArgs e)
         {
             clickedItem = explore.listView.GetItemAt(e.Location.X, e.Location.Y);
@@ -205,20 +203,6 @@ namespace QuestMaster
             if (elem != null) elem.resourceTags.tags.ForEach(t => explore.statusStrip.Items.Add(t));
 
             switchContext(false);
-
-        }
-
-        /// <summary>
-        /// Переключение контекстного меню
-        /// </summary>
-        /// <param name="light">Включить или выключить.</param>
-        private void switchContext(bool light)
-        {
-            foreach(ToolStripItem item in this.explore.contextMenuStrip.Items)
-            {
-                item.Visible = light;
-            }
-            this.explore.contextMenuStrip.Items[3].Visible = !light;
 
         }
 
@@ -243,12 +227,12 @@ namespace QuestMaster
             foreach (CustomFile file in files.Where(t => t.visible == true))
             {
                 item = new ListViewItem(file.fileName, file.indImage);
-                
+
                 item.BackColor = file.fileColor;
 
                 subItems = new ListViewItem.ListViewSubItem[]
                     { new ListViewItem.ListViewSubItem(item, "File") };
-                
+
                 item.SubItems.AddRange(subItems);
                 this.explore.listView.Items.Add(item);
             }
@@ -291,6 +275,21 @@ namespace QuestMaster
             this.explore.statusStrip.Items.Clear();
             this.explore.statusStrip.Items.Add("Теги:");
         }
+
+        /// <summary>
+        /// Переключение контекстного меню
+        /// </summary>
+        /// <param name="light">Включить или выключить.</param>
+        private void switchContext(bool light)
+        {
+            foreach (ToolStripItem item in this.explore.contextMenuStrip.Items)
+            {
+                item.Visible = light;
+            }
+            this.explore.contextMenuStrip.Items[3].Visible = !light;
+
+        }   
+
         /// <summary>
         /// Добавляем Лист с изображением.
         /// </summary>
@@ -303,12 +302,12 @@ namespace QuestMaster
         }
 
         /// <summary>
-        /// Меняем компоненты Контекстного меню в зависимости от выбранной страницы.
+        /// Меняем компаненты Контекстного меню в зависимости от выбранной страцы.
         /// </summary>
         /// <param name="tabPagesIDX">Индекс страниц.</param>
         public void menu(int tabPagesIDX)
         {
-            switch(tabPagesIDX)
+            switch (tabPagesIDX)
             {
                 case 1:
                 case 3:
@@ -319,7 +318,7 @@ namespace QuestMaster
                     this.explore.contextMenuStrip.Items[3].Visible = false;
                     break;
 
+
             }
         }
-    }
 }

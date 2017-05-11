@@ -41,7 +41,7 @@ namespace QuestMaster
             elementExplorer.treeView.NodeMouseClick += mouseClickNode;
             elementModelExplorer.OnFileDelete += updateElements;
             exp3 = new ModelExplorer(explorer3);
-            
+
         }
 
         private void updateElements(object sender, DeleteEventArgs e)
@@ -76,7 +76,7 @@ namespace QuestMaster
                     {
                         questModelExplorer.files.Add(new CustomFile(questElem.respath, questElem.respath.Split('.')[1], questElem));
                     }
-                    questModelExplorer.files.ForEach(t => t.filter(this.questModelExplorer.tags));
+                    questModelExplorer.files.ForEach(t => t.filter(this.exp1.tags));
                     questModelExplorer.makeFiles();
                     break;
                 case 2:

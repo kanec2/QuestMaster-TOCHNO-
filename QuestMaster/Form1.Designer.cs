@@ -283,11 +283,11 @@ namespace QuestMaster
             this.metroTabPage2.Text = "Архив квестов";
             this.metroTabPage2.VerticalScrollbarBarColor = true;
             // 
-            // explorer1
+            // questExplorer
             // 
             this.questExplorer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.questExplorer.Location = new System.Drawing.Point(0, 0);
-            this.questExplorer.Name = "explorer1";
+            this.questExplorer.Name = "questExplorer";
             this.questExplorer.Size = new System.Drawing.Size(1211, 613);
             this.questExplorer.TabIndex = 2;
             // 
@@ -302,11 +302,11 @@ namespace QuestMaster
             this.metroTabPage3.Text = "Архив материалов";
             this.metroTabPage3.VerticalScrollbarBarColor = true;
             // 
-            // explorer2
+            // elementExplorer
             // 
             this.elementExplorer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.elementExplorer.Location = new System.Drawing.Point(0, 0);
-            this.elementExplorer.Name = "explorer2";
+            this.elementExplorer.Name = "elementExplorer";
             this.elementExplorer.Size = new System.Drawing.Size(1211, 650);
             this.elementExplorer.TabIndex = 2;
             // 
