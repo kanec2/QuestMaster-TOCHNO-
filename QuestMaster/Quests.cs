@@ -396,7 +396,7 @@ namespace QuestMaster
         /// <param name="id">ID документа который требуется проиндексировать.</param>
         public void ReIndex(string id)
         {
-            tasksElement.
+            //tasksElement.
             //***************************************************************************************************
             this.questArchive = new DirectoryInfo(set.QuestArchive);
             XDocument template = XDocument.Load(this.questArchive.GetFiles().Where(file => file.Name.Remove(0, 5) == id).First().FullName);
