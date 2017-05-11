@@ -8,8 +8,59 @@ using System.Xml.Linq;
 
 namespace QuestMaster
 {
+    struct TasksElement
+    {
+        public int idTask;
+        public string typeTasks;
+        public string typeTask;
+        public string typeAnswer;
+        public Dictionary<string, string> answers;
+
+        public TasksElement(string typeTask, string pathToTask, string typeAnswer, Dictionary<string,string> answers, int id)
+        {
+            this.typeTasks = typeTask;
+            this.typeAnswer = typeAnswer;
+            this.answers = answers;
+            this.idTask = id;
+            this.typeTask = pathToTask;
+        }
+
+        public TasksElement(string typeTask, string pathToTask, string typeAnswer, List<string> answers, string rightAnswers, int id)
+        {
+            this.typeTasks = typeTask;
+            this.typeAnswer = typeAnswer;
+            this.answers = new Dictionary<string, string>();
+            this.idTask = id;
+            this.typeTask = pathToTask;
+
+            foreach (string answer in answers)
+            {
+                this.answers.Add(answer,"0");
+            }
+
+            this.answers.ElementAt(int.Parse(rightAnswers));
+        }
+        public TasksElement(string typeTask, string typeAnswer, string pathToTask, List<string> answers, List<string> rightAnswers, int id)
+        {
+            this.typeTasks = typeTask;
+            this.typeAnswer = typeAnswer;
+            this.answers = new Dictionary<string, string>();
+            this.idTask = id;
+            this.typeTask = pathToTask;
+
+            foreach (string answer in answers)
+            {
+                this.answers.Add(answer, rightAnswers.ElementAt(answers.IndexOf(answer)));
+            }
+        }
+
+    }
+
     class Quests
     {
+        Dictionary<string, List<TasksElement>> quests;
+        List<TasksElement> tasksElement;
+        TasksElement elem;
         XDocument doc;
         List<string> types = new List<string>();
         int idQuest = 1;
@@ -17,15 +68,36 @@ namespace QuestMaster
         string fileName;
         QuestMaster.Properties.Settings set = new Properties.Settings();
         DirectoryInfo questArchive;
+        private string idSelectedquest;
 
         public Quests()
         {
+            quests = new Dictionary<string, List<TasksElement>>();
             questArchive = new DirectoryInfo(set.QuestArchive);
-            foreach (FileInfo item in questArchive.GetFiles())
+
+            foreach (FileInfo file in questArchive.GetFiles())
             {
-                if (this.idTask < int.Parse(item.Name.Remove(0, 5)))
+                tasksElement = new List<TasksElement>();
+                doc = XDocument.Load(file.FullName);
+                foreach (XElement node in doc.Elements("quest"))
                 {
-                    this.idTask = int.Parse(item.Name.Remove(0, 5));
+                    string typeTasks = node.FirstAttribute.Value;
+                    string id = node.LastAttribute.Value;
+                    string pathToTask = node.Element("task").FirstAttribute.Value;
+                    string typeAnswer = node.Element("answer").FirstAttribute.Value;
+                    Dictionary<string, string> answers = new Dictionary<string, string>();
+
+                    foreach (XElement answer in node.Elements("answers"))
+                    {
+                        answers.Add(answer.FirstAttribute.Value,answer.Value);
+                    }
+                }
+
+                quests.Add(file.Name.Remove(0, 5), tasksElement);
+
+                if (this.idQuest < int.Parse(file.Name.Remove(0, 5)))
+                {
+                    this.idQuest = int.Parse(file.Name.Remove(0, 5));
                 }
             }
         }
@@ -34,10 +106,13 @@ namespace QuestMaster
         /// </summary>
         public void Create()
         {
+            tasksElement = new List<TasksElement>();
             this.set = new Properties.Settings();
             this.doc = new XDocument(new XElement("quest", new XAttribute("id", this.idQuest), new XAttribute("idTask",idTask)));
             this.doc.Save(set.QuestArchive + "Quest" + this.idQuest);
+            quests.Add(idQuest.ToString(), tasksElement);
             this.idQuest++;
+
         }
 
         /// <summary>
@@ -50,7 +125,10 @@ namespace QuestMaster
         /// <param name="rightAnswer">Номер правильного варианта ответа, начиная с 0.Если "text", то null</param>
         public void Add(string typeTask, string pathToTask, string typeAnswers, List<string> pathToAnswer, string rightAnswer)
         {
-            XElement tasks = new XElement("tasks", new XAttribute("type", typeTask), new XAttribute("id", this.idTask));
+            TasksElement newTask = new TasksElement(typeTask, typeAnswers, pathToTask, pathToAnswer, rightAnswer, idTask++);
+            tasksElement.Add(newTask);
+
+            /*XElement tasks = new XElement("tasks", new XAttribute("type", typeTask), new XAttribute("id", this.idTask));
             XElement task = new XElement("task", new XAttribute("text", pathToTask));
             XElement answers = new XElement("answers", new XAttribute("type", typeAnswers));
 
@@ -70,7 +148,7 @@ namespace QuestMaster
             tasks.Add(task, answers);
             doc.Element("quest").Add(tasks);
             this.idTask++;
-            doc.Element("quest").LastAttribute.Value = idTask.ToString();
+            doc.Element("quest").LastAttribute.Value = idTask.ToString();*/
         }
 
         /// <summary>
@@ -83,7 +161,9 @@ namespace QuestMaster
         /// <param name="rightAnswers">Лист с правильными ответами, начиная с 0</param>
         public void Add(string typeTask, string pathToTask, string typeAnswers, List<string> pathToAnswer, List<string> rightAnswers)
         {
-            XElement tasks = new XElement("tasks", new XAttribute("type", typeTask), new XAttribute("id", idTask));
+            TasksElement newTask = new TasksElement(typeTask, typeAnswers, pathToTask, pathToAnswer, rightAnswers, idTask++);
+            tasksElement.Add(newTask);
+            /*XElement tasks = new XElement("tasks", new XAttribute("type", typeTask), new XAttribute("id", idTask));
             XElement task = new XElement("task", new XAttribute("text", pathToTask));
             XElement answers = new XElement("answers", new XAttribute("type", typeAnswers));
 
@@ -106,7 +186,7 @@ namespace QuestMaster
             tasks.Add(task, answers);
             doc.Element("quest").Add(tasks);
             this.idTask++;
-            doc.Element("quest").LastAttribute.Value = idTask.ToString();
+            doc.Element("quest").LastAttribute.Value = idTask.ToString();*/
         }
 
         /// <summary>
@@ -116,7 +196,9 @@ namespace QuestMaster
         /// <param name="typeTasks">Новый тип задания.</param>
         public void Insert(string taskId, string typeTasks)
         {
-            this.doc.Element("quest").Elements().Where(elem => elem.LastAttribute.Value == taskId).First().FirstAttribute.Value = typeTasks;
+            elem = tasksElement.Where(t => t.idTask.ToString() == taskId).Single();
+            elem.typeTask = typeTasks;
+            //this.doc.Element("quest").Elements().Where(elem => elem.LastAttribute.Value == taskId).First().FirstAttribute.Value = typeTasks;
         }
 
         /// <summary>
@@ -127,10 +209,18 @@ namespace QuestMaster
         /// <param name="type">Новое значение для type или text.</param>
         public void Insert(string taskId, string taskOrAnswers, string type)
         {
+            elem = tasksElement.Where(t => t.idTask.ToString() == taskId).Single();
+
             switch (taskOrAnswers)
             {
-                case "task": this.doc.Element("quest").Elements().Where(elem => elem.LastAttribute.Value == taskId).First().Element("task").FirstAttribute.Value = type; break;
-                case "answers": this.doc.Element("quest").Elements().Where(elem => elem.LastAttribute.Value == taskId).First().Element("answers").FirstAttribute.Value = type; break;
+                case "task":
+                    elem.typeTask = type;
+                    //this.doc.Element("quest").Elements().Where(elem => elem.LastAttribute.Value == taskId).First().Element("task").FirstAttribute.Value = type;
+                    break;
+                case "answers":
+                    elem.typeAnswer = type;
+                    //this.doc.Element("quest").Elements().Where(elem => elem.LastAttribute.Value == taskId).First().Element("answers").FirstAttribute.Value = type;
+                    break;
             }
         }
 
@@ -141,11 +231,15 @@ namespace QuestMaster
         /// <param name="variantAnswer">Номер правильного варианта ответа.</param>
         public void Insert(string taskId, int variantAnswer)
         {
-            for (int i = 0; i < 4; i++)
-            {
-                this.doc.Element("quest").Elements().Where(elem => elem.LastAttribute.Value == taskId).First().Elements("answers").Elements().ElementAt(i).Value = "0";
-            }
-            this.doc.Element("quest").Elements().Where(elem => elem.LastAttribute.Value == taskId).First().Elements("answers").Elements().ElementAt(variantAnswer).Value = "1";
+            elem = tasksElement.Where(t => t.idTask.ToString() == taskId).Single();
+            elem.answers.Values.ToList().ForEach(answer => answer = "0");
+            elem.answers.Values.ToList()[variantAnswer] = "1";
+
+            //for (int i = 0; i < 4; i++)
+            //{
+            //    this.doc.Element("quest").Elements().Where(elem => elem.LastAttribute.Value == taskId).First().Elements("answers").Elements().ElementAt(i).Value = "0";
+            //}
+            //this.doc.Element("quest").Elements().Where(elem => elem.LastAttribute.Value == taskId).First().Elements("answers").Elements().ElementAt(variantAnswer).Value = "1";
         }
 
         /// <summary>
@@ -155,9 +249,13 @@ namespace QuestMaster
         /// <param name="variantsAnswer">Лист правильных вариантов ответа.</param>
         public void Insert(string taskId, List<string> variantsAnswers)
         {
+            elem = tasksElement.Where(t => t.idTask.ToString() == taskId).Single();
+            Dictionary<string, string> temp = elem.answers;
+
             for (int i = 0; i < variantsAnswers.Count; i++)
             {
-                this.doc.Element("quest").Elements().Where(elem => elem.LastAttribute.Value == taskId).First().Elements("answers").Elements().ElementAt(i).Value = variantsAnswers[i];
+                elem.answers.Select(a => a = new KeyValuePair<string, string>(temp.ElementAt(i).Key, variantsAnswers[i]));
+                //this.doc.Element("quest").Elements().Where(elem => elem.LastAttribute.Value == taskId).First().Elements("answers").Elements().ElementAt(i).Value = variantsAnswers[i];
             }
         }
 
@@ -169,7 +267,9 @@ namespace QuestMaster
         /// <param name="contentValue">Значение выбранного варианта.</param>
         public void Insert(string taskId, int variantAnswers, string contentValue)
         {
-            this.doc.Element("quest").Elements().Where(elem => elem.LastAttribute.Value == taskId).First().Elements("answers").Elements().ElementAt(variantAnswers).FirstAttribute.Value = contentValue;
+            elem = tasksElement.Where(t => t.idTask.ToString() == taskId).Single();
+            elem.answers.Values.ToList()[variantAnswers] = contentValue;
+            //this.doc.Element("quest").Elements().Where(elem => elem.LastAttribute.Value == taskId).First().Elements("answers").Elements().ElementAt(variantAnswers).FirstAttribute.Value = contentValue;
         }
 
         /// <summary>
@@ -180,9 +280,13 @@ namespace QuestMaster
         /// <param name="contentValue">Лист с путями до файлов.</param>
         public void Insert(string taskId, int[] variantAnswers, List<string> contentValue)
         {
+            elem = tasksElement.Where(t => t.idTask.ToString() == taskId).Single();
+            Dictionary<string, string> temp = elem.answers;
+
             for (int i = 0; i < variantAnswers.Length; i++)
             {
-                this.doc.Element("quest").Elements().Where(elem => elem.LastAttribute.Value == taskId).First().Elements("answers").Elements().ElementAt(variantAnswers[i]).FirstAttribute.Value = contentValue[i];
+                elem.answers.Select(a => a = new KeyValuePair<string, string>(variantAnswers[i].ToString(), temp.ElementAt(i).Value));
+                //this.doc.Element("quest").Elements().Where(elem => elem.LastAttribute.Value == taskId).First().Elements("answers").Elements().ElementAt(variantAnswers[i]).FirstAttribute.Value = contentValue[i];
             }
         }
 
@@ -192,34 +296,78 @@ namespace QuestMaster
         /// <param name="taskId">ID задания.</param>
         public void Delete(string taskId)
         {
-            foreach (XElement elem in this.doc.Elements("quest").Elements())
-            {
-                if (elem.LastAttribute.Value == taskId)
-                {
-                    elem.Remove();
-                }
-            }
+            tasksElement.RemoveAll(el => el.idTask.ToString() == taskId);
+            
+            //foreach (XElement elem in this.doc.Elements("quest").Elements())
+            //{
+            //    if (elem.LastAttribute.Value == taskId)
+            //    {
+            //        elem.Remove();
+            //    }
+            //}
         }
 
         /// <summary>
-        /// Сохраняем документ.
+        /// Сохраняет все документы.
         /// </summary>
-        /// <param name="fileName">Путь до файла.</param>
-        public void Save()
+        public void SaveAll()
         {
-            this.doc.Save(set.QuestArchive + "Quest" + this.doc.Element("quest").FirstAttribute.Value);
+            foreach (KeyValuePair<string,List<TasksElement>> quest in quests)
+            {
+                this.doc = XDocument.Load(set.QuestArchive+"Quest" + quest.Key);
+                doc.Element("quest").RemoveNodes();
+                XElement task = new XElement("task");
+                foreach (TasksElement elem in quest.Value)
+                {
+                    task = new XElement("task", new XAttribute("type", elem.typeTasks), new XAttribute("id", elem.idTask),
+                        new XElement("task", new XAttribute("type", elem.typeTask)),
+                        new XElement("answers", new XAttribute("type", elem.typeAnswer)));
+                    foreach (KeyValuePair<string,string> answer in elem.answers)
+                    {
+                        task.Element("answers").Add(new XElement("answer", new XAttribute("content", answer.Key), new XText(answer.Value)));
+                    }
+                }
+                doc.Element("quest").Add(task);
+                this.doc.Save(set.QuestArchive + "Quest" + quest.Key);
+            }
+           
+            
         }
         
+        /// <summary>
+        /// Сохраняет последний квест.
+        /// </summary>
+        public void SaveElement()
+        {
+            this.doc = XDocument.Load(set.QuestArchive + "Quest" + idSelectedquest);
+            doc.Element("quest").RemoveNodes();
+            XElement task = new XElement("task");
+            foreach (TasksElement elem in tasksElement)
+            {
+                task = new XElement("task", new XAttribute("type", elem.typeTasks), new XAttribute("id", elem.idTask),
+                    new XElement("task", new XAttribute("type", elem.typeTask)),
+                    new XElement("answers", new XAttribute("type", elem.typeAnswer)));
+                foreach (KeyValuePair<string, string> answer in elem.answers)
+                {
+                    task.Element("answers").Add(new XElement("answer", new XAttribute("content", answer.Key), new XText(answer.Value)));
+                }
+            }
+            doc.Element("quest").Add(task);
+            this.doc.Save(set.QuestArchive + "Quest" + idSelectedquest);
+        }
+
         /// <summary>
         /// Загругрузка Квеста.
         /// </summary>
         /// <param name="id">ID Квеста.</param>
         public void Load(string id)
         {
-            questArchive = new DirectoryInfo(set.QuestArchive);
-            fileName = questArchive.GetFiles().Where(file => file.Name.Remove(0,5) == id).First().FullName;
-            this.doc = XDocument.Load(fileName);
-            idTask = int.Parse(this.doc.Element("quest").LastAttribute.Value);
+            tasksElement = quests[id];
+            idSelectedquest = id;
+            //questArchive = new DirectoryInfo(set.QuestArchive);
+            //fileName = questArchive.GetFiles().Where(file => file.Name.Remove(0,5) == id).First().FullName;
+            //this.doc = XDocument.Load(fileName);
+            //idQuest = int.Parse(this.doc.Element("quest").LastAttribute.Value);
         }
 
         /// <summary>
@@ -228,14 +376,18 @@ namespace QuestMaster
         /// <param name="id">ID удаляемого элемента.</param>
         public void DeleteElement(string id)
         {
-            foreach (XElement tasks in doc.Elements("quest"))
-            {
-                foreach (XElement task in tasks.Elements("tasks").Elements())
-                {
-                    if (task.LastAttribute.Value == id) tasks.Element(task.Name).Remove();
-                    task.Elements("answers").Where(f => f.FirstAttribute.Value == id).Single().Remove();
-                }
-            }
+            tasksElement.ToList().ForEach(el => {
+                if (el.typeTask == id) el.typeTask = " ";
+                el.answers.Keys.Where(i => i == id).Single().Remove(0, id.Count());
+            });
+            //foreach (XElement tasks in doc.Elements("quest"))
+            //{
+            //    foreach (XElement task in tasks.Elements("tasks").Elements())
+            //    {
+            //        if (task.LastAttribute.Value == id) tasks.Element(task.Name).Remove();
+            //        task.Elements("answers").Where(f => f.FirstAttribute.Value == id).Single().Remove();
+            //    }
+            //}
         }
 
         /// <summary>
@@ -244,6 +396,8 @@ namespace QuestMaster
         /// <param name="id">ID документа который требуется проиндексировать.</param>
         public void ReIndex(string id)
         {
+            tasksElement.
+            //***************************************************************************************************
             this.questArchive = new DirectoryInfo(set.QuestArchive);
             XDocument template = XDocument.Load(this.questArchive.GetFiles().Where(file => file.Name.Remove(0, 5) == id).First().FullName);
             int idTaks = 1;
