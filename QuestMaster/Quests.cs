@@ -81,6 +81,7 @@ namespace QuestMaster
                 doc = XDocument.Load(file.FullName);
                 foreach (XElement node in doc.Elements("quest"))
                 {
+                    
                     string typeTasks = node.FirstAttribute.Value;
                     string id = node.LastAttribute.Value;
                     string pathToTask = node.Element("task").FirstAttribute.Value;
@@ -91,6 +92,8 @@ namespace QuestMaster
                     {
                         answers.Add(answer.FirstAttribute.Value,answer.Value);
                     }
+                    tasksElement.Add( new TasksElement(typeTasks, pathToTask, typeAnswer, answers, int.Parse(id)));
+
                 }
 
                 quests.Add(file.Name.Remove(0, 5), tasksElement);
@@ -107,9 +110,11 @@ namespace QuestMaster
         public void Create()
         {
             tasksElement = new List<TasksElement>();
+
             this.set = new Properties.Settings();
             this.doc = new XDocument(new XElement("quest", new XAttribute("id", this.idQuest), new XAttribute("idTask",idTask)));
             this.doc.Save(set.QuestArchive + "Quest" + this.idQuest);
+
             quests.Add(idQuest.ToString(), tasksElement);
             this.idQuest++;
 
@@ -127,28 +132,6 @@ namespace QuestMaster
         {
             TasksElement newTask = new TasksElement(typeTask, typeAnswers, pathToTask, pathToAnswer, rightAnswer, idTask++);
             tasksElement.Add(newTask);
-
-            /*XElement tasks = new XElement("tasks", new XAttribute("type", typeTask), new XAttribute("id", this.idTask));
-            XElement task = new XElement("task", new XAttribute("text", pathToTask));
-            XElement answers = new XElement("answers", new XAttribute("type", typeAnswers));
-
-            if (typeAnswers == "text")
-            {
-                answers.Add(new XElement("answer", new XAttribute("content", pathToAnswer.First())));
-            }
-            else
-            {
-                foreach (string answer in pathToAnswer)
-                {
-                    answers.Add(new XElement("answer", new XAttribute("content", answer), new XText("0")));
-                }
-                answers.Elements().ElementAt(int.Parse(rightAnswer)).Value = "1";
-            }
-
-            tasks.Add(task, answers);
-            doc.Element("quest").Add(tasks);
-            this.idTask++;
-            doc.Element("quest").LastAttribute.Value = idTask.ToString();*/
         }
 
         /// <summary>
@@ -163,30 +146,6 @@ namespace QuestMaster
         {
             TasksElement newTask = new TasksElement(typeTask, typeAnswers, pathToTask, pathToAnswer, rightAnswers, idTask++);
             tasksElement.Add(newTask);
-            /*XElement tasks = new XElement("tasks", new XAttribute("type", typeTask), new XAttribute("id", idTask));
-            XElement task = new XElement("task", new XAttribute("text", pathToTask));
-            XElement answers = new XElement("answers", new XAttribute("type", typeAnswers));
-
-            if (typeAnswers == "text")
-            {
-                answers.Add(new XElement("answer", new XAttribute("content", pathToAnswer.First())));
-            }
-            else
-            {
-                foreach (string answer in pathToAnswer)
-                {
-                    answers.Add(new XElement("answer", new XAttribute("content", answer), new XText("0")));
-                }
-                for (int i = 0; i < 4; i++)
-                {
-                    answers.Elements().ElementAt(i).Value = rightAnswers[i];
-                }
-            }
-
-            tasks.Add(task, answers);
-            doc.Element("quest").Add(tasks);
-            this.idTask++;
-            doc.Element("quest").LastAttribute.Value = idTask.ToString();*/
         }
 
         /// <summary>
@@ -198,7 +157,6 @@ namespace QuestMaster
         {
             elem = tasksElement.Where(t => t.idTask.ToString() == taskId).Single();
             elem.typeTask = typeTasks;
-            //this.doc.Element("quest").Elements().Where(elem => elem.LastAttribute.Value == taskId).First().FirstAttribute.Value = typeTasks;
         }
 
         /// <summary>
@@ -215,11 +173,9 @@ namespace QuestMaster
             {
                 case "task":
                     elem.typeTask = type;
-                    //this.doc.Element("quest").Elements().Where(elem => elem.LastAttribute.Value == taskId).First().Element("task").FirstAttribute.Value = type;
                     break;
                 case "answers":
                     elem.typeAnswer = type;
-                    //this.doc.Element("quest").Elements().Where(elem => elem.LastAttribute.Value == taskId).First().Element("answers").FirstAttribute.Value = type;
                     break;
             }
         }
@@ -234,12 +190,6 @@ namespace QuestMaster
             elem = tasksElement.Where(t => t.idTask.ToString() == taskId).Single();
             elem.answers.Values.ToList().ForEach(answer => answer = "0");
             elem.answers.Values.ToList()[variantAnswer] = "1";
-
-            //for (int i = 0; i < 4; i++)
-            //{
-            //    this.doc.Element("quest").Elements().Where(elem => elem.LastAttribute.Value == taskId).First().Elements("answers").Elements().ElementAt(i).Value = "0";
-            //}
-            //this.doc.Element("quest").Elements().Where(elem => elem.LastAttribute.Value == taskId).First().Elements("answers").Elements().ElementAt(variantAnswer).Value = "1";
         }
 
         /// <summary>
@@ -255,7 +205,6 @@ namespace QuestMaster
             for (int i = 0; i < variantsAnswers.Count; i++)
             {
                 elem.answers.Select(a => a = new KeyValuePair<string, string>(temp.ElementAt(i).Key, variantsAnswers[i]));
-                //this.doc.Element("quest").Elements().Where(elem => elem.LastAttribute.Value == taskId).First().Elements("answers").Elements().ElementAt(i).Value = variantsAnswers[i];
             }
         }
 
@@ -269,7 +218,6 @@ namespace QuestMaster
         {
             elem = tasksElement.Where(t => t.idTask.ToString() == taskId).Single();
             elem.answers.Values.ToList()[variantAnswers] = contentValue;
-            //this.doc.Element("quest").Elements().Where(elem => elem.LastAttribute.Value == taskId).First().Elements("answers").Elements().ElementAt(variantAnswers).FirstAttribute.Value = contentValue;
         }
 
         /// <summary>
@@ -286,7 +234,6 @@ namespace QuestMaster
             for (int i = 0; i < variantAnswers.Length; i++)
             {
                 elem.answers.Select(a => a = new KeyValuePair<string, string>(variantAnswers[i].ToString(), temp.ElementAt(i).Value));
-                //this.doc.Element("quest").Elements().Where(elem => elem.LastAttribute.Value == taskId).First().Elements("answers").Elements().ElementAt(variantAnswers[i]).FirstAttribute.Value = contentValue[i];
             }
         }
 
@@ -296,15 +243,7 @@ namespace QuestMaster
         /// <param name="taskId">ID задания.</param>
         public void Delete(string taskId)
         {
-            tasksElement.RemoveAll(el => el.idTask.ToString() == taskId);
-            
-            //foreach (XElement elem in this.doc.Elements("quest").Elements())
-            //{
-            //    if (elem.LastAttribute.Value == taskId)
-            //    {
-            //        elem.Remove();
-            //    }
-            //}
+            tasksElement.RemoveAll(el => el.idTask.ToString() == taskId)
         }
 
         /// <summary>
@@ -364,10 +303,6 @@ namespace QuestMaster
         {
             tasksElement = quests[id];
             idSelectedquest = id;
-            //questArchive = new DirectoryInfo(set.QuestArchive);
-            //fileName = questArchive.GetFiles().Where(file => file.Name.Remove(0,5) == id).First().FullName;
-            //this.doc = XDocument.Load(fileName);
-            //idQuest = int.Parse(this.doc.Element("quest").LastAttribute.Value);
         }
 
         /// <summary>
@@ -380,14 +315,6 @@ namespace QuestMaster
                 if (el.typeTask == id) el.typeTask = " ";
                 el.answers.Keys.Where(i => i == id).Single().Remove(0, id.Count());
             });
-            //foreach (XElement tasks in doc.Elements("quest"))
-            //{
-            //    foreach (XElement task in tasks.Elements("tasks").Elements())
-            //    {
-            //        if (task.LastAttribute.Value == id) tasks.Element(task.Name).Remove();
-            //        task.Elements("answers").Where(f => f.FirstAttribute.Value == id).Single().Remove();
-            //    }
-            //}
         }
 
         /// <summary>
@@ -396,17 +323,8 @@ namespace QuestMaster
         /// <param name="id">ID документа который требуется проиндексировать.</param>
         public void ReIndex(string id)
         {
-            //tasksElement.
-            //***************************************************************************************************
-            this.questArchive = new DirectoryInfo(set.QuestArchive);
-            XDocument template = XDocument.Load(this.questArchive.GetFiles().Where(file => file.Name.Remove(0, 5) == id).First().FullName);
-            int idTaks = 1;
-            foreach (XElement tasks in template.Element("quest").Elements())
-            {
-                tasks.LastAttribute.Value = idTaks.ToString();
-                idTaks++;
-            }
-            template.Element("quest").LastAttribute.Value = idTaks.ToString();
+            int idt = 1;
+            tasksElement.ForEach(f => { f.idTask = idt; idt++; });;
         }
 
         /// <summary>
@@ -418,18 +336,12 @@ namespace QuestMaster
         {
             XDocument template = XDocument.Load(path);
             List<string> files = new List<string>();
-            foreach (XElement tasks in template.Elements("quest"))
+            foreach (TasksElement elem in tasksElement)
             {
-                foreach (XElement task in tasks.Elements("tasks").Elements())
+                files.Add(elem.typeTask);
+                foreach (KeyValuePair<string,string> answer in elem.answers)
                 {
-                    if (task.Name == "task") { files.Add(task.FirstAttribute.Value); }
-                    if (task.Name == "answers")
-                    {
-                        foreach (XElement answer in task.Elements())
-                        {
-                            files.Add(answer.FirstAttribute.Value);
-                        }
-                    }
+                    files.Add(answer.Key);
                 }
             }
             return files;
