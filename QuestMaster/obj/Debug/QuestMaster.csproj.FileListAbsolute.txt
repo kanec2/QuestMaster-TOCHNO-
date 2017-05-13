@@ -195,3 +195,4 @@ D:\QuestMaster-TOCHNO-\QuestMaster\obj\Debug\QuestMaster.csproj.GenerateResource
 D:\QuestMaster-TOCHNO-\QuestMaster\obj\Debug\QuestMaster.csprojResolveAssemblyReference.cache
 E:\QuestMaster-TOCHNO-\QuestMaster\obj\Debug\QuestMaster.csprojResolveAssemblyReference.cache
 E:\QuestMaster-TOCHNO-\QuestMaster\obj\Debug\QuestMaster.RenameDialogBox.resources
+F:\QuestMaster-TOCHNO-\QuestMaster\obj\Debug\QuestMaster.RenameDialogBox.resources

@@ -58,7 +58,7 @@ namespace QuestMaster
             this.files = new List<CustomFile>();
             this.tags = new List<string>();
         }
-        
+
         /// <summary>
         /// Создание модели для Exlporer.
         /// </summary>
@@ -82,7 +82,7 @@ namespace QuestMaster
         /// <param name="explore">Элемент Explore</param>
         /// <param name="resources">Ресурсы</param>
         /// <param name="dbConnect">Соединение с Базой данных</param>
-        public ModelExplorer(Explorer explore, List<CustomFile> files, List<string> tags, DBConnection dbConnect):this(explore,files,tags)
+        public ModelExplorer(Explorer explore, List<CustomFile> files, List<string> tags, DBConnection dbConnect) : this(explore, files, tags)
         {
             this.dbConnect = dbConnect;
         }
@@ -125,7 +125,7 @@ namespace QuestMaster
         {
             AddTreeViewElements(tree);
         }
-#endregion
+        #endregion
         /// <summary>
         /// Добавляет текст в StatusStrip.
         /// </summary>
@@ -145,7 +145,7 @@ namespace QuestMaster
         /// </summary>
         /// <param name="item">Элементы ToolStrip</param>
         /// <param name="state">Состояние: status, tool</param>
-        public void AddStripElements(ToolStripItem item,string state)
+        public void AddStripElements(ToolStripItem item, string state)
         {
             switch (state)
             {
@@ -220,7 +220,7 @@ namespace QuestMaster
         public void makeFiles()
         {
             this.explore.listView.Items.Clear();
-            
+
             ListViewItem.ListViewSubItem[] subItems;
             ListViewItem item = null;
 
@@ -247,7 +247,7 @@ namespace QuestMaster
             explore.treeView.Nodes.Clear();
             TreeNode tNode = new TreeNode();
 
-            switch(state)
+            switch (state)
             {
                 case "resource":
                     this.explore.treeView.Nodes.Add("Images", "Картинки");
@@ -263,7 +263,7 @@ namespace QuestMaster
                     }
                     break;
                 case "player":
-                    this.explore.treeView.Nodes.Add("teams","Команды");
+                    this.explore.treeView.Nodes.Add("teams", "Команды");
                     this.explore.treeView.Nodes.Add("SinglePlayer", "Одиночные игроки");
                     break;
             }
@@ -288,7 +288,7 @@ namespace QuestMaster
             }
             this.explore.contextMenuStrip.Items[3].Visible = !light;
 
-        }   
+        }
 
         /// <summary>
         /// Добавляем Лист с изображением.
@@ -321,4 +321,5 @@ namespace QuestMaster
 
             }
         }
+    }
 }

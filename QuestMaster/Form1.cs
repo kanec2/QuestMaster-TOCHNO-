@@ -24,11 +24,13 @@ namespace QuestMaster
         ModelExplorer exp3;
         Properties.Settings set = new Properties.Settings();
         DirectoryInfo direct;
-        Quests quests = new Quests();
+        QuestController quests = new QuestController();
 
         public Form1()
         {
             InitializeComponent();
+            quests.loadQuests();
+            MessageBox.Show("d: " + quests.list.Count);
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -52,9 +54,10 @@ namespace QuestMaster
             foreach (string item in buf)
             {
                 id = item.Split(':')[1];
+                /*
                 quests.Load(id);
                 quests.DeleteElement(e.Id.ToString());
-                quests.Save();
+                quests.Save();*/
             }
         }
 
@@ -68,7 +71,7 @@ namespace QuestMaster
                 case 1:
                     questExplorer.listView.ContextMenuStrip = questExplorer.contextMenuStrip;
                     direct = new DirectoryInfo(set.QuestArchive);
-                    List<string> allFilesQuest = quests.GetAllFiles(direct.GetFiles().Where(f => f.Name == newSelected.Name).Single().FullName);
+                    List<string> allFilesQuest = new List<string>();//= quests.GetAllFiles(direct.GetFiles().Where(f => f.Name == newSelected.Name).Single().FullName);
                     List<ResourceElement> questElems = resource.GetElementByID(allFilesQuest);
                     questModelExplorer.files.Clear();
                     questModelExplorer.AddListImg(imageListIconForMaterialsListView);
@@ -76,7 +79,7 @@ namespace QuestMaster
                     {
                         questModelExplorer.files.Add(new CustomFile(questElem.respath, questElem.respath.Split('.')[1], questElem));
                     }
-                    questModelExplorer.files.ForEach(t => t.filter(this.exp1.tags));
+                    //questModelExplorer.files.ForEach(t => t.filter(this.exp1.tags));
                     questModelExplorer.makeFiles();
                     break;
                 case 2:
